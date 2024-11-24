@@ -1,16 +1,31 @@
+using System;
 using UnityEngine;
 
-public class FollowTarget : MonoBehaviour
+public class FollowTarget : GameMonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] protected Transform target;
+    [SerializeField] protected float speedCam = 3f;
+
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        //this.LoadTarget();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadTarget()
     {
-        
+        if (target != null) return;
+        this.target = transform.GetComponent<Transform>();
+        Debug.LogWarning(transform.name + ": LoadTarget", gameObject);
+    }
+
+    protected void FixedUpdate()
+    {
+        Following();
+    }
+
+    private void Following()
+    {
+        transform.position = Vector3.Lerp(transform.position, target.position, Time.fixedDeltaTime * speedCam);
     }
 }
