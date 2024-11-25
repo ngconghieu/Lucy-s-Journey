@@ -586,7 +586,7 @@ MonoBehaviour:
   playerCtrl: {fileID: 110204971}
   dashSpeed: 20
   dashTime: 0.3
-  dashCooldown: 0.4
+  dashCooldown: 0.3
 --- !u!1 &1164166870
 GameObject:
   m_ObjectHideFlags: 0
