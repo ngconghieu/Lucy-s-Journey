@@ -4,60 +4,49 @@ using UnityEngine;
 
 public class PlayerDash : PlayerAbstract
 {
-    [SerializeField] protected PlayerJump playerJump;
-    [SerializeField] protected float dashSpeed;
-    [SerializeField] protected float dashTime;
-    [SerializeField] protected float dashCooldown;
+    [SerializeField] protected float dashSpeed = 20;
+    [SerializeField] protected float dashTime = 0.3f;
+    [SerializeField] protected float dashCooldown = 0.3f;
 
-    protected Rigidbody2D rb;
     protected float gravity;
-    protected bool canDash;
-    protected bool dashed;
+    protected bool canDash = true;
 
     protected virtual void Update()
     {
         this.StartDash();
     }
 
-
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        this.rb = PlayerCtrl.Rigidbody2D;
-        this.gravity = rb.gravityScale;
-        this.LoadPlayerJump();
-    }
-
-    private void LoadPlayerJump()
-    {
-        if (playerJump != null) return;
-        this.playerJump = transform.parent.GetComponentInChildren<PlayerJump>();
-        Debug.LogWarning(transform.name + ": LoadPlayerJump", gameObject);
-    }
+    protected override void Awake() 
+        => this.gravity = playerCtrl.Rigidbody2D.gravityScale;
 
     protected void StartDash()
     {
-        if(Input.GetButtonDown("Horizontal") && canDash && !dashed)
+        if(Input.GetButtonDown("Dash") && canDash)
         {
             StartCoroutine(Dash());
-            dashed = true;
-        }
-        if (playerJump.Grounded())
-        {
-            dashed = false;
         }
     }
 
     IEnumerator Dash()
     {
-        canDash = false;
-        PlayerCtrl.dashing = true;
-        rb.gravityScale = 0;
-        rb.linearVelocity = new Vector2(transform.localScale.x * dashSpeed, 0);
+        StartDashState();
         yield return new WaitForSeconds(dashTime);
-        rb.gravityScale = gravity;
-        PlayerCtrl.dashing = false;
+        EndDashState();
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    private void EndDashState()
+    {
+        playerCtrl.Rigidbody2D.gravityScale = gravity;
+        PlayerCtrl.dashing = false;
+    }
+
+    private void StartDashState()
+    {
+        canDash = false;
+        PlayerCtrl.dashing = true;
+        playerCtrl.Rigidbody2D.gravityScale = 0;
+        playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }
 }

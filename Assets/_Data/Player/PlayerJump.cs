@@ -15,7 +15,7 @@ public class PlayerJump : PlayerAbstract
     //chekc ground
     [Header("Check ground")]
     [SerializeField] protected float groundCheckY = 0.2f;
-    [SerializeField] protected float groundCheckX = 0.5f;
+    [SerializeField] protected float groundCheckX = 0.2f;
     [SerializeField] protected LayerMask isGround;
 
     protected override void LoadComponents()

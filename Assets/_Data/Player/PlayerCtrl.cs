@@ -19,10 +19,7 @@ public class PlayerCtrl : GameMonoBehaviour
         this.LoadRigibody();
         this.LoadAnimator();
     }
-    protected void Update()
-    {
-        dashing = Input.GetButtonDown("Horizontal");
-    }
+
     protected virtual void LoadAnimator()
     {
         if (this.animator != null) return;

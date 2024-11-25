@@ -24,6 +24,10 @@ public class PlayerAnim : PlayerAbstract
         //double jumping
         bool doubleJump = playerCtrl.doubleJump;
         playerCtrl.Animator.SetBool("DoubleJump", doubleJump);
+
+        //dashing
+        bool dashing = playerCtrl.dashing;
+        playerCtrl.Animator.SetBool("Dashing", dashing);
     }
 }
 

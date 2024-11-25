@@ -4,22 +4,25 @@ using UnityEngine;
 public class FollowTarget : GameMonoBehaviour
 {
     [SerializeField] protected Transform target;
-    [SerializeField] protected float speedCam = 3f;
+    [SerializeField] protected float speedCam = 10f;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        //this.LoadTarget();
+        this.LoadTarget();
     }
 
     private void LoadTarget()
     {
         if (target != null) return;
-        this.target = transform.GetComponent<Transform>();
-        Debug.LogWarning(transform.name + ": LoadTarget", gameObject);
+        this.target = GameObject.Find("Player").transform;
+        foreach(Transform tf in target)
+        {
+            this.target = tf;
+        }
     }
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         Following();
     }
