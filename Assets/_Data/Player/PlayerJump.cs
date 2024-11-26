@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class PlayerJump : PlayerAbstract
 {
+    bool canDoubleJump;
     [Header("Setting jump")]
-    [SerializeField] protected float jumpForce = 25;
+    [SerializeField] protected float jumpForce = 18;
     [Header("Setting jumping")]
     //jumpBuffer
     protected float jumpBufferCnt = 0;
@@ -46,45 +47,32 @@ public class PlayerJump : PlayerAbstract
         this.Jump();
     }
 
-    protected virtual void Test()
-    {
-        if (Input.GetButtonDown("Jump")) PlayerCtrl.Rigidbody2D.linearVelocityY = jumpForce;
-    }
-
     private void Jump()
     {
         Rigidbody2D rb = PlayerCtrl.Rigidbody2D;
-        if (Input.GetButtonUp("Jump") && rb.linearVelocityY > 0)
+
+        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.jumping)
         {
-            PlayerCtrl.jumping = false;
+            this.Jumping(rb);
+            canDoubleJump = true;
         }
 
-        if (!PlayerCtrl.jumping)
+        else if (!Grounded() && canDoubleJump && Input.GetButtonDown("Jump"))
         {
-            if (jumpBufferCnt > 0 && coyoteTimeCnt > 0)
-            {
-                this.Jumping(rb);
-                PlayerCtrl.jumping = true;
-                PlayerCtrl.doubleJump = true;
-            }
-
-            else if (!Grounded() && PlayerCtrl.doubleJump && Input.GetButtonDown("Jump"))
-            {
-                PlayerCtrl.jumping = true;
-                jumpForce = jumpForce * 3 / 4;
-                this.Jumping(rb);
-                jumpForce = jumpForce * 4 / 3;
-                PlayerCtrl.doubleJump = false;
-            }
+            playerCtrl.jumping = false;
+            playerCtrl.doubleJump = true;
+            jumpForce = jumpForce * 3 / 4;
+            this.Jumping(rb);
+            jumpForce = jumpForce * 4 / 3;
+            canDoubleJump = false;
         }
-
-
     }
 
     private void Jumping(Rigidbody2D rb)
     {
-        playerCtrl.Rigidbody2D.gravityScale = 10;
+        playerCtrl.Rigidbody2D.gravityScale = 6;
         rb.linearVelocityY = jumpForce;
+        PlayerCtrl.jumping = true;
     }
 
     protected void UpdateJumpVar()
@@ -93,6 +81,7 @@ public class PlayerJump : PlayerAbstract
         {
             PlayerCtrl.jumping = false;
             PlayerCtrl.doubleJump = false;
+            canDoubleJump = false;
             coyoteTimeCnt = coyoteTime;
         }
         else
@@ -105,7 +94,7 @@ public class PlayerJump : PlayerAbstract
         }
         else
         {
-            jumpBufferCnt = jumpBufferCnt - Time.deltaTime * 10;
+            jumpBufferCnt -= Time.deltaTime * 10;
         }
     }
 }

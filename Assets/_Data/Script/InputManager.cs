@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     }
 
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         GetMousePos();
         this.Moving();

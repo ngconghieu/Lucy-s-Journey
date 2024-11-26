@@ -8,7 +8,7 @@ public abstract class Despawn : GameMonoBehaviour
         this.Despawning();
     }
 
-    private void Despawning()
+    protected void Despawning()
     {
         if (!CanDespawn()) return;
         DespawnObj();

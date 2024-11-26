@@ -9,9 +9,10 @@ public class PlayerCtrl : GameMonoBehaviour
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
     [Header("State of character")]
-    public bool jumping = false;
-    public bool doubleJump = false;
-    public bool dashing = false;
+    public bool jumping;
+    public bool doubleJump;
+    public bool dashing;
+    public bool attack;
 
     protected override void LoadComponents()
     {

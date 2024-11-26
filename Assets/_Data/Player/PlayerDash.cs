@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerDash : PlayerAbstract
 {
     [SerializeField] protected float dashSpeed = 20;
-    [SerializeField] protected float dashTime = 0.3f;
+    [SerializeField] protected float dashTime = 0.2f;
     [SerializeField] protected float dashCooldown = 0.3f;
 
     protected float gravity;
