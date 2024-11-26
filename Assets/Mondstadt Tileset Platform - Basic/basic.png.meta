@@ -145,7 +145,7 @@ TextureImporter:
       name: basic_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 773
         width: 288
         height: 283
@@ -167,13 +167,13 @@ TextureImporter:
       name: basic_1
       rect:
         serializedVersion: 2
-        x: 320
-        y: 994
-        width: 96
+        x: 326
+        y: 993
+        width: 85
         height: 31
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 9, y: 0, z: 9, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -471,6 +471,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: basic_15
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 560
+        width: 228
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99c37dfb3e71a4e41831f2528b5fa47a
+      internalID: -318483685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic_16
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 975
+        width: 70
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62610c4dc1be4b64ea89cca998cee448
+      internalID: -2038426851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -492,6 +536,8 @@ TextureImporter:
       basic_12: -3067325181294390211
       basic_13: 175351642753194131
       basic_14: -2029705835510544045
+      basic_15: -318483685
+      basic_16: -2038426851
       basic_2: 2810535661893641740
       basic_3: 9042057093310376850
       basic_4: 767947582787565696

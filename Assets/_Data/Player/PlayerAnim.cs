@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerAnim : PlayerAbstract
 {
-
-    protected void Update()
+    [SerializeField] float timer = 0;
+    [SerializeField] float smokeCd = 0.3f;
+    protected void FixedUpdate()
     {
         this.Anim();
-
     }
+
 
     private void Anim()
     {
@@ -28,6 +29,17 @@ public class PlayerAnim : PlayerAbstract
         //dashing
         bool dashing = playerCtrl.dashing;
         playerCtrl.Animator.SetBool("Dashing", dashing);
+
+        timer += Time.fixedDeltaTime;
+        if (timer >= smokeCd && dashing == true)
+        {
+            timer = 0;
+            Transform smoke = transform.parent.Find("Dash").Find("Smoke");
+            Quaternion smokeRot = transform.parent.rotation;
+            Transform setDir = FXSpawner.Instance.Spawn(FXSpawner.DashSmoke, smoke.position, smokeRot);
+            setDir.localScale = transform.parent.localScale;
+            smoke = setDir;
+        }
     }
 }
 

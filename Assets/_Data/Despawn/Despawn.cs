@@ -1,0 +1,22 @@
+using System;
+using UnityEngine;
+
+public abstract class Despawn : GameMonoBehaviour
+{
+    protected virtual void FixedUpdate()
+    {
+        this.Despawning();
+    }
+
+    private void Despawning()
+    {
+        if (!CanDespawn()) return;
+        DespawnObj();
+    }
+
+    public virtual void DespawnObj()
+    {
+        Destroy(transform.parent.gameObject);
+    }
+    protected abstract bool CanDespawn();
+}

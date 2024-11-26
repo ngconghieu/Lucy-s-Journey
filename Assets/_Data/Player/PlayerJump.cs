@@ -42,8 +42,6 @@ public class PlayerJump : PlayerAbstract
         Debug.DrawRay(transform.position, Vector2.down * groundCheckY, Color.red);
         Debug.DrawRay(transform.position + new Vector3(groundCheckX, 0, 0), Vector2.down * groundCheckY, Color.red);
         Debug.DrawRay(transform.position + new Vector3(-groundCheckX, 0, 0), Vector2.down * groundCheckY, Color.red);
-        Debug.Log(transform.name);
-        //this.Test();
         this.UpdateJumpVar();
         this.Jump();
     }
@@ -58,7 +56,6 @@ public class PlayerJump : PlayerAbstract
         Rigidbody2D rb = PlayerCtrl.Rigidbody2D;
         if (Input.GetButtonUp("Jump") && rb.linearVelocityY > 0)
         {
-            rb.linearVelocityY = 0;
             PlayerCtrl.jumping = false;
         }
 
@@ -86,6 +83,7 @@ public class PlayerJump : PlayerAbstract
 
     private void Jumping(Rigidbody2D rb)
     {
+        playerCtrl.Rigidbody2D.gravityScale = 10;
         rb.linearVelocityY = jumpForce;
     }
 
