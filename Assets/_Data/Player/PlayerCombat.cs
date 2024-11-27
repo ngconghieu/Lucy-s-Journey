@@ -3,22 +3,28 @@ using UnityEngine;
 
 public class PlayerCombat : PlayerAbstract
 {
-    [SerializeField] protected Transform attackPoint;
-    [SerializeField] float attackRange = 0.3f;
+    [Header("Setting combat")]
+    //[SerializeField] float attackRange = 0.8f;
+    //[SerializeField] float attackRate = 1f;
+    //float attackCountdown = 0;
     [SerializeField] LayerMask enemyLayers;
+    [SerializeField] Collider2D atkCollider;
+
+    [Header("Setting send dmg")]
+    [SerializeField] protected int dmg = 1;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         LoadEnemyLayers();
-        this.LoadAttackPoint();
+        LoadAtkCollider();
     }
 
-    private void LoadAttackPoint()
+    private void LoadAtkCollider()
     {
-        if (attackPoint != null) return;
-        attackPoint = transform.Find("AttackPoint");
-        Debug.LogWarning(transform.name + ": LoadAttackPoint", gameObject);
+        if (atkCollider != null) return;
+        this.atkCollider = transform.parent.Find("Model").GetComponent<Collider2D>();
+        Debug.LogWarning(transform.name + ": LoadAtkCollider", gameObject);
     }
 
     private void LoadEnemyLayers()
@@ -35,20 +41,38 @@ public class PlayerCombat : PlayerAbstract
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            playerCtrl.attack = true;
-            playerCtrl.Animator.SetTrigger("Attack");
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        
-            foreach(Collider2D enemy in hitEnemies)
-            {
-                Debug.Log(enemy.name);
-            }
+            Attacking();
         }
     }
 
-    private void OnDrawGizmosSelected()
+    //private void Attack()
+    //{
+    //    if (Input.GetButtonDown("Fire1") && attackCountdown <=Time.time)
+    //    {
+    //        Attacking();
+    //        attackCountdown = Time.time + 1f / attackRate;
+
+    //    }
+    //}
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (attackPoint == null) return;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        Debug.Log("hehe"+ collision);
     }
+
+    protected virtual void Attacking()
+    {
+        playerCtrl.PlayerState.Attacking = true;
+        playerCtrl.Animator.SetTrigger("NormalAtk1");
+        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
+        //foreach (Collider2D enemy in hitEnemies)
+        //{
+        //    DmgReceiver receiver = enemy.GetComponent<DmgReceiver>();
+        //    receiver.Deduct(dmg);
+        //}
+    }
+
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.DrawWireSphere(transform.position, attackRange);
+    //}
 }

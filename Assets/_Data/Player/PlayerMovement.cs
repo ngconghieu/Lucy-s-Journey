@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : PlayerAbstract
 {
     [Header("Moving horizontal")]
-    [SerializeField] protected float movingSpeed = 9f;
+    [SerializeField] protected float movingSpeed = 7f;
 
     protected virtual void Update()
     {
-        if (playerCtrl.dashing) return;
+        if (playerCtrl.PlayerState.Dashing) return;
         this.Moving();
     }
 
@@ -21,8 +21,6 @@ public class PlayerMovement : PlayerAbstract
         //Moving
         playerCtrl.Rigidbody2D.linearVelocityX = movingSpeed * xAxis;
         //Flip
-        //if (xAxis < 0) transform.parent.localScale = new Vector3(-4f, 4, 1);
-        //if (xAxis > 0) transform.parent.localScale = new Vector3(4f, 4, 1);
         if (xAxis < 0) transform.parent.localScale = new Vector3(-1f, 1, 1);
         if (xAxis > 0) transform.parent.localScale = new Vector3(1f, 1, 1);
     }

@@ -23,6 +23,12 @@ public class PlayerDash : PlayerAbstract
     {
         if(Input.GetButtonDown("Dash") && canDash)
         {
+            //cast smoke
+            Transform smoke = transform.parent.Find("Dash").Find("Smoke");
+            Quaternion smokeRot = transform.parent.rotation;
+            smoke = FXSpawner.Instance.Spawn(FXSpawner.DashSmoke, smoke.position, smokeRot);
+            smoke.localScale = transform.parent.localScale;
+            //dash
             StartCoroutine(Dash());
         }
     }
@@ -39,13 +45,13 @@ public class PlayerDash : PlayerAbstract
     private void EndDashState()
     {
         playerCtrl.Rigidbody2D.gravityScale = gravity;
-        PlayerCtrl.dashing = false;
+        playerCtrl.PlayerState.Dashing = false;
     }
 
     private void StartDashState()
     {
         canDash = false;
-        PlayerCtrl.dashing = true;
+        playerCtrl.PlayerState.Dashing = true;
         playerCtrl.Rigidbody2D.gravityScale = 0;
         playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }

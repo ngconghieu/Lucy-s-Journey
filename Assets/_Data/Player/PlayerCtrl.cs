@@ -8,23 +8,25 @@ public class PlayerCtrl : GameMonoBehaviour
     [SerializeField] protected Animator animator;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
-    [Header("State of character")]
-    public bool jumping;
-    public bool doubleJump;
-    public bool dashing;
-    public bool attack;
+    public PlayerState PlayerState { get; set; }
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadRigibody();
         this.LoadAnimator();
+        this.LoadPlayerState();
+    }
+
+    private void LoadPlayerState()
+    {
+        PlayerState = new PlayerState();
     }
 
     protected virtual void LoadAnimator()
     {
         if (this.animator != null) return;
-        animator = transform.Find("Model").GetComponent<Animator>();
+        animator = transform.GetComponent<Animator>();
         Debug.LogWarning(transform.name + ": LoadAnimator", gameObject);
     }
 

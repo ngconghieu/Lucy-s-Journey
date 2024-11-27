@@ -4,6 +4,7 @@ public abstract class GameMonoBehaviour : MonoBehaviour
 {
     protected virtual void Awake()
     {
+        this.ResetValue();
         this.LoadComponents();
     }
 
@@ -28,6 +29,11 @@ public abstract class GameMonoBehaviour : MonoBehaviour
     }
 
     protected virtual void OnDisable()
+    {
+        //For override
+    }
+
+    protected virtual void ResetValue()
     {
         //For override
     }

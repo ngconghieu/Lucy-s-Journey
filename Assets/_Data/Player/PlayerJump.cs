@@ -12,7 +12,7 @@ public class PlayerJump : PlayerAbstract
     [SerializeField] protected float jumpBufferFrames = 1;
     //coyoteTime
     protected float coyoteTimeCnt = 0;
-    [SerializeField] protected float coyoteTime = 0.1f;
+    [SerializeField] protected float coyoteTime = 0.15f;
     //chekc ground
     [Header("Check ground")]
     [SerializeField] protected float groundCheckY = 0.2f;
@@ -51,7 +51,7 @@ public class PlayerJump : PlayerAbstract
     {
         Rigidbody2D rb = PlayerCtrl.Rigidbody2D;
 
-        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.jumping)
+        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.PlayerState.Jumping)
         {
             this.Jumping(rb);
             canDoubleJump = true;
@@ -59,8 +59,7 @@ public class PlayerJump : PlayerAbstract
 
         else if (!Grounded() && canDoubleJump && Input.GetButtonDown("Jump"))
         {
-            playerCtrl.jumping = false;
-            playerCtrl.doubleJump = true;
+            playerCtrl.PlayerState.DoubleJump = true;
             jumpForce = jumpForce * 3 / 4;
             this.Jumping(rb);
             jumpForce = jumpForce * 4 / 3;
@@ -72,15 +71,15 @@ public class PlayerJump : PlayerAbstract
     {
         playerCtrl.Rigidbody2D.gravityScale = 6;
         rb.linearVelocityY = jumpForce;
-        PlayerCtrl.jumping = true;
+        playerCtrl.PlayerState.Jumping = true;
     }
 
     protected void UpdateJumpVar()
     {
         if (Grounded())
         {
-            PlayerCtrl.jumping = false;
-            PlayerCtrl.doubleJump = false;
+            playerCtrl.PlayerState.Jumping = false;
+            playerCtrl.PlayerState.DoubleJump = false;
             canDoubleJump = false;
             coyoteTimeCnt = coyoteTime;
         }
