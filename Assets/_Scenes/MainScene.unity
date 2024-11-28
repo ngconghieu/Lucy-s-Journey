@@ -5964,7 +5964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseWorldPos: {x: 0, y: 0, z: 0}
-  xAxis: 0
 --- !u!4 &2094435717
 Transform:
   m_ObjectHideFlags: 0
@@ -5986,9 +5985,9 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
+  - {fileID: 1318990280}
   - {fileID: 959111227}
   - {fileID: 2055811110}
   - {fileID: 1815465156}
   - {fileID: 755729863}
   - {fileID: 645708465}
-  - {fileID: 1318990280}

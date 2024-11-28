@@ -13,20 +13,20 @@ public class PlayerAnim : PlayerAbstract
     private void Anim()
     {
         //moving
-        float moving = InputManager.Instance.XAxis;
-        playerCtrl.Animator.SetFloat("Moving", Mathf.Abs(moving));
+        float moving = playerCtrl.PlayerState.Moving;
+        playerCtrl.Animator.SetFloat(AnimStrings.isMoving, Mathf.Abs(moving));
 
         //jumping
         bool jumping = playerCtrl.PlayerState.Jumping;
-        playerCtrl.Animator.SetBool("Jumping", jumping);
+        playerCtrl.Animator.SetBool(AnimStrings.isJumping, jumping);
 
         //double jumping
         bool doubleJump = playerCtrl.PlayerState.DoubleJump;
-        playerCtrl.Animator.SetBool("DoubleJump", doubleJump);
+        playerCtrl.Animator.SetBool(AnimStrings.isDoubleJump, doubleJump);
 
         //dashing
         bool dashing = playerCtrl.PlayerState.Dashing;
-        playerCtrl.Animator.SetBool("Dashing", dashing);
+        playerCtrl.Animator.SetBool(AnimStrings.isDashing, dashing);
     }
 }
 

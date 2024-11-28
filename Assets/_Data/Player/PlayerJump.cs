@@ -57,7 +57,7 @@ public class PlayerJump : PlayerAbstract
             canDoubleJump = true;
         }
 
-        else if (!Grounded() && canDoubleJump && Input.GetButtonDown("Jump"))
+        else if (!Grounded() && canDoubleJump && InputManager.Instance.Jump())
         {
             playerCtrl.PlayerState.DoubleJump = true;
             jumpForce = jumpForce * 3 / 4;
@@ -87,7 +87,7 @@ public class PlayerJump : PlayerAbstract
         {
             coyoteTimeCnt -= Time.deltaTime;
         }
-        if (Input.GetButtonDown("Jump"))
+        if (InputManager.Instance.Jump())
         {
             jumpBufferCnt = jumpBufferFrames;
         }

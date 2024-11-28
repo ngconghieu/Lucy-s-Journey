@@ -11,8 +11,6 @@ public class InputManager : MonoBehaviour
     [SerializeField] protected Vector3 mouseWorldPos;
     public Vector3 MouseWorldPos => mouseWorldPos;
 
-    [SerializeField] protected float xAxis;
-    public float XAxis => xAxis;
     protected virtual void Awake()
     {
         if (InputManager.instance != null) Debug.LogError("InputManager already exists");
@@ -20,15 +18,9 @@ public class InputManager : MonoBehaviour
     }
 
 
-    protected void Update()
+    protected void FixedUpdate()
     {
         GetMousePos();
-        this.Moving();
-    }
-
-    private void Moving()
-    {
-        xAxis = Input.GetAxisRaw("Horizontal");
     }
 
     private void GetMousePos()
@@ -37,4 +29,8 @@ public class InputManager : MonoBehaviour
         this.mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
+    public float Move() => Input.GetAxisRaw("Horizontal");
+    public bool Dash() => Input.GetButtonDown("Dash");
+    public bool Jump() => Input.GetButtonDown("Jump");
+    public bool Attack() => Input.GetButtonDown("Fire1");
 }

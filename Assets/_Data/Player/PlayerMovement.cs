@@ -17,12 +17,13 @@ public class PlayerMovement : PlayerAbstract
 
     protected virtual void Moving()
     {
-        float xAxis = InputManager.Instance.XAxis;
+        float move = InputManager.Instance.Move();
+        playerCtrl.PlayerState.Moving = move;
         //Moving
-        playerCtrl.Rigidbody2D.linearVelocityX = movingSpeed * xAxis;
+        playerCtrl.Rigidbody2D.linearVelocityX = movingSpeed * move;
         //Flip
-        if (xAxis < 0) transform.parent.localScale = new Vector3(-1f, 1, 1);
-        if (xAxis > 0) transform.parent.localScale = new Vector3(1f, 1, 1);
+        if (move < 0) transform.parent.localScale = new Vector3(-1f, 1, 1);
+        if (move > 0) transform.parent.localScale = new Vector3(1f, 1, 1);
     }
 
 }

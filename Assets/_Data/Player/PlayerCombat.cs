@@ -39,7 +39,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void Attack()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (InputManager.Instance.Attack())
         {
             Attacking();
         }
@@ -54,15 +54,15 @@ public class PlayerCombat : PlayerAbstract
 
     //    }
     //}
-    protected void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("hehe"+ collision);
+        Debug.Log(transform.name + " " + collision);
     }
 
     protected virtual void Attacking()
     {
         playerCtrl.PlayerState.Attacking = true;
-        playerCtrl.Animator.SetTrigger("NormalAtk1");
+        playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack1);
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
         //foreach (Collider2D enemy in hitEnemies)
         //{

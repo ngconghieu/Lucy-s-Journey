@@ -21,7 +21,7 @@ public class PlayerDash : PlayerAbstract
 
     protected void StartDash()
     {
-        if(Input.GetButtonDown("Dash") && canDash)
+        if(InputManager.Instance.Dash() && canDash)
         {
             //cast smoke
             Transform smoke = transform.parent.Find("Dash").Find("Smoke");

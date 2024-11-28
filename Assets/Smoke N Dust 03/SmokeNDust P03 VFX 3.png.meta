@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SmokeNDust P03 VFX 3_0: 6581599137195611134
+      SmokeNDust P03 VFX 3_1: -7920776224938476220
+      SmokeNDust P03 VFX 3_2: -5303053351204855819
+      SmokeNDust P03 VFX 3_3: -2149513649781165614
+      SmokeNDust P03 VFX 3_4: 8073069146633579895
+      SmokeNDust P03 VFX 3_5: -6589278237519403565
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
