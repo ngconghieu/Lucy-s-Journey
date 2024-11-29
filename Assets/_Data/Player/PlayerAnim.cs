@@ -27,6 +27,12 @@ public class PlayerAnim : PlayerAbstract
         //dashing
         bool dashing = playerCtrl.PlayerState.Dashing;
         playerCtrl.Animator.SetBool(AnimStrings.isDashing, dashing);
+
+        //attacking
+
+        //slide wall
+        bool slideWall = playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded;
+        playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
     }
 }
 

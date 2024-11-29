@@ -11,7 +11,7 @@ public class PlayerCombat : PlayerAbstract
     [SerializeField] Collider2D atkCollider;
 
     [Header("Setting send dmg")]
-    [SerializeField] protected int dmg = 1;
+    [SerializeField] protected int dmg = 2;
 
     protected override void LoadComponents()
     {
@@ -23,7 +23,7 @@ public class PlayerCombat : PlayerAbstract
     private void LoadAtkCollider()
     {
         if (atkCollider != null) return;
-        this.atkCollider = transform.parent.Find("Model").GetComponent<Collider2D>();
+        this.atkCollider = GetComponent<Collider2D>();
         Debug.LogWarning(transform.name + ": LoadAtkCollider", gameObject);
     }
 
@@ -56,13 +56,17 @@ public class PlayerCombat : PlayerAbstract
     //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(transform.name + " " + collision);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            DmgReceiver dmgReceiver = collision.GetComponent<DmgReceiver>();
+            dmgReceiver.Deduct(dmg);
+        }
     }
 
     protected virtual void Attacking()
     {
         playerCtrl.PlayerState.Attacking = true;
-        playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack1);
+        playerCtrl.Animator.SetTrigger(AnimStrings.isAttacking);
         //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
         //foreach (Collider2D enemy in hitEnemies)
         //{

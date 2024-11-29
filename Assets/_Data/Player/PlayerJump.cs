@@ -14,10 +14,11 @@ public class PlayerJump : PlayerAbstract
     protected float coyoteTimeCnt = 0;
     [SerializeField] protected float coyoteTime = 0.15f;
     //chekc ground
-    [Header("Check ground")]
+    [Header("Check ground & wall")]
     [SerializeField] protected float groundCheckY = 0.2f;
     [SerializeField] protected float groundCheckX = 0.2f;
-    [SerializeField] protected LayerMask isGround;
+    [SerializeField] protected LayerMask ground;
+    [SerializeField] protected float slidingSpeed = 1;
 
     protected override void LoadComponents()
     {
@@ -25,26 +26,38 @@ public class PlayerJump : PlayerAbstract
         this.LoadLayerMask();
     }
 
-    private void LoadLayerMask()
-    {
-        isGround = LayerMask.GetMask("Ground");
-    }
-
-    public bool Grounded()
-    {
-        return Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, isGround)
-            || Physics2D.Raycast(transform.position + new Vector3(groundCheckX, 0, 0), Vector2.down, groundCheckY, isGround)
-            || Physics2D.Raycast(transform.position + new Vector3(-groundCheckX, 0, 0), Vector2.down, groundCheckY, isGround);
-    }
-
-
     protected virtual void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.down * groundCheckY, Color.red);
-        Debug.DrawRay(transform.position + new Vector3(groundCheckX, 0, 0), Vector2.down * groundCheckY, Color.red);
-        Debug.DrawRay(transform.position + new Vector3(-groundCheckX, 0, 0), Vector2.down * groundCheckY, Color.red);
         this.UpdateJumpVar();
         this.Jump();
+        this.ClimpOnWall();
+        this.CheckGround();
+        this.CheckWall();
+        Debug.DrawRay(transform.position, Vector2.down * groundCheckY, Color.red);
+        Debug.DrawRay(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0) * groundCheckX, Color.red);
+    }
+
+    private void LoadLayerMask()
+    {
+        ground = LayerMask.GetMask("Ground");
+    }
+
+    public void CheckGround()
+    {
+        playerCtrl.PlayerState.IsGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, ground);
+    }
+
+    private void CheckWall()
+    {
+        playerCtrl.PlayerState.IsWall = Physics2D.Raycast(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0), groundCheckX, ground);
+    }
+
+    private void ClimpOnWall()
+    {
+        if (playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded && InputManager.Instance.Move() != 0)
+        {
+            playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
+        }
     }
 
     private void Jump()
@@ -57,7 +70,7 @@ public class PlayerJump : PlayerAbstract
             canDoubleJump = true;
         }
 
-        else if (!Grounded() && canDoubleJump && InputManager.Instance.Jump())
+        else if (!playerCtrl.PlayerState.IsGrounded && canDoubleJump && InputManager.Instance.Jump())
         {
             playerCtrl.PlayerState.DoubleJump = true;
             jumpForce = jumpForce * 3 / 4;
@@ -76,7 +89,7 @@ public class PlayerJump : PlayerAbstract
 
     protected void UpdateJumpVar()
     {
-        if (Grounded())
+        if (playerCtrl.PlayerState.IsGrounded)
         {
             playerCtrl.PlayerState.Jumping = false;
             playerCtrl.PlayerState.DoubleJump = false;
@@ -86,6 +99,7 @@ public class PlayerJump : PlayerAbstract
         else
         {
             coyoteTimeCnt -= Time.deltaTime;
+            if (playerCtrl.PlayerState.IsWall) canDoubleJump = true;
         }
         if (InputManager.Instance.Jump())
         {

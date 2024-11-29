@@ -44,8 +44,4 @@ public abstract class DmgReceiver : GameMonoBehaviour
     {
         return hp <= 0;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(transform.name + " " + collision);
-    }
 }

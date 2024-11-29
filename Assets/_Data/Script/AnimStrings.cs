@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class AnimStrings 
 {
-    public static string isMoving = "Moving";
-    public static string isJumping = "Jumping";
+    public static string isMoving = "Move";
+    public static string isJumping = "Jump";
     public static string isDoubleJump = "DoubleJump";
-    public static string isDashing = "Dashing";
-    public static string isNormalAttack1 = "NormalAtk1";
-    public static string isNormalAttack2 = "NormalAtk2";
-    public static string isNormalAttack3 = "NormalAtk3";
-
+    public static string isDashing = "Dash";
+    public static string isAttacking = "Attack";
+    //public static string isWall = "IsWall";
+    //public static string isGround = "IsGround";
+    public static string isSlideWall = "SlideWall";
 
 }
