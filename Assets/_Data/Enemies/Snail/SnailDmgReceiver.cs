@@ -35,6 +35,6 @@ public class SnailDmgReceiver : DmgReceiver
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.maxHp = 5;
+        this.maxHp = 8;
     }
 }

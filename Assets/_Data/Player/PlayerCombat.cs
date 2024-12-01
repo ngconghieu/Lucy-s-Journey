@@ -1,59 +1,97 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : PlayerAbstract
 {
-    [Header("Setting combat")]
-    //[SerializeField] float attackRange = 0.8f;
-    //[SerializeField] float attackRate = 1f;
-    //float attackCountdown = 0;
-    [SerializeField] LayerMask enemyLayers;
-    [SerializeField] Collider2D atkCollider;
+    Animator animator;
+    [Header("Combo attack setting")]
+    //[SerializeField] private float comboDelay = 0.5f; //cd each combo
+    [SerializeField] private bool isComboActive;
+    [SerializeField] private float maxComboTime = 3f;
+    [SerializeField] private int comboIndex = 0;
+    [SerializeField] private float comboTimer = 0;
+    public bool canNextCombo = true;
 
     [Header("Setting send dmg")]
     [SerializeField] protected int dmg = 2;
+    int oDmg;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        LoadEnemyLayers();
-        LoadAtkCollider();
-    }
-
-    private void LoadAtkCollider()
-    {
-        if (atkCollider != null) return;
-        this.atkCollider = GetComponent<Collider2D>();
-        Debug.LogWarning(transform.name + ": LoadAtkCollider", gameObject);
-    }
-
-    private void LoadEnemyLayers()
-    {
-        enemyLayers = LayerMask.GetMask("Enemy");
+        oDmg = dmg;
+        animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()
     {
-        this.Attack();
+        HandleComboAttack();
+        UpdateComboTimer();
+    }
+
+    private void HandleComboAttack()
+    {
+        if (InputManager.Instance.Attack() && canNextCombo)
+        {
+            if (comboIndex > 2)
+            {
+                ResetCombo();
+                return;
+            }
+            PerformAttack();
+        }
+    }
+
+    private void PerformAttack()
+    {
+
+        // update combo state
+        comboTimer = maxComboTime;
+        isComboActive = true;
+
+        // Start attack combo
+        Attack();
+        comboIndex++;
+
     }
 
     private void Attack()
     {
-        if (InputManager.Instance.Attack())
+        if (comboIndex == 0) animator.SetTrigger(AnimStrings.isNormalAttack0);
+        else if (comboIndex == 1)
         {
-            Attacking();
+            dmg += dmg;
+            animator.SetTrigger(AnimStrings.isNormalAttack1);
+        }
+        else
+        {
+            dmg += dmg;
+            animator.SetTrigger(AnimStrings.isNormalAttack2);
         }
     }
 
-    //private void Attack()
-    //{
-    //    if (Input.GetButtonDown("Fire1") && attackCountdown <=Time.time)
-    //    {
-    //        Attacking();
-    //        attackCountdown = Time.time + 1f / attackRate;
+    private void UpdateComboTimer()
+    {
+        if (isComboActive)
+        {
+            comboTimer -= Time.deltaTime;
+            if (comboTimer <= 0)
+            {
+                ResetCombo();
+            }
+        }
+    }
 
-    //    }
-    //}
+    private void ResetCombo()
+    {
+        dmg = oDmg;
+        isComboActive = false;
+        comboIndex = 0;
+        comboTimer = 0f;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -63,20 +101,4 @@ public class PlayerCombat : PlayerAbstract
         }
     }
 
-    protected virtual void Attacking()
-    {
-        playerCtrl.PlayerState.Attacking = true;
-        playerCtrl.Animator.SetTrigger(AnimStrings.isAttacking);
-        //Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayers);
-        //foreach (Collider2D enemy in hitEnemies)
-        //{
-        //    DmgReceiver receiver = enemy.GetComponent<DmgReceiver>();
-        //    receiver.Deduct(dmg);
-        //}
-    }
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, attackRange);
-    //}
 }

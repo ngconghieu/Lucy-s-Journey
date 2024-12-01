@@ -1738,10 +1738,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 110204971}
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  atkCollider: {fileID: 1592767643}
+  isComboActive: 0
+  maxComboTime: 3
+  comboIndex: 0
+  comboTimer: 0
+  canNextCombo: 1
   dmg: 2
 --- !u!1 &1605823190
 GameObject:

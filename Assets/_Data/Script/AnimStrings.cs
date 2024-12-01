@@ -6,9 +6,8 @@ public class AnimStrings
     public static string isJumping = "Jump";
     public static string isDoubleJump = "DoubleJump";
     public static string isDashing = "Dash";
-    public static string isAttacking = "Attack";
-    //public static string isWall = "IsWall";
-    //public static string isGround = "IsGround";
-    public static string isSlideWall = "SlideWall";
-
+    public static string isNormalAttack0 = "NormalAttack0";
+    public static string isNormalAttack1 = "NormalAttack1";
+    public static string isNormalAttack2 = "NormalAttack2";
+    internal static string isSlideWall = "SlideWall";
 }
