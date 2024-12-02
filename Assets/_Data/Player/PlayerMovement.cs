@@ -25,5 +25,4 @@ public class PlayerMovement : PlayerAbstract
         if (move < 0) transform.parent.localScale = new Vector3(-1f, 1, 1);
         if (move > 0) transform.parent.localScale = new Vector3(1f, 1, 1);
     }
-
 }

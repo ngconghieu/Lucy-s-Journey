@@ -9,7 +9,6 @@ public class PlayerAnim : PlayerAbstract
         this.Anim();
     }
 
-
     private void Anim()
     {
         //moving

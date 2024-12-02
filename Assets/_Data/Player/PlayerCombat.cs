@@ -7,12 +7,11 @@ public class PlayerCombat : PlayerAbstract
 {
     Animator animator;
     [Header("Combo attack setting")]
-    //[SerializeField] private float comboDelay = 0.5f; //cd each combo
     [SerializeField] private bool isComboActive;
     [SerializeField] private float maxComboTime = 3f;
     [SerializeField] private int comboIndex = 0;
     [SerializeField] private float comboTimer = 0;
-    public bool canNextCombo = true;
+    public bool canAttack = true;// check on animation
 
     [Header("Setting send dmg")]
     [SerializeField] protected int dmg = 2;
@@ -33,7 +32,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void HandleComboAttack()
     {
-        if (InputManager.Instance.Attack() && canNextCombo)
+        if (InputManager.Instance.Attack() && canAttack)
         {
             if (comboIndex > 2)
             {
