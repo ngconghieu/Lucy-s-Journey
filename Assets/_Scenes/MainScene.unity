@@ -343,8 +343,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.02057147, y: 0.008993685}
-  m_Size: {x: 0.7866659, y: 1.3336424}
+  m_Offset: {x: -0.029387563, y: 0.008993685}
+  m_Size: {x: 0.5221806, y: 1.3336424}
   m_Direction: 0
 --- !u!1 &139831524
 GameObject:
@@ -1004,7 +1004,7 @@ Transform:
   m_GameObject: {fileID: 1164166870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: -0.64, z: 0}
+  m_LocalPosition: {x: 0.2, y: -0.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1292,7 +1292,7 @@ Transform:
   m_GameObject: {fileID: 1532014834}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.84, y: 4.6, z: 0}
+  m_LocalPosition: {x: 19.84, y: 4.42, z: 0}
   m_LocalScale: {x: 1, y: 10.3884, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1742,7 +1742,7 @@ MonoBehaviour:
   maxComboTime: 3
   comboIndex: 0
   comboTimer: 0
-  canNextCombo: 1
+  canAttack: 1
   dmg: 2
 --- !u!1 &1605823190
 GameObject:
@@ -3423,7 +3423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43cfa522d3320fc45a926d2257cb5f27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseWorldPos: {x: 0, y: 0, z: 0}
 --- !u!4 &2094435717
 Transform:
   m_ObjectHideFlags: 0
@@ -3521,7 +3520,7 @@ Transform:
   m_GameObject: {fileID: 2114989701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.97, y: 4.56, z: 0}
+  m_LocalPosition: {x: -6.97, y: 4.39, z: 0}
   m_LocalScale: {x: 1, y: 10.3884, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
