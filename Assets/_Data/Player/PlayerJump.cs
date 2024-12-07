@@ -3,27 +3,32 @@ using UnityEngine;
 
 public class PlayerJump : PlayerAbstract
 {
-    bool canDoubleJump;
+    //Load CheckTerrain
+    [SerializeField] CheckTerrain checkTerrain;
+    int numOfDoubleJump, maxNumOfDoubleJump = 1;
+
     [Header("Setting jump")]
     [SerializeField] protected float jumpForce = 18;
-    [Header("Setting jumping")]
-    //jumpBuffer
     protected float jumpBufferCnt = 0;
     [SerializeField] protected float jumpBufferFrames = 1;
     //coyoteTime
     protected float coyoteTimeCnt = 0;
     [SerializeField] protected float coyoteTime = 0.15f;
-    //chekc ground
-    [Header("Check ground & wall")]
-    [SerializeField] protected float groundCheckY = 0.2f;
-    [SerializeField] protected float groundCheckX = 0.2f;
-    [SerializeField] protected LayerMask ground;
+    //slide wall
+    [Header("Setting slide")]
     [SerializeField] protected float slidingSpeed = 1;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadLayerMask();
+        LoadCheckTerrain();
+    }
+
+    private void LoadCheckTerrain()
+    {
+        if (checkTerrain != null) return;
+        checkTerrain = GetComponent<CheckTerrain>();
+        Debug.LogWarning(transform.name + ": LoadCheckTerrain", gameObject);
     }
 
     protected virtual void Update()
@@ -31,30 +36,25 @@ public class PlayerJump : PlayerAbstract
         this.UpdateJumpVar();
         this.Jump();
         this.ClimpOnWall();
+        Debug.DrawRay(transform.position, Vector2.down * 0.5f, Color.red);
+        Debug.DrawRay(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0) * 0.5f, Color.red);
         this.CheckGround();
         this.CheckWall();
-        Debug.DrawRay(transform.position, Vector2.down * groundCheckY, Color.red);
-        Debug.DrawRay(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0) * groundCheckX, Color.red);
-    }
-
-    private void LoadLayerMask()
-    {
-        ground = LayerMask.GetMask("Ground");
-    }
-
-    public void CheckGround()
-    {
-        playerCtrl.PlayerState.IsGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckY, ground);
     }
 
     private void CheckWall()
     {
-        playerCtrl.PlayerState.IsWall = Physics2D.Raycast(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0), groundCheckX, ground);
+        playerCtrl.PlayerState.IsWall = checkTerrain.IsWall();
+    }
+
+    private void CheckGround()
+    {
+        playerCtrl.PlayerState.IsGrounded = checkTerrain.IsGrounded();
     }
 
     private void ClimpOnWall()
     {
-        if (playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded && InputManager.Instance.Move() != 0)
+        if (playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded)
         {
             playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
         }
@@ -67,16 +67,15 @@ public class PlayerJump : PlayerAbstract
         if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.PlayerState.Jumping)
         {
             this.Jumping(rb);
-            canDoubleJump = true;
         }
 
-        else if (!playerCtrl.PlayerState.IsGrounded && canDoubleJump && InputManager.Instance.Jump())
+        else if (!playerCtrl.PlayerState.IsGrounded && numOfDoubleJump < maxNumOfDoubleJump && InputManager.Instance.Jump())
         {
+            numOfDoubleJump++;
             playerCtrl.PlayerState.DoubleJump = true;
-            jumpForce = jumpForce * 3 / 4;
+            jumpForce = jumpForce * 4 / 5;
             this.Jumping(rb);
-            jumpForce = jumpForce * 4 / 3;
-            canDoubleJump = false;
+            jumpForce = jumpForce * 5 / 4;
         }
     }
 
@@ -93,13 +92,13 @@ public class PlayerJump : PlayerAbstract
         {
             playerCtrl.PlayerState.Jumping = false;
             playerCtrl.PlayerState.DoubleJump = false;
-            canDoubleJump = false;
+            numOfDoubleJump = 0;
             coyoteTimeCnt = coyoteTime;
         }
         else
         {
             coyoteTimeCnt -= Time.deltaTime;
-            if (playerCtrl.PlayerState.IsWall) canDoubleJump = true;
+            if (playerCtrl.PlayerState.IsWall) numOfDoubleJump = 0;
         }
         if (InputManager.Instance.Jump())
         {

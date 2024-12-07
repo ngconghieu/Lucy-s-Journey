@@ -10,4 +10,7 @@ public class AnimStrings
     public static string isNormalAttack1 = "NormalAttack1";
     public static string isNormalAttack2 = "NormalAttack2";
     internal static string isSlideWall = "SlideWall";
+    internal static string isDead = "Dead";
+    internal static string isHit = "Hit";
+
 }

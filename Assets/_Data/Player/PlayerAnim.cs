@@ -34,5 +34,3 @@ public class PlayerAnim : PlayerAbstract
         playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
     }
 }
-
-

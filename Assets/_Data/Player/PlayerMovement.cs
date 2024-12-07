@@ -22,7 +22,7 @@ public class PlayerMovement : PlayerAbstract
         //Moving
         playerCtrl.Rigidbody2D.linearVelocityX = movingSpeed * move;
         //Flip
-        if (move < 0) transform.parent.localScale = new Vector3(-1f, 1, 1);
-        if (move > 0) transform.parent.localScale = new Vector3(1f, 1, 1);
+        if (move < 0) transform.localScale = new Vector3(-1f, 1, 1);
+        if (move > 0) transform.localScale = new Vector3(1f, 1, 1);
     }
 }

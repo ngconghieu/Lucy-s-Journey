@@ -8,10 +8,10 @@ public class PlayerCombat : PlayerAbstract
     Animator animator;
     [Header("Combo attack setting")]
     [SerializeField] private bool isComboActive;
-    [SerializeField] private float maxComboTime = 3f;
+    [SerializeField] private float maxComboTime = 1.5f;
     [SerializeField] private int comboIndex = 0;
     [SerializeField] private float comboTimer = 0;
-    public bool canAttack = true;// check on animation
+    public bool canNextCombo = true;// check on animation
 
     [Header("Setting send dmg")]
     [SerializeField] protected int dmg = 2;
@@ -32,7 +32,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void HandleComboAttack()
     {
-        if (InputManager.Instance.Attack() && canAttack)
+        if (InputManager.Instance.Attack() && canNextCombo)
         {
             if (comboIndex > 2)
             {
@@ -93,7 +93,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.CompareTag("Enemy"))
         {
             DmgReceiver dmgReceiver = collision.GetComponent<DmgReceiver>();
             dmgReceiver.Deduct(dmg);
