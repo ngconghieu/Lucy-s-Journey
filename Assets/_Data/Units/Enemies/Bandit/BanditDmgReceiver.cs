@@ -5,7 +5,7 @@ using UnityEngine;
 public class BanditDmgReceiver : DmgReceiver
 {
     [SerializeField] Animator anim;
-    [SerializeField] BoxCollider2D boxCollider;
+    [SerializeField] BoxCollider2D _collider;
     [SerializeField] protected float cdToDespawn = 3f;
 
     protected override void LoadComponents()
@@ -17,15 +17,15 @@ public class BanditDmgReceiver : DmgReceiver
 
     private void LoadCollider()
     {
-        if (boxCollider != null) return;
-        boxCollider = transform.GetComponent<BoxCollider2D>();
+        if (_collider != null) return;
+        _collider = transform.GetComponent<BoxCollider2D>();
         Debug.LogWarning(transform.name + ": LoadCollider", gameObject);
     }
 
     protected override void ResetValue()
     {
         base.ResetValue();
-        this.maxHp = 8;
+        this.maxHp = 80;
     }
 
     private void LoadAnim()
@@ -37,7 +37,7 @@ public class BanditDmgReceiver : DmgReceiver
 
     protected override void OnDead()
     {
-        boxCollider.enabled = false;
+        _collider.enabled = false;
         anim.SetTrigger(AnimStrings.isDead);
         StartCoroutine(DespawnAfterTime());
     }
@@ -46,12 +46,13 @@ public class BanditDmgReceiver : DmgReceiver
     {
         yield return new WaitForSeconds(cdToDespawn);
         transform.parent.gameObject.SetActive(false);
-        boxCollider.enabled = true;
+        _collider.enabled = true;
     }
 
     protected void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        //Debug.Log(collision.gameObject.layer + " "+ LayerMask.NameToLayer("Player"));
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             if (collision.TryGetComponent<PlayerCombat>(out _)) anim.SetTrigger(AnimStrings.isHit);
         }

@@ -12,7 +12,7 @@ public class BanditMovement : GameMonoBehaviour
 
     [Header("Movement setting")]
     [SerializeField] bool canMove;
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveSpeed = 6f;
     [SerializeField] bool moving = true;
 
     protected override void LoadComponents()
