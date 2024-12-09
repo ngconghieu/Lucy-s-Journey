@@ -61,7 +61,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: Combat
     classID: 60
     script: {fileID: 0}
     flags: 0
@@ -79,7 +79,16 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.93333334
+        time: 0.98333335
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -91,7 +100,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: canNextCombo
-    path: 
+    path: Combat
     classID: 114
     script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
     flags: 0
@@ -129,7 +138,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2331895470
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 60
@@ -138,7 +147,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 0
+      path: 2331895470
       attribute: 232606254
       script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
       typeID: 114
@@ -230,7 +239,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: 
+    path: Combat
     classID: 60
     script: {fileID: 0}
     flags: 0
@@ -248,7 +257,16 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.93333334
+        time: 0.98333335
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -260,7 +278,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: canNextCombo
-    path: 
+    path: Combat
     classID: 114
     script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
     flags: 0

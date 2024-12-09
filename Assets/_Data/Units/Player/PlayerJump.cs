@@ -44,17 +44,17 @@ public class PlayerJump : PlayerAbstract
 
     private void CheckWall()
     {
-        playerCtrl.PlayerState.IsWall = checkTerrain.IsWall();
+        playerCtrl.IsWall = checkTerrain.IsWall();
     }
 
     private void CheckGround()
     {
-        playerCtrl.PlayerState.IsGrounded = checkTerrain.IsGrounded();
+        playerCtrl.IsGrounded = checkTerrain.IsGrounded();
     }
 
     private void ClimpOnWall()
     {
-        if (playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded)
+        if (playerCtrl.IsWall && !playerCtrl.IsGrounded)
         {
             playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
         }
@@ -64,15 +64,15 @@ public class PlayerJump : PlayerAbstract
     {
         Rigidbody2D rb = PlayerCtrl.Rigidbody2D;
 
-        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.PlayerState.Jumping)
+        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.Jumping)
         {
             this.Jumping(rb);
         }
 
-        else if (!playerCtrl.PlayerState.IsGrounded && numOfDoubleJump < maxNumOfDoubleJump && InputManager.Instance.Jump())
+        else if (!playerCtrl.IsGrounded && numOfDoubleJump < maxNumOfDoubleJump && InputManager.Instance.Jump())
         {
             numOfDoubleJump++;
-            playerCtrl.PlayerState.DoubleJump = true;
+            playerCtrl.DoubleJump = true;
             jumpForce = jumpForce * 4 / 5;
             this.Jumping(rb);
             jumpForce = jumpForce * 5 / 4;
@@ -83,22 +83,22 @@ public class PlayerJump : PlayerAbstract
     {
         playerCtrl.Rigidbody2D.gravityScale = 6;
         rb.linearVelocityY = jumpForce;
-        playerCtrl.PlayerState.Jumping = true;
+        playerCtrl.Jumping = true;
     }
 
     protected void UpdateJumpVar()
     {
-        if (playerCtrl.PlayerState.IsGrounded)
+        if (playerCtrl.IsGrounded)
         {
-            playerCtrl.PlayerState.Jumping = false;
-            playerCtrl.PlayerState.DoubleJump = false;
+            playerCtrl.Jumping = false;
+            playerCtrl.DoubleJump = false;
             numOfDoubleJump = 0;
             coyoteTimeCnt = coyoteTime;
         }
         else
         {
             coyoteTimeCnt -= Time.deltaTime;
-            if (playerCtrl.PlayerState.IsWall) numOfDoubleJump = 0;
+            if (playerCtrl.IsWall) numOfDoubleJump = 0;
         }
         if (InputManager.Instance.Jump())
         {

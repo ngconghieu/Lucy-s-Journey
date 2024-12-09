@@ -45,14 +45,15 @@ public class PlayerDash : PlayerAbstract
     private void EndDashState()
     {
         playerCtrl.Rigidbody2D.gravityScale = gravity;
-        playerCtrl.PlayerState.Dashing = false;
+        playerCtrl.Dashing = false;
     }
 
     private void StartDashState()
     {
         canDash = false;
-        playerCtrl.PlayerState.Dashing = true;
+        playerCtrl.Dashing = true;
         playerCtrl.Rigidbody2D.gravityScale = 0;
+        //playerCtrl.PlayerAnim.TriggerDash();
         playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }
 }

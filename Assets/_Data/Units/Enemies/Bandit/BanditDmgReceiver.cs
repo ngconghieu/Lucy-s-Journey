@@ -57,5 +57,4 @@ public class BanditDmgReceiver : DmgReceiver
             if (collision.TryGetComponent<PlayerCombat>(out _)) anim.SetTrigger(AnimStrings.isHit);
         }
     }
-
 }
