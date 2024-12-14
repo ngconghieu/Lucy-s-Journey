@@ -8,7 +8,7 @@ public class PlayerJump : PlayerAbstract
     int numOfDoubleJump, maxNumOfDoubleJump = 1;
 
     [Header("Setting jump")]
-    [SerializeField] protected float jumpForce = 18;
+    [SerializeField] protected float jumpForce = 14;
     protected float jumpBufferCnt = 0;
     [SerializeField] protected float jumpBufferFrames = 1;
     //coyoteTime
