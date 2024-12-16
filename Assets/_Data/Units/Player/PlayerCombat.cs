@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerCombat : PlayerAbstract
 {
-    Animator animator;
     [Header("Combo attack setting")]
     [SerializeField] private bool isComboActive;
     [SerializeField] private float maxComboTime = 1.5f;
@@ -21,7 +20,6 @@ public class PlayerCombat : PlayerAbstract
     {
         base.LoadComponents();
         oDmg = dmg;
-        animator = GetComponent<Animator>();
     }
 
     protected virtual void Update()

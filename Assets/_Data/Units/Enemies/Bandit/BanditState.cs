@@ -26,16 +26,11 @@ public class BanditState : GameMonoBehaviour
         StateMachine = new StateMachine<BanditState>(this);
 
         //set start state
-        StateMachine.ChangeState(StartState());
+        StateMachine.ChangeState(new BanditIdleState(this));
     }
 
     protected virtual void Update()
     {
         StateMachine.ExecuteState();
-    }
-
-    public virtual State<BanditState> StartState()
-    {
-        return new BanditIdleState(this);
     }
 }

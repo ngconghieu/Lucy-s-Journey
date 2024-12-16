@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class _AttackState : State<EnemyStateAbstract>
+public class CombatState : State<BanditState>
 {
-    public _AttackState(EnemyStateAbstract owner) : base(owner)
+    public CombatState(BanditState owner) : base(owner)
     {
     }
 

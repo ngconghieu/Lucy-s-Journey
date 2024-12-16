@@ -44604,9 +44604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 12
   maxHp: 12
-  anim: {fileID: 2068456244}
   _collider: {fileID: 1316603764}
-  banditState: {fileID: 2068456249}
+  banditCtrl: {fileID: 0}
   cdToDespawn: 3
 --- !u!61 &1316603764
 BoxCollider2D:
@@ -46453,10 +46452,10 @@ GameObject:
   - component: {fileID: 2068456242}
   - component: {fileID: 2068456243}
   - component: {fileID: 2068456244}
-  - component: {fileID: 2068456247}
   - component: {fileID: 2068456248}
   - component: {fileID: 2068456249}
   - component: {fileID: 2068456250}
+  - component: {fileID: 2068456251}
   m_Layer: 2
   m_Name: Bandit
   m_TagString: Enemy
@@ -46587,8 +46586,53 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &2068456247
-BoxCollider2D:
+--- !u!114 &2068456248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068456239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0f08e72cd2b834d9f683d329c4ce0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCollider: {fileID: 110204973}
+  _collider: {fileID: 2068456251}
+--- !u!114 &2068456249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068456239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e85ce512baefe044b8d1d4623b432b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 2068456244}
+  rb: {fileID: 2068456243}
+  checkTerrain: {fileID: 748140831}
+  banditAnim: {fileID: 2043788657}
+  enemiesSO: {fileID: 11400000, guid: d7b398db004c74b4e8eef42571c97611, type: 2}
+  moving: 0
+--- !u!114 &2068456250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068456239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743bdf1b7cbc908479b7fd612b2daa31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  banditCtrl: {fileID: 2068456249}
+--- !u!70 &2068456251
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46621,62 +46665,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.08454609, y: -0.24901867}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 3}
-    newSize: {x: 3, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.6793852, y: 2.2363958}
-  m_EdgeRadius: 0
---- !u!114 &2068456248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068456239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff0f08e72cd2b834d9f683d329c4ce0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCollider: {fileID: 110204973}
-  _collider: {fileID: 2068456247}
---- !u!114 &2068456249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068456239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e85ce512baefe044b8d1d4623b432b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 2068456244}
-  rb: {fileID: 2068456243}
-  checkTerrain: {fileID: 748140831}
-  enemiesSO: {fileID: 11400000, guid: d7b398db004c74b4e8eef42571c97611, type: 2}
-  moving: 0
---- !u!114 &2068456250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068456239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 743bdf1b7cbc908479b7fd612b2daa31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  banditCtrl: {fileID: 2068456249}
+  m_Offset: {x: -0.08343911, y: -0.25150347}
+  m_Size: {x: 0.6822963, y: 2.271122}
+  m_Direction: 0
 --- !u!1 &2094435715
 GameObject:
   m_ObjectHideFlags: 0

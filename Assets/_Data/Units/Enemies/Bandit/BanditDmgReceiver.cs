@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class BanditDmgReceiver : DmgReceiver
 {
-    [SerializeField] Animator anim;
     [SerializeField] BoxCollider2D _collider;
-    [SerializeField] BanditCtrl banditState;
+    [SerializeField] BanditCtrl banditCtrl;
     [SerializeField] protected float cdToDespawn = 3f;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        LoadAnim();
         LoadCollider();
         LoadBanditCtrl();
     }
 
     private void LoadBanditCtrl()
     {
-        if (banditState != null) return;
-        banditState = transform.parent.GetComponent<BanditCtrl>();
+        if (banditCtrl != null) return;
+        banditCtrl = transform.parent.GetComponent<BanditCtrl>();
         Debug.LogWarning(transform.name + ": LoadBanditCtrl", gameObject);
     }
 
@@ -31,24 +29,17 @@ public class BanditDmgReceiver : DmgReceiver
         Debug.LogWarning(transform.name + ": LoadCollider", gameObject);
     }
 
-    private void LoadAnim()
-    {
-        if (this.anim != null) return;
-        this.anim = transform.parent.GetComponent<Animator>();
-        Debug.LogWarning(transform.name + ": LoadAnim", gameObject);
-    }
-
     public override void Reborn()
     {
-        this.maxHp = banditState.EnemiesSO.hpMax;
+        this.maxHp = banditCtrl.EnemiesSO.hpMax;
         base.Reborn();
     }
 
     protected override void OnDead()
     {
         _collider.enabled = false;
-        DropManager.Instance.Drop(banditState.EnemiesSO.dropList);
-        anim.SetTrigger(AnimStrings.isDead);
+        DropManager.Instance.Drop(banditCtrl.EnemiesSO.dropList);
+        banditCtrl.BanditAnim.TriggerDead();
         StartCoroutine(DespawnAfterTime());
     }
 
@@ -64,7 +55,7 @@ public class BanditDmgReceiver : DmgReceiver
         //Debug.Log(collision.gameObject.layer + " "+ LayerMask.NameToLayer("Player"));
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            if (collision.TryGetComponent<PlayerCombat>(out _)) anim.SetTrigger(AnimStrings.isHit);
+            if (collision.TryGetComponent<PlayerCombat>(out _)) banditCtrl.BanditAnim.TriggerHit();
         }
     }
 }

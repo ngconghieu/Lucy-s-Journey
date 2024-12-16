@@ -7,10 +7,12 @@ public class BanditCtrl : GameMonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] CheckTerrain checkTerrain;
+    [SerializeField] BanditAnim banditAnim;
     [SerializeField] EnemiesSO enemiesSO;
     public Animator Animator => anim;
     public Rigidbody2D Rigidbody => rb;
     public CheckTerrain CheckTerrain => checkTerrain;
+    public BanditAnim BanditAnim => banditAnim;
     public EnemiesSO EnemiesSO => enemiesSO;
 
     [Header("States")]
@@ -22,7 +24,15 @@ public class BanditCtrl : GameMonoBehaviour
         this.LoadAnim();
         this.LoadRigibody();
         this.LoadCheckTerrain();
+        this.LoadBanditAnim();
         this.LoadEnemiesSO();
+    }
+
+    private void LoadBanditAnim()
+    {
+        if(this.banditAnim != null) return;
+        banditAnim = transform.GetComponentInChildren<BanditAnim>();
+        Debug.LogWarning("LoadBanditAnim", gameObject);
     }
 
     private void LoadCheckTerrain()

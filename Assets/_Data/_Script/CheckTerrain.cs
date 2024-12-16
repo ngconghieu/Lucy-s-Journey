@@ -38,4 +38,9 @@ public class CheckTerrain : GameMonoBehaviour
         return Physics2D.Raycast(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0), groundCheckX, ground);
     }
 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCheckY);
+        Gizmos.DrawLine(transform.position, transform.position + groundCheckX * transform.localScale.x * Vector3.right);
+    }
 }
