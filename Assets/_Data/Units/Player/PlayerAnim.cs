@@ -12,58 +12,25 @@ public class PlayerAnim : PlayerAbstract
     private void Anim()
     {
         //moving
-        float moving = playerCtrl.Moving;
+        float moving = playerCtrl.PlayerState.Moving;
         playerCtrl.Animator.SetFloat(AnimStrings.isMoving, Mathf.Abs(moving));
 
         //jumping
-        bool jumping = playerCtrl.Jumping;
+        bool jumping = playerCtrl.PlayerState.Jumping;
         playerCtrl.Animator.SetBool(AnimStrings.isJumping, jumping);
 
         //double jumping
-        bool doubleJump = playerCtrl.DoubleJump;
+        bool doubleJump = playerCtrl.PlayerState.DoubleJump;
         playerCtrl.Animator.SetBool(AnimStrings.isDoubleJump, doubleJump);
 
-        //slide wall
-        bool slideWall = playerCtrl.IsWall && !playerCtrl.IsGrounded;
-        playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
-
         //dashing
-        bool dashing = playerCtrl.Dashing;
+        bool dashing = playerCtrl.PlayerState.Dashing;
         playerCtrl.Animator.SetBool(AnimStrings.isDashing, dashing);
-    }
 
-    ////dashing
-    //public void TriggerDash()
-    //{
-    //    playerCtrl.Animator.SetTrigger(AnimStrings.isDashing);
-    //}
+        //attacking
 
-    //attacking
-    public void TriggerAttack(int comboIndex)
-    {
-        switch (comboIndex)
-        {
-            case 0:
-                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack0);
-                break;
-            case 1:
-                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack1);
-                break;
-            case 2:
-                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack0);
-                break;
-        }
-    }
-
-    //hit
-    public void TriggerHit()
-    {
-        playerCtrl.Animator.SetTrigger(AnimStrings.isHit);
-    }
-
-    //dead
-    public void TriggerDead()
-    {
-        playerCtrl.Animator.SetTrigger(AnimStrings.isDead);
+        //slide wall
+        bool slideWall = playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded;
+        playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
     }
 }

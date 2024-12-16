@@ -6,7 +6,7 @@ public class BanditCombat : GameMonoBehaviour
     [SerializeField] protected bool detectPlayer;
     [SerializeField] float dir;
     Vector3 posTarget;
-    [SerializeField] float dis = 10f;
+    [SerializeField] float dis = 5f;
 
     protected virtual void Update()
     {
@@ -25,7 +25,7 @@ public class BanditCombat : GameMonoBehaviour
         Debug.DrawRay(transform.parent.position, posTarget);
         if (ray.collider != null)
         {
-            detectPlayer = (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player"));
+            detectPlayer = (ray.collider.gameObject.layer == LayerMask.NameToLayer("Player")) ? true : false;
         }
         else detectPlayer = false;
     }
