@@ -6,32 +6,21 @@ public class PlayerCtrl : GameMonoBehaviour
     [Header("Get Components")]
     [SerializeField] protected Rigidbody2D _rigidbody2D;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected PlayerAnim playerAnim;
-
-    [Header("State")]
-    public bool Dashing;
-    public float Moving;
-    public bool Jumping;
-    public bool DoubleJump;
-    public bool IsGrounded;
-    public bool IsWall;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
-    public PlayerAnim PlayerAnim => playerAnim;
+    public PlayerState PlayerState { get; set; }
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
         this.LoadRigibody();
         this.LoadAnimator();
-        this.LoadPlayerAnim();
+        this.LoadPlayerState();
     }
 
-    private void LoadPlayerAnim()
+    private void LoadPlayerState()
     {
-        if (this.playerAnim != null) return;
-        playerAnim = transform.Find("Anim").GetComponent<PlayerAnim>();
-        Debug.LogWarning(transform.name + ": LoadPlayerAnim", gameObject);
+        PlayerState = new PlayerState();
     }
 
     protected virtual void LoadAnimator()
