@@ -16,6 +16,7 @@ public abstract class GameMonoBehaviour : MonoBehaviour
     protected virtual void Reset()
     {
         this.LoadComponents();
+        this.ResetValue();
     }
 
     protected virtual void LoadComponents()

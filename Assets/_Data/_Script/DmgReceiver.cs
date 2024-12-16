@@ -6,25 +6,31 @@ public abstract class DmgReceiver : GameMonoBehaviour
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         this.Reborn();
     }
 
-    public void Reborn()
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+        this.Reborn();
+    }
+
+    public virtual void Reborn()
     {
         hp = maxHp;
     }
 
-    public void Add(int add)
+    public virtual void Add(int add)
     {
         if (CheckDead()) return;
         hp += add;
         if (hp > maxHp) hp = maxHp;
     }
 
-    public void Deduct(int deduct)
+    public virtual void Deduct(int deduct)
     {
         if (CheckDead()) return;
         hp -= deduct;

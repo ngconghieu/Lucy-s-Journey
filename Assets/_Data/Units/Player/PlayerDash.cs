@@ -24,13 +24,18 @@ public class PlayerDash : PlayerAbstract
         if(InputManager.Instance.Dash() && canDash)
         {
             //cast smoke
-            Transform smoke = transform.parent.Find("Dash").Find("Smoke");
-            Quaternion smokeRot = transform.parent.rotation;
-            smoke = FXSpawner.Instance.Spawn(FXSpawner.DashSmoke, smoke.position, smokeRot);
-            smoke.localScale = transform.parent.localScale;
+            CreateFXSmoke();
             //dash
             StartCoroutine(Dash());
         }
+    }
+
+    private void CreateFXSmoke()
+    {
+        Transform smoke = transform.Find("Smoke");
+        Quaternion smokeRot = transform.parent.rotation;
+        smoke = FXSpawner.Instance.Spawn(FXSpawner.DashSmoke, smoke.position, smokeRot);
+        smoke.localScale = transform.parent.localScale;
     }
 
     IEnumerator Dash()
