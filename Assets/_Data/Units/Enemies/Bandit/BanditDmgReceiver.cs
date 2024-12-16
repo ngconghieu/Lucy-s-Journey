@@ -6,6 +6,7 @@ public class BanditDmgReceiver : DmgReceiver
 {
     [SerializeField] Animator anim;
     [SerializeField] BoxCollider2D _collider;
+    [SerializeField] BanditCtrl banditState;
     [SerializeField] protected float cdToDespawn = 3f;
 
     protected override void LoadComponents()
@@ -13,6 +14,14 @@ public class BanditDmgReceiver : DmgReceiver
         base.LoadComponents();
         LoadAnim();
         LoadCollider();
+        LoadBanditCtrl();
+    }
+
+    private void LoadBanditCtrl()
+    {
+        if (banditState != null) return;
+        banditState = transform.parent.GetComponent<BanditCtrl>();
+        Debug.LogWarning(transform.name + ": LoadBanditCtrl", gameObject);
     }
 
     private void LoadCollider()
@@ -22,12 +31,6 @@ public class BanditDmgReceiver : DmgReceiver
         Debug.LogWarning(transform.name + ": LoadCollider", gameObject);
     }
 
-    protected override void ResetValue()
-    {
-        base.ResetValue();
-        this.maxHp = 80;
-    }
-
     private void LoadAnim()
     {
         if (this.anim != null) return;
@@ -35,9 +38,16 @@ public class BanditDmgReceiver : DmgReceiver
         Debug.LogWarning(transform.name + ": LoadAnim", gameObject);
     }
 
+    public override void Reborn()
+    {
+        this.maxHp = banditState.EnemiesSO.hpMax;
+        base.Reborn();
+    }
+
     protected override void OnDead()
     {
         _collider.enabled = false;
+        DropManager.Instance.Drop(banditState.EnemiesSO.dropList);
         anim.SetTrigger(AnimStrings.isDead);
         StartCoroutine(DespawnAfterTime());
     }
@@ -57,5 +67,4 @@ public class BanditDmgReceiver : DmgReceiver
             if (collision.TryGetComponent<PlayerCombat>(out _)) anim.SetTrigger(AnimStrings.isHit);
         }
     }
-
 }
