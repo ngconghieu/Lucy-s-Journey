@@ -12,25 +12,58 @@ public class PlayerAnim : PlayerAbstract
     private void Anim()
     {
         //moving
-        float moving = playerCtrl.PlayerState.Moving;
+        float moving = playerCtrl.Moving;
         playerCtrl.Animator.SetFloat(AnimStrings.isMoving, Mathf.Abs(moving));
 
         //jumping
-        bool jumping = playerCtrl.PlayerState.Jumping;
+        bool jumping = playerCtrl.Jumping;
         playerCtrl.Animator.SetBool(AnimStrings.isJumping, jumping);
 
         //double jumping
-        bool doubleJump = playerCtrl.PlayerState.DoubleJump;
+        bool doubleJump = playerCtrl.DoubleJump;
         playerCtrl.Animator.SetBool(AnimStrings.isDoubleJump, doubleJump);
 
-        //dashing
-        bool dashing = playerCtrl.PlayerState.Dashing;
-        playerCtrl.Animator.SetBool(AnimStrings.isDashing, dashing);
-
-        //attacking
-
         //slide wall
-        bool slideWall = playerCtrl.PlayerState.IsWall && !playerCtrl.PlayerState.IsGrounded;
+        bool slideWall = playerCtrl.IsWall && !playerCtrl.IsGrounded;
         playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
+
+        //dashing
+        bool dashing = playerCtrl.Dashing;
+        playerCtrl.Animator.SetBool(AnimStrings.isDashing, dashing);
+    }
+
+    ////dashing
+    //public void TriggerDash()
+    //{
+    //    playerCtrl.Animator.SetTrigger(AnimStrings.isDashing);
+    //}
+
+    //attacking
+    public void TriggerAttack(int comboIndex)
+    {
+        switch (comboIndex)
+        {
+            case 0:
+                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack0);
+                break;
+            case 1:
+                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack1);
+                break;
+            case 2:
+                playerCtrl.Animator.SetTrigger(AnimStrings.isNormalAttack0);
+                break;
+        }
+    }
+
+    //hit
+    public void TriggerHit()
+    {
+        playerCtrl.Animator.SetTrigger(AnimStrings.isHit);
+    }
+
+    //dead
+    public void TriggerDead()
+    {
+        playerCtrl.Animator.SetTrigger(AnimStrings.isDead);
     }
 }

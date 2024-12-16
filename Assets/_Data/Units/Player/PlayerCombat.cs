@@ -58,16 +58,20 @@ public class PlayerCombat : PlayerAbstract
 
     private void Attack()
     {
-        if (comboIndex == 0) animator.SetTrigger(AnimStrings.isNormalAttack0);
-        else if (comboIndex == 1)
+        switch (comboIndex)
         {
-            dmg += dmg;
-            animator.SetTrigger(AnimStrings.isNormalAttack1);
-        }
-        else
-        {
-            dmg += dmg;
-            animator.SetTrigger(AnimStrings.isNormalAttack2);
+            case 0:
+                playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
+                break;
+            case 1:
+                dmg += dmg;
+                playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
+                
+                break;
+            case 2:
+                dmg += dmg;
+                playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
+                break;
         }
     }
 

@@ -24654,7 +24654,7 @@ GameObject:
   - component: {fileID: 1721230653477468284}
   - component: {fileID: 4778835803361977568}
   m_Layer: 0
-  m_Name: TerrainWithCollider
+  m_Name: TerrainForLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
