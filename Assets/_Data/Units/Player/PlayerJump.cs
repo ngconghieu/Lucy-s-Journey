@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerJump : PlayerAbstract
 {
-    //Load CheckTerrain
-    [SerializeField] CheckTerrain checkTerrain;
     int numOfDoubleJump, maxNumOfDoubleJump = 1;
 
     [Header("Setting jump")]
@@ -17,19 +15,6 @@ public class PlayerJump : PlayerAbstract
     //slide wall
     [Header("Setting slide")]
     [SerializeField] protected float slidingSpeed = 1;
-
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        LoadCheckTerrain();
-    }
-
-    private void LoadCheckTerrain()
-    {
-        if (checkTerrain != null) return;
-        checkTerrain = GetComponent<CheckTerrain>();
-        Debug.LogWarning(transform.name + ": LoadCheckTerrain", gameObject);
-    }
 
     protected virtual void Update()
     {
@@ -44,12 +29,12 @@ public class PlayerJump : PlayerAbstract
 
     private void CheckWall()
     {
-        playerCtrl.IsWall = checkTerrain.IsWall();
+        playerCtrl.IsWall = playerCtrl.CheckTerrain.IsWall();
     }
 
     private void CheckGround()
     {
-        playerCtrl.IsGrounded = checkTerrain.IsGrounded();
+        playerCtrl.IsGrounded = playerCtrl.CheckTerrain.IsGrounded();
     }
 
     private void ClimpOnWall()
@@ -73,9 +58,9 @@ public class PlayerJump : PlayerAbstract
         {
             numOfDoubleJump++;
             playerCtrl.DoubleJump = true;
-            jumpForce = jumpForce * 4 / 5;
+            //jumpForce = jumpForce * 4 / 5;
             this.Jumping(rb);
-            jumpForce = jumpForce * 5 / 4;
+            //jumpForce = jumpForce * 5 / 4;
         }
     }
 
@@ -98,7 +83,7 @@ public class PlayerJump : PlayerAbstract
         else
         {
             coyoteTimeCnt -= Time.deltaTime;
-            if (playerCtrl.IsWall) numOfDoubleJump = 0;
+            //if (playerCtrl.IsWall) numOfDoubleJump = 1;
         }
         if (InputManager.Instance.Jump())
         {

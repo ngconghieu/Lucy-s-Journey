@@ -23,7 +23,7 @@ public class BanditIdleState : State<BanditState>
     IEnumerator IdleDelay()
     {
         //Debug.Log("Enemy idling...");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         if(owner.StateMachine.currentState == this)
             owner.StateMachine.ChangeState(new BanditChaseState(owner));
     }

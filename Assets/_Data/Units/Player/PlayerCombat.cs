@@ -13,15 +13,13 @@ public class PlayerCombat : PlayerAbstract
     public bool canNextCombo = true;// check on animation
 
     [Header("Setting send dmg")]
-    [SerializeField] protected int dmg = 2;
-    int oDmg;
+    [SerializeField] protected int dmg;
 
-    protected override void LoadComponents()
+    protected override void Start()
     {
-        base.LoadComponents();
-        oDmg = dmg;
+        base.Start();
+        dmg = playerCtrl.PlayerSO.dmg;
     }
-
     protected virtual void Update()
     {
         HandleComboAttack();
@@ -87,7 +85,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void ResetCombo()
     {
-        dmg = oDmg;
+        dmg = playerCtrl.PlayerSO.dmg;
         isComboActive = false;
         comboIndex = 0;
         comboTimer = 0f;
@@ -95,10 +93,9 @@ public class PlayerCombat : PlayerAbstract
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.TryGetComponent<DmgReceiver>(out DmgReceiver component))
         {
-            DmgReceiver dmgReceiver = collision.GetComponent<DmgReceiver>();
-            dmgReceiver.Deduct(dmg);
+            component.Deduct(dmg);
         }
     }
 

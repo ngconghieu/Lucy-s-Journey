@@ -53,9 +53,8 @@ public class BanditDmgReceiver : DmgReceiver
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.gameObject.layer + " "+ LayerMask.NameToLayer("Player"));
+        //if (collision.TryGetComponent<PlayerCombat>(out _)) 
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            if (collision.TryGetComponent<PlayerCombat>(out _)) banditCtrl.BanditAnim.TriggerHit();
-        }
+            banditCtrl.BanditAnim.TriggerHit();
     }
 }

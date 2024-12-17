@@ -7,25 +7,37 @@ public class BanditCtrl : GameMonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] CheckTerrain checkTerrain;
+    [SerializeField] DetectPlayer _detectPlayer;
     [SerializeField] BanditAnim banditAnim;
     [SerializeField] EnemiesSO enemiesSO;
     public Animator Animator => anim;
     public Rigidbody2D Rigidbody => rb;
     public CheckTerrain CheckTerrain => checkTerrain;
+    public DetectPlayer DetectPlayer => _detectPlayer;
     public BanditAnim BanditAnim => banditAnim;
     public EnemiesSO EnemiesSO => enemiesSO;
 
     [Header("States")]
     public bool moving;
+    public bool detectPlayer;
+    public bool canAttack;
     #region Load components
     protected override void LoadComponents()
     {
         base.LoadComponents();
-        this.LoadAnim();
-        this.LoadRigibody();
-        this.LoadCheckTerrain();
-        this.LoadBanditAnim();
-        this.LoadEnemiesSO();
+        LoadAnim();
+        LoadRigibody();
+        LoadCheckTerrain();
+        LoadDetectPlayer();
+        LoadBanditAnim();
+        LoadEnemiesSO();
+    }
+
+    private void LoadDetectPlayer()
+    {
+        if (this._detectPlayer != null) return;
+        _detectPlayer = transform.GetComponentInChildren<DetectPlayer>();
+        Debug.LogWarning("LoadDetectPlayer", gameObject);
     }
 
     private void LoadBanditAnim()
