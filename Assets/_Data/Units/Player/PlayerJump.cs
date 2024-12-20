@@ -29,12 +29,12 @@ public class PlayerJump : PlayerAbstract
 
     private void CheckWall()
     {
-        playerCtrl.IsWall = playerCtrl.CheckTerrain.IsWall();
+        playerCtrl.IsWall = playerCtrl.CheckWall.IsWall();
     }
 
     private void CheckGround()
     {
-        playerCtrl.IsGrounded = playerCtrl.CheckTerrain.IsGrounded();
+        playerCtrl.IsGrounded = playerCtrl.CheckGround.IsGrounded();
     }
 
     private void ClimpOnWall()
