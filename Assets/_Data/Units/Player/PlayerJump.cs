@@ -39,7 +39,7 @@ public class PlayerJump : PlayerAbstract
 
     private void ClimpOnWall()
     {
-        if (playerCtrl.IsWall && !playerCtrl.IsGrounded)
+        if (playerCtrl.IsWall && !playerCtrl.IsGrounded && playerCtrl.DoubleJump)
         {
             playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
         }
@@ -47,11 +47,10 @@ public class PlayerJump : PlayerAbstract
 
     private void Jump()
     {
-        Rigidbody2D rb = PlayerCtrl.Rigidbody2D;
-
+        playerCtrl.Jumping = !playerCtrl.IsGrounded;
         if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.Jumping)
         {
-            this.Jumping(rb);
+            this.Jumping(playerCtrl.Rigidbody2D);
         }
 
         else if (!playerCtrl.IsGrounded && numOfDoubleJump < maxNumOfDoubleJump && InputManager.Instance.Jump())
@@ -59,7 +58,7 @@ public class PlayerJump : PlayerAbstract
             numOfDoubleJump++;
             playerCtrl.DoubleJump = true;
             //jumpForce = jumpForce * 4 / 5;
-            this.Jumping(rb);
+            this.Jumping(playerCtrl.Rigidbody2D);
             //jumpForce = jumpForce * 5 / 4;
         }
     }
@@ -68,7 +67,6 @@ public class PlayerJump : PlayerAbstract
     {
         playerCtrl.Rigidbody2D.gravityScale = 6;
         rb.linearVelocityY = jumpForce;
-        playerCtrl.Jumping = true;
     }
 
     protected void UpdateJumpVar()

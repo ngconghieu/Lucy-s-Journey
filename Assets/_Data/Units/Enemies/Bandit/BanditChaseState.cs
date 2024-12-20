@@ -4,13 +4,12 @@ using UnityEngine;
 public class BanditChaseState : State<BanditState>
 {
     float timer = 0;
-    float reachedTimer = 0.5f;
     float dirToPlayer;
     public BanditChaseState(BanditState owner) : base(owner) { }
 
     public override void EnterState()
     {
-        Debug.Log("Enter chase state");
+        //Debug.Log("Enter chase state");
     }
 
     public override void ExecuteState()
@@ -24,12 +23,12 @@ public class BanditChaseState : State<BanditState>
 
     private void Detected()
     {
-        if (owner.distanceToPlayer < 1) owner.StateMachine.ChangeState(new BanditCombatState(owner));
+        if (owner.distanceToPlayer < owner.distanceToAttack) owner.StateMachine.ChangeState(new BanditCombatState(owner));
         dirToPlayer = Mathf.Sign(owner.posPlayer.transform.position.x - owner.transform.position.x);
         owner.transform.localScale = new Vector2(dirToPlayer, owner.transform.localScale.y);
         StopMoving();
         timer += Time.deltaTime;
-        if (timer > reachedTimer)
+        if (timer > owner.delayChase)
             OnMove();
     }
 
@@ -50,7 +49,7 @@ public class BanditChaseState : State<BanditState>
     {
         if (CanMove())
         {
-            Debug.Log("OnMove");
+            //Debug.Log("OnMove");
             owner.BanditCtrl.moving = true;
             owner.BanditCtrl.Rigidbody.linearVelocityX = owner.BanditCtrl.transform.localScale.x
                 * owner.BanditCtrl.EnemiesSO.moveSpeed;
@@ -59,7 +58,7 @@ public class BanditChaseState : State<BanditState>
         {
             StopMoving();
             timer += Time.deltaTime;
-            if (timer > reachedTimer)
+            if (timer > owner.delayChase)
             {
                 if (!owner.BanditCtrl.detectPlayer)
                     Flip();
@@ -77,6 +76,6 @@ public class BanditChaseState : State<BanditState>
     private bool CanMove()
     {
         return owner.BanditCtrl.CheckGround.IsGrounded()
-                && !owner.BanditCtrl.CheckWall.IsWall() && owner.distanceToPlayer > 1;
+                && !owner.BanditCtrl.CheckWall.IsWall() && owner.distanceToPlayer > owner.distanceToAttack;
     }
 }

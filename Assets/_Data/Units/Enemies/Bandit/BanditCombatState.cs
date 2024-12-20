@@ -4,7 +4,6 @@ using UnityEngine;
 public class BanditCombatState : State<BanditState>
 {
     float timer = 0;
-    float reachedTimer = 1f;
     int comboTime = 0;
     public BanditCombatState(BanditState owner) : base(owner)
     {
@@ -18,11 +17,11 @@ public class BanditCombatState : State<BanditState>
     public override void ExecuteState()
     {
         timer += Time.deltaTime;
-        if (timer >= reachedTimer)
+        if (timer >= owner.delayHit)
         {
             owner.StateMachine.ChangeState(new BanditChaseState(owner));
         }
-        if (comboTime < 1) Attack();
+        if (comboTime < owner.maxCombo) Attack();
     }
 
     public override void ExitState()

@@ -9,12 +9,14 @@ public class PlayerCtrl : GameMonoBehaviour
     [SerializeField] protected CheckGround checkGround;
     [SerializeField] protected CheckWall checkWall;
     [SerializeField] protected PlayerAnim playerAnim;
+    [SerializeField] protected DmgReceiver dmgReceiver;
     [SerializeField] protected PlayerSO playerSO;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
     public CheckGround CheckGround => checkGround;
     public CheckWall CheckWall => checkWall;
     public PlayerAnim PlayerAnim => playerAnim;
+    public DmgReceiver DmgReceiver => dmgReceiver;
     public PlayerSO PlayerSO => playerSO;
 
     [Header("State")]
@@ -34,7 +36,15 @@ public class PlayerCtrl : GameMonoBehaviour
         this.LoadCheckGround();
         this.LoadCheckWall();
         this.LoadPlayerAnim();
+        this.LoadDmgReceiver();
         this.LoadPlayerSO();
+    }
+
+    private void LoadDmgReceiver()
+    {
+        if (this.dmgReceiver != null) return;
+        dmgReceiver = GetComponentInChildren<DmgReceiver>();
+        Debug.LogWarning(transform.name + ": LoadDmgReceiver", gameObject);
     }
 
     private void LoadCheckWall()

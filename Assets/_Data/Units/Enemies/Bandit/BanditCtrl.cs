@@ -10,6 +10,8 @@ public class BanditCtrl : GameMonoBehaviour
     [SerializeField] CheckWall checkWall;
     [SerializeField] DetectPlayer _detectPlayer;
     [SerializeField] BanditAnim banditAnim;
+    [SerializeField] DmgReceiver dmgReceiver;
+    [SerializeField] DmgSender dmgSender;
     [SerializeField] EnemiesSO enemiesSO;
     public Animator Animator => anim;
     public Rigidbody2D Rigidbody => rb;
@@ -17,12 +19,16 @@ public class BanditCtrl : GameMonoBehaviour
     public CheckWall CheckWall => checkWall;
     public DetectPlayer DetectPlayer => _detectPlayer;
     public BanditAnim BanditAnim => banditAnim;
+    public DmgReceiver DmgReceiver => dmgReceiver;
+    public DmgSender DmgSender => dmgSender;
     public EnemiesSO EnemiesSO => enemiesSO;
 
     [Header("States")]
     public bool moving;
     public bool detectPlayer;
     public bool canAttack;
+    public bool dead;
+    public bool hit;
     #region Load components
     protected override void LoadComponents()
     {
@@ -33,7 +39,23 @@ public class BanditCtrl : GameMonoBehaviour
         LoadCheckWall();
         LoadDetectPlayer();
         LoadBanditAnim();
+        LoadDmgReceiver();
+        LoadDmgSender();
         LoadEnemiesSO();
+    }
+
+    private void LoadDmgSender()
+    {
+        if (this.dmgSender != null) return;
+        dmgSender = transform.GetComponentInChildren<DmgSender>();
+        Debug.LogWarning("LoadDmgSender", gameObject);
+    }
+
+    private void LoadDmgReceiver()
+    {
+        if (this.dmgReceiver != null) return;
+        dmgReceiver = transform.GetComponentInChildren<DmgReceiver>();
+        Debug.LogWarning("LoadDmgReceiver", gameObject);
     }
 
     private void LoadCheckWall()
