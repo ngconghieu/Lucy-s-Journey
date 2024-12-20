@@ -6,13 +6,17 @@ public class PlayerCtrl : GameMonoBehaviour
     [Header("Get Components")]
     [SerializeField] protected Rigidbody2D _rigidbody2D;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected CheckTerrain checkTerrain;
+    [SerializeField] protected CheckGround checkGround;
+    [SerializeField] protected CheckWall checkWall;
     [SerializeField] protected PlayerAnim playerAnim;
+    [SerializeField] protected DmgReceiver dmgReceiver;
     [SerializeField] protected PlayerSO playerSO;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
-    public CheckTerrain CheckTerrain => checkTerrain;
+    public CheckGround CheckGround => checkGround;
+    public CheckWall CheckWall => checkWall;
     public PlayerAnim PlayerAnim => playerAnim;
+    public DmgReceiver DmgReceiver => dmgReceiver;
     public PlayerSO PlayerSO => playerSO;
 
     [Header("State")]
@@ -29,16 +33,32 @@ public class PlayerCtrl : GameMonoBehaviour
         base.LoadComponents();
         this.LoadRigibody();
         this.LoadAnimator();
-        this.LoadCheckTerrain();
+        this.LoadCheckGround();
+        this.LoadCheckWall();
         this.LoadPlayerAnim();
+        this.LoadDmgReceiver();
         this.LoadPlayerSO();
     }
 
-    private void LoadCheckTerrain()
+    private void LoadDmgReceiver()
     {
-        if (this.checkTerrain != null) return;
-        checkTerrain = GetComponentInChildren<CheckTerrain>();
-        Debug.LogWarning(transform.name + ": LoadCheckTerrain", gameObject);
+        if (this.dmgReceiver != null) return;
+        dmgReceiver = GetComponentInChildren<DmgReceiver>();
+        Debug.LogWarning(transform.name + ": LoadDmgReceiver", gameObject);
+    }
+
+    private void LoadCheckWall()
+    {
+        if (this.checkWall != null) return;
+        checkWall = transform.GetComponentInChildren<CheckWall>();
+        Debug.LogWarning("LoadCheckWall", gameObject);
+    }
+
+    private void LoadCheckGround()
+    {
+        if (this.checkGround != null) return;
+        checkGround = GetComponentInChildren<CheckGround>();
+        Debug.LogWarning(transform.name + ": LoadCheckGround", gameObject);
     }
 
     private void LoadPlayerSO()

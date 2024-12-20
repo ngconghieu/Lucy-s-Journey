@@ -7,7 +7,7 @@ public class PlayerCombat : PlayerAbstract
 {
     [Header("Combo attack setting")]
     [SerializeField] private bool isComboActive;
-    [SerializeField] private float maxComboTime = 1.5f;
+    [SerializeField] private float comboCD = 1.5f;
     [SerializeField] private int comboIndex = 0;
     [SerializeField] private float comboTimer = 0;
     public bool canNextCombo = true;// check on animation
@@ -41,9 +41,8 @@ public class PlayerCombat : PlayerAbstract
 
     private void PerformAttack()
     {
-
         // update combo state
-        comboTimer = maxComboTime;
+        comboTimer = comboCD;
         isComboActive = true;
 
         // Start attack combo
