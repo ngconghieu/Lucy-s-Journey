@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BanditState : GameMonoBehaviour
@@ -6,7 +5,7 @@ public class BanditState : GameMonoBehaviour
     public StateMachine<BanditState> StateMachine { get; private set; }
     [SerializeField] protected BanditCtrl banditCtrl;
     public BanditCtrl BanditCtrl => banditCtrl;
-    
+
     [Header("Chase state")]
     public GameObject posPlayer;
     public float detectPlayerRange = 10f;
@@ -50,7 +49,7 @@ public class BanditState : GameMonoBehaviour
         //set maxHp
         banditCtrl.DmgReceiver.SetMaxHp(banditCtrl.EnemiesSO.hpMax);
         banditCtrl.DmgReceiver.Reborn();
-        
+
         //set dmg
         dmg = banditCtrl.EnemiesSO.dmg;
         banditCtrl.DmgSender.SetDmg(dmg);
@@ -76,14 +75,14 @@ public class BanditState : GameMonoBehaviour
 
     private void HandleHurt(LayerMask layer)
     {
-        Debug.Log("Hited");
+        //Debug.Log("Hited");
         if (layer == LayerMask.NameToLayer("Player"))
             StateMachine.ChangeState(new BanditReceiveDmgState(this));
     }
 
     private void HandleDead()
     {
-        Debug.Log("Dead");
+        //Debug.Log("Dead");
         StateMachine.ChangeState(new BanditDeadState(this));
     }
 

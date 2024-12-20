@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AnimStrings 
 {
     public static string isMoving = "Move";

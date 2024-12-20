@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +6,6 @@ public class Spawner : GameMonoBehaviour
     [SerializeField] protected Transform holder;
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected List<Transform> poolObjs;
-
 
     protected override void LoadComponents()
     {

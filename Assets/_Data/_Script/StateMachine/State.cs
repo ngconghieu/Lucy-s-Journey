@@ -9,5 +9,4 @@ public abstract class State<T>
     public abstract void EnterState();
     public abstract void ExecuteState();
     public abstract void ExitState();
-
 }

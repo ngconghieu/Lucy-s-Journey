@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class FollowTarget : GameMonoBehaviour
 {
     [SerializeField] protected Transform target;
-    [SerializeField] protected float speedCam = 10f;
+    [SerializeField] protected float speedCam = 2f;
 
     protected override void LoadComponents()
     {
@@ -16,7 +15,7 @@ public class FollowTarget : GameMonoBehaviour
     {
         if (target != null) return;
         this.target = GameObject.Find("Player").transform;
-        foreach(Transform tf in target)
+        foreach (Transform tf in target)
         {
             this.target = tf;
         }

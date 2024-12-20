@@ -22,14 +22,13 @@ public class BanditDeadState : State<BanditState>
             DropManager.Instance.Drop(owner.BanditCtrl.EnemiesSO.dropList);
             dropItem++;
         }
-        timer+= Time.deltaTime;
-        if (timer>owner.cdToDespawn)  
+        timer += Time.deltaTime;
+        if (timer > owner.cdToDespawn)
             owner.gameObject.SetActive(false);
-
     }
 
     public override void ExitState()
     {
-        
+
     }
 }

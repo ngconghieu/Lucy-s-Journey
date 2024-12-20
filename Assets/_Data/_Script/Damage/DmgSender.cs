@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DmgSender : GameMonoBehaviour
@@ -16,5 +15,4 @@ public class DmgSender : GameMonoBehaviour
             component.Deduct(dmg);
         }
     }
-
 }

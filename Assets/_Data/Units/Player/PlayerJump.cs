@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerJump : PlayerAbstract
@@ -18,13 +17,13 @@ public class PlayerJump : PlayerAbstract
 
     protected virtual void Update()
     {
-        this.UpdateJumpVar();
-        this.Jump();
-        this.ClimpOnWall();
+        UpdateJumpVar();
+        Jump();
+        ClimpOnWall();
         Debug.DrawRay(transform.position, Vector2.down * 0.5f, Color.red);
         Debug.DrawRay(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0) * 0.5f, Color.red);
-        this.CheckGround();
-        this.CheckWall();
+        CheckGround();
+        CheckWall();
     }
 
     private void CheckWall()
@@ -39,9 +38,11 @@ public class PlayerJump : PlayerAbstract
 
     private void ClimpOnWall()
     {
-        if (playerCtrl.IsWall && !playerCtrl.IsGrounded && playerCtrl.DoubleJump)
+        if (playerCtrl.IsWall && !playerCtrl.IsGrounded &&
+            playerCtrl.DoubleJump && InputManager.Instance.Move() != 0)
         {
-            playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
+            playerCtrl.Rigidbody2D.linearVelocityY =
+                Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
         }
     }
 

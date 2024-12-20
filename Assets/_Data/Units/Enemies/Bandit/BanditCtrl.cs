@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BanditCtrl : GameMonoBehaviour
@@ -74,7 +73,7 @@ public class BanditCtrl : GameMonoBehaviour
 
     private void LoadBanditAnim()
     {
-        if(this.banditAnim != null) return;
+        if (this.banditAnim != null) return;
         banditAnim = transform.GetComponentInChildren<BanditAnim>();
         Debug.LogWarning("LoadBanditAnim", gameObject);
     }

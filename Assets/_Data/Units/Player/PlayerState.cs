@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerState : GameMonoBehaviour
@@ -11,7 +10,7 @@ public class PlayerState : GameMonoBehaviour
         base.LoadComponents();
         LoadPlayerCtrl();
     }
-    
+
     protected override void Start()
     {
         base.Start();
@@ -39,7 +38,7 @@ public class PlayerState : GameMonoBehaviour
 
     private void HandleHurt(LayerMask layerMask)
     {
-        if (layerMask == LayerMask.NameToLayer("Enemy") || 
+        if (layerMask == LayerMask.NameToLayer("Enemy") ||
             layerMask == LayerMask.NameToLayer("Trap"))
         {
             playerCtrl.PlayerAnim.TriggerHit();
