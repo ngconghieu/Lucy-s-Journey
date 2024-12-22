@@ -17,7 +17,7 @@ public class Trap_behavior : MonoBehaviour
         if (collision.gameObject.tag=="Player")
         {
             //collision.gameObject.GetComponent<DmgReceiver>().Deduct(damage);
-            SceneManager.LoadScene("MainScene");
+            SceneManager.LoadScene("Main Scene");
         }
     }
 }
