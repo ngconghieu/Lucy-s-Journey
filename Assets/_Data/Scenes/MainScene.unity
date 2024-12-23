@@ -44885,7 +44885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 110204971}
-  movingSpeed: 7
+  movingSpeed: 10
 --- !u!1 &1392849575
 GameObject:
   m_ObjectHideFlags: 0
