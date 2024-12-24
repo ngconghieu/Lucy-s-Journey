@@ -88,5 +88,5 @@ public class PlayerCtrl : GameMonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         Debug.LogWarning(transform.name + ": LoadRigibody", gameObject);
     }
-    #endregion
+    #endregionz
 }

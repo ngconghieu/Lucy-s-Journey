@@ -8,7 +8,7 @@ public class DmgReceiver : GameMonoBehaviour
     
     [SerializeField] Collider2D _collider;
     [SerializeField] protected int hp;
-    [SerializeField] protected int maxHp = 1;
+    [SerializeField] protected int maxHp = 10;
 
     protected override void LoadComponents()
     {
