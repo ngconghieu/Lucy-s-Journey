@@ -11,7 +11,7 @@ public class BanditCombatState : State<BanditState>
 
     public override void EnterState()
     {
-        Debug.Log("EnterCombat");
+        //Debug.Log("EnterCombat");
     }
 
     public override void ExecuteState()

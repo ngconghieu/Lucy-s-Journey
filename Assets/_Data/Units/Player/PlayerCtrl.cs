@@ -26,6 +26,9 @@ public class PlayerCtrl : GameMonoBehaviour
     public bool DoubleJump;
     public bool IsGrounded;
     public bool IsWall;
+    public bool notAttack = true;// check on animation
+    public bool slideWall;
+    public bool wallJump;
 
     #region Load Components
     protected override void LoadComponents()

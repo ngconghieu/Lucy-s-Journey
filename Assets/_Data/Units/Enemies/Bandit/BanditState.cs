@@ -76,7 +76,7 @@ public class BanditState : GameMonoBehaviour
 
     private void HandleHurt(LayerMask layer)
     {
-        Debug.Log("Hited");
+        //Debug.Log("Hited");
         if (layer == LayerMask.NameToLayer("Player"))
             StateMachine.ChangeState(new BanditReceiveDmgState(this));
     }

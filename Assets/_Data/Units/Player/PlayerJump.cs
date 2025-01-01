@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerJump : PlayerAbstract
@@ -9,12 +10,16 @@ public class PlayerJump : PlayerAbstract
     [SerializeField] protected float jumpForce = 18;
     protected float jumpBufferCnt = 0;
     [SerializeField] protected float jumpBufferFrames = 1;
+    private bool bufferJump;
     //coyoteTime
     protected float coyoteTimeCnt = 0;
     [SerializeField] protected float coyoteTime = 0.15f;
     //slide wall
     [Header("Setting slide")]
     [SerializeField] protected float slidingSpeed = 1;
+    [Header("Setting WallJump")]
+    [SerializeField] protected float delayWallJump = 0.1f;
+    [SerializeField] protected float wallJumpForce = 9;
 
     protected virtual void Update()
     {
@@ -39,27 +44,44 @@ public class PlayerJump : PlayerAbstract
 
     private void ClimpOnWall()
     {
-        if (playerCtrl.IsWall && !playerCtrl.IsGrounded && playerCtrl.DoubleJump)
+        playerCtrl.slideWall = playerCtrl.IsWall && !playerCtrl.IsGrounded && InputManager.Instance.Move() != 0 && playerCtrl.DoubleJump;
+        if (playerCtrl.slideWall)
         {
             playerCtrl.Rigidbody2D.linearVelocityY = Mathf.Clamp(playerCtrl.Rigidbody2D.linearVelocityY, -slidingSpeed, float.MaxValue);
+            //if (InputManager.Instance.Jump())
+            //    StartCoroutine(OnWallJump());
         }
+    }
+
+    IEnumerator OnWallJump()
+    {
+        playerCtrl.wallJump = true;
+        WallJump();
+        yield return new WaitForSeconds(delayWallJump);
+        playerCtrl.wallJump = false;
+    }
+
+    private void WallJump()
+    {
+        playerCtrl.Rigidbody2D.linearVelocity = new Vector2(-InputManager.Instance.Move() * jumpForce, jumpForce);
     }
 
     private void Jump()
     {
         playerCtrl.Jumping = !playerCtrl.IsGrounded;
-        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !playerCtrl.Jumping)
+        if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !bufferJump)
         {
             this.Jumping(playerCtrl.Rigidbody2D);
+            bufferJump = true;
         }
 
         else if (!playerCtrl.IsGrounded && numOfDoubleJump < maxNumOfDoubleJump && InputManager.Instance.Jump())
         {
             numOfDoubleJump++;
             playerCtrl.DoubleJump = true;
-            //jumpForce = jumpForce * 4 / 5;
+            jumpForce = jumpForce * 4 / 5;
             this.Jumping(playerCtrl.Rigidbody2D);
-            //jumpForce = jumpForce * 5 / 4;
+            jumpForce = jumpForce * 5 / 4;
         }
     }
 
@@ -77,6 +99,7 @@ public class PlayerJump : PlayerAbstract
             playerCtrl.DoubleJump = false;
             numOfDoubleJump = 0;
             coyoteTimeCnt = coyoteTime;
+            bufferJump = false;
         }
         else
         {

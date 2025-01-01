@@ -90,10 +90,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: canNextCombo
-    path: Combat
+    attribute: notAttack
+    path: 
     classID: 114
-    script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
+    script: {fileID: 11500000, guid: 0de41a665721d2f459a6b75d7f367870, type: 3}
     flags: 0
   m_PPtrCurves:
   - serializedVersion: 2
@@ -126,9 +126,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 2331895470
-      attribute: 232606254
-      script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
+      path: 0
+      attribute: 2464842009
+      script: {fileID: 11500000, guid: 0de41a665721d2f459a6b75d7f367870, type: 3}
       typeID: 114
       customType: 0
       isPPtrCurve: 0
@@ -241,10 +241,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: canNextCombo
-    path: Combat
+    attribute: notAttack
+    path: 
     classID: 114
-    script: {fileID: 11500000, guid: bf630a8f9c0f78c47b61f5d5ca79f424, type: 3}
+    script: {fileID: 11500000, guid: 0de41a665721d2f459a6b75d7f367870, type: 3}
     flags: 0
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

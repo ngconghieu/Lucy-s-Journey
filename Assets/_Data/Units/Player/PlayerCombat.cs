@@ -10,7 +10,6 @@ public class PlayerCombat : PlayerAbstract
     [SerializeField] private float comboCD = 1.5f;
     [SerializeField] private int comboIndex = 0;
     [SerializeField] private float comboTimer = 0;
-    public bool canNextCombo = true;// check on animation
 
     [Header("Setting send dmg")]
     [SerializeField] protected int dmg;
@@ -28,7 +27,7 @@ public class PlayerCombat : PlayerAbstract
 
     private void HandleComboAttack()
     {
-        if (InputManager.Instance.Attack() && canNextCombo)
+        if (InputManager.Instance.Attack() && playerCtrl.notAttack)
         {
             if (comboIndex > 2)
             {

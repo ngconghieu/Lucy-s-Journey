@@ -24,7 +24,7 @@ public class PlayerAnim : PlayerAbstract
         playerCtrl.Animator.SetBool(AnimStrings.isDoubleJump, doubleJump);
 
         //slide wall
-        bool slideWall = playerCtrl.IsWall && !playerCtrl.IsGrounded;
+        bool slideWall = playerCtrl.slideWall;
         playerCtrl.Animator.SetBool(AnimStrings.isSlideWall, slideWall);
 
         //dashing
