@@ -1,58 +1,18 @@
 using System;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class BanditChaseState : State<BanditState>
+public class BanditChaseState : ChaseState<EnemyState>
 {
-    float timer = 0;
-    float dirToPlayer;
-    public BanditChaseState(BanditState owner) : base(owner) { }
+    public BanditChaseState(EnemyState owner) : base(owner) { }
 
-    public override void EnterState()
-    {
-        //Debug.Log("Enter chase state");
-    }
-
-    public override void ExecuteState()
-    {
-        if (owner.BanditCtrl.detectPlayer) Detected();
-        else
-        {
-            OnMove();
-        }
-    }
-
-    private void Detected()
-    {
-        if (owner.distanceToPlayer < owner.distanceToAttack) owner.StateMachine.ChangeState(new BanditCombatState(owner));
-        dirToPlayer = Mathf.Sign(owner.posPlayer.transform.position.x - owner.transform.position.x);
-        owner.transform.localScale = new Vector2(dirToPlayer, owner.transform.localScale.y);
-        StopMoving();
-        timer += Time.deltaTime;
-        if (timer > owner.delayChase)
-            OnMove();
-    }
-
-    public override void ExitState()
-    {
-        //Debug.Log("Enemy chase exited");
-        StopMoving();
-        timer = 0;
-    }
-
-    private void StopMoving()
-    {
-        owner.BanditCtrl.moving = false;
-        owner.BanditCtrl.Rigidbody.linearVelocityX = 0;
-    }
-
-    private void OnMove()
+    protected override void OnMove()
     {
         if (CanMove())
         {
-            //Debug.Log("OnMove");
-            owner.BanditCtrl.moving = true;
-            owner.BanditCtrl.Rigidbody.linearVelocityX = owner.BanditCtrl.transform.localScale.x
-                * owner.BanditCtrl.EnemiesSO.moveSpeed;
+            owner.EnemyCtrl.moving = true;
+            owner.EnemyCtrl.Rigidbody.linearVelocityX = owner.EnemyCtrl.transform.localScale.x
+                * owner.EnemyCtrl.EnemiesSO.moveSpeed;
         }
         else
         {
@@ -60,22 +20,31 @@ public class BanditChaseState : State<BanditState>
             timer += Time.deltaTime;
             if (timer > owner.delayChase)
             {
-                if (!owner.BanditCtrl.detectPlayer)
+                if (!owner.EnemyCtrl.detectPlayer)
                     Flip();
                 timer = 0;
             }
-
         }
     }
 
     private void Flip()
     {
-        owner.BanditCtrl.transform.localScale = new Vector2(-owner.BanditCtrl.transform.localScale.x, owner.BanditCtrl.transform.localScale.y);
+        owner.EnemyCtrl.transform.localScale = new Vector2(
+            -owner.EnemyCtrl.transform.localScale.x,
+            owner.EnemyCtrl.transform.localScale.y);
     }
 
     private bool CanMove()
     {
-        return owner.BanditCtrl.CheckGround.IsGrounded()
-                && !owner.BanditCtrl.CheckWall.IsWall() && owner.distanceToPlayer > owner.distanceToAttack;
+        return owner.EnemyCtrl.CheckGround.IsGrounded()
+            && !owner.EnemyCtrl.CheckWall.IsWall()
+            && owner.distanceToPlayer > owner.distanceToAttack;
+    }
+
+    public override void EnterState() { }
+    public override void ExitState()
+    {
+        StopMoving();
+        timer = 0;
     }
 }
