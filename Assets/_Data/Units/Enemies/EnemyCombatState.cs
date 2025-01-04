@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyCombatState : State<EnemyState>
+public class EnemyCombatState : State<EnemyState>
 {
     protected float timer = 0;
     protected int comboTime = 0;
@@ -25,5 +25,10 @@ public abstract class EnemyCombatState : State<EnemyState>
         timer = 0;
     }
 
-    protected abstract void Attack();
+    protected virtual void Attack()
+    {
+        //For Override
+        comboTime++;
+        owner.AnimTriggerAttack();
+    }
 }

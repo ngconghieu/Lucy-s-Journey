@@ -2,6 +2,26 @@ using UnityEngine;
 
 public class HuntressState : EnemyState
 {
+    public override void AnimTriggerAttack()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AnimTriggerDead()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void AnimTriggerHit()
+    {
+        
+    }
+
+    public override void AnimTriggerSpecialAttack()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override State<EnemyState> GetChaseState()
     {
         return new HuntressChaseState(this);
@@ -9,16 +29,16 @@ public class HuntressState : EnemyState
 
     public override State<EnemyState> GetCombatState()
     {
-        return new HuntressCombatState(this);
+        return new EnemyCombatState(this);
     }
 
     public override State<EnemyState> GetDeadState()
     {
-        return new HuntressDeadState(this);
+        return new EnemyDeadState(this);
     }
 
     public override State<EnemyState> GetHitState()
     {
-        return new HuntressHitState(this);
+        return new EnemyHitState(this);
     }
 }

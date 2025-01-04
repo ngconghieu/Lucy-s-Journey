@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyChaseState: State<EnemyState> 
+public class EnemyChaseState : State<EnemyState>
 {
     protected float timer = 0;
     protected float dirToPlayer;
@@ -34,5 +34,18 @@ public abstract class EnemyChaseState: State<EnemyState>
         owner.EnemyCtrl.Rigidbody.linearVelocityX = 0;
     }
 
-    protected abstract void OnMove();
+    protected virtual void OnMove()
+    {
+        //For Override
+    }
+
+    public override void EnterState()
+    {
+        
+    }
+
+    public override void ExitState()
+    {
+        
+    }
 }

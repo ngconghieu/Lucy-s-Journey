@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyDeadState : State<EnemyState>
+public class EnemyDeadState : State<EnemyState>
 {
     protected float timer;
     protected int dropItem = 0;
@@ -29,5 +29,9 @@ public abstract class EnemyDeadState : State<EnemyState>
 
     public override void ExitState() { }
 
-    protected abstract void OnEnterState();
+    protected virtual void OnEnterState()
+    {
+        //For override
+        owner.AnimTriggerDead();
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EnemyHitState : State<EnemyState>
+public class EnemyHitState : State<EnemyState>
 {
     protected float timer;
 
@@ -25,5 +25,9 @@ public abstract class EnemyHitState : State<EnemyState>
         owner.EnemyCtrl.hit = false;
     }
 
-    protected abstract void OnEnterState();
+    protected virtual void OnEnterState()
+    {
+        //For Override
+        owner.AnimTriggerHit();
+    }
 }

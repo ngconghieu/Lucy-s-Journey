@@ -118,4 +118,9 @@ public abstract class EnemyState : GameMonoBehaviour
     public abstract State<EnemyState> GetHitState();
     public abstract State<EnemyState> GetDeadState();
     public abstract State<EnemyState> GetCombatState();
+    public abstract void AnimTriggerHit();
+    public abstract void AnimTriggerDead();
+    public abstract void AnimTriggerAttack();
+    public abstract void AnimTriggerSpecialAttack();
+
 }
