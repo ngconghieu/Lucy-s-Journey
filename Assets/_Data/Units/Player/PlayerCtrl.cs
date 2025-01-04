@@ -29,6 +29,7 @@ public class PlayerCtrl : GameMonoBehaviour
     public bool notAttack = true;// check on animation
     public bool slideWall;
     public bool wallJump;
+    public bool dead;
 
     #region Load Components
     protected override void LoadComponents()

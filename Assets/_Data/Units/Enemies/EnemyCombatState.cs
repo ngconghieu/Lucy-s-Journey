@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public abstract class EnemyCombatState<T> : State<T> where T : EnemyState
+public abstract class EnemyCombatState : State<EnemyState>
 {
     protected float timer = 0;
     protected int comboTime = 0;
 
-    public EnemyCombatState(T owner) : base(owner) { }
+    public EnemyCombatState(EnemyState owner) : base(owner) { }
 
     public override void EnterState() { }
 
@@ -14,7 +14,7 @@ public abstract class EnemyCombatState<T> : State<T> where T : EnemyState
         timer += Time.deltaTime;
         if (timer >= owner.delayHit)
         {
-            owner.StateMachine.ChangeState(owner.GetStartState());
+            owner.StateMachine.ChangeState(owner.GetChaseState());
         }
         if (comboTime < owner.maxCombo)
             Attack();

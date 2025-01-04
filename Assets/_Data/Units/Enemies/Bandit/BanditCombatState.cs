@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class BanditCombatState : EnemyCombatState<EnemyState>
+public class BanditCombatState : EnemyCombatState
 {
     public BanditCombatState(EnemyState owner) : base(owner)
     {

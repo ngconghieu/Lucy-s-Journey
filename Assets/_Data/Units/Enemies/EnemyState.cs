@@ -47,7 +47,7 @@ public abstract class EnemyState : GameMonoBehaviour
         SubscribeEvents();
 
         //Start state
-        StateMachine.ChangeState(GetStartState());
+        StateMachine.ChangeState(GetChaseState());
     }
 
     protected virtual void InitializeEnemy()
@@ -91,7 +91,7 @@ public abstract class EnemyState : GameMonoBehaviour
     {
         if (layer == LayerMask.NameToLayer("Player"))
         {
-            StateMachine.ChangeState(GetReceivedDmgState());
+            StateMachine.ChangeState(GetHitState());
         }
     }
 
@@ -107,15 +107,15 @@ public abstract class EnemyState : GameMonoBehaviour
         distanceToPlayer = Vector2.Distance(posPlayer.transform.position, transform.position);
 
         //if (enemyCtrl.detectPlayer && distanceToPlayer < distanceToAttack
-        //    && !(StateMachine.currentState is CombatState<Enemy>))
+        //    && StateMachine.currentState != GetCombatState())
         //{
         //    StateMachine.ChangeState(GetCombatState());
         //}
     }
 
     // Abstract methods for states
-    public abstract State<EnemyState> GetStartState();
-    public abstract State<EnemyState> GetReceivedDmgState();
+    public abstract State<EnemyState> GetChaseState();
+    public abstract State<EnemyState> GetHitState();
     public abstract State<EnemyState> GetDeadState();
     public abstract State<EnemyState> GetCombatState();
 }

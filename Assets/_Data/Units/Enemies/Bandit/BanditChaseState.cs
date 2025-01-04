@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class BanditChaseState : ChaseState<EnemyState>
+public class BanditChaseState : EnemyChaseState
 {
     public BanditChaseState(EnemyState owner) : base(owner) { }
 

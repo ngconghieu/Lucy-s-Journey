@@ -16,7 +16,7 @@ public class PlayerMovement : PlayerAbstract
 
     protected virtual void Moving()
     {
-        if (playerCtrl.Dashing || playerCtrl.wallJump) return;
+        if (playerCtrl.Dashing || playerCtrl.wallJump || playerCtrl.dead) return;
         float move = InputManager.Instance.Move();
         playerCtrl.Moving = move;
         //Moving

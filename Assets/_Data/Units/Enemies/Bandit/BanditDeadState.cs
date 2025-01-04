@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BanditDeadState : EnemyDeadState<EnemyState>
+public class BanditDeadState : EnemyDeadState
 {
     public BanditDeadState(EnemyState owner) : base(owner)
     {

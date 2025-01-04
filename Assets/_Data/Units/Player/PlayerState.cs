@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerState : GameMonoBehaviour
@@ -48,6 +49,14 @@ public class PlayerState : GameMonoBehaviour
 
     private void HandleDead()
     {
+        StartCoroutine(Dead());
+    }
+
+    IEnumerator Dead()
+    {
         playerCtrl.PlayerAnim.TriggerDead();
+        playerCtrl.dead = true;
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
     }
 }

@@ -13,12 +13,12 @@ public class BanditState : EnemyState
         return new BanditDeadState(this);
     }
 
-    public override State<EnemyState> GetReceivedDmgState()
+    public override State<EnemyState> GetHitState()
     {
-        return new BanditReceiveDmgState(this);
+        return new BanditHitState(this);
     }
 
-    public override State<EnemyState> GetStartState()
+    public override State<EnemyState> GetChaseState()
     {
         return new BanditChaseState(this);
     }
