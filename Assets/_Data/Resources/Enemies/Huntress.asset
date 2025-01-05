@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d392eaf1e4c0cda46beef365756c6f5f, type: 3}
-  m_Name: Bandit
+  m_Name: Huntress
   m_EditorClassIdentifier: 
-  objectName: Bandit
-  hpMax: 10
+  objectName: Huntress
+  hpMax: 12
   dmg: 2
   moveSpeed: 7
   dropList:
   - itemSO: {fileID: 11400000, guid: 0fb0a78c486b28444a6efccc592c51af, type: 2}
-    dropRate: 100000
+    dropRate: 0
     minDrop: 0
     maxDrop: 0

@@ -13151,6 +13151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b013a6598edf6204b887e445e01133e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  huntressCtrl: {fileID: 1167479102}
 --- !u!1 &959111226
 GameObject:
   m_ObjectHideFlags: 0
@@ -16764,13 +16765,15 @@ GameObject:
   - component: {fileID: 1167479098}
   - component: {fileID: 1167479096}
   - component: {fileID: 1167479100}
+  - component: {fileID: 1167479102}
+  - component: {fileID: 1167479101}
   m_Layer: 2
   m_Name: Huntress
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1167479092
 Transform:
   m_ObjectHideFlags: 0
@@ -16947,6 +16950,56 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1167479101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167479091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84aecea10bb847c449942d099026a9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCtrl: {fileID: 1167479102}
+  posPlayer: {fileID: 0}
+  detectPlayerRange: 10
+  distanceToPlayer: 0
+  delayChase: 0.5
+  distanceToAttack: 1
+  delayHit: 1
+  maxCombo: 1
+  dmg: 1
+  delayWhenReceivedDmg: 0.5
+  cdToDespawn: 3
+  dropItemCnt: 1
+--- !u!114 &1167479102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167479091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b4027435a32a9469331201e5ac9709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1167479100}
+  rb: {fileID: 1167479094}
+  checkGround: {fileID: 1307956704}
+  checkWall: {fileID: 1902919218}
+  _detectPlayer: {fileID: 55496312}
+  dmgReceiver: {fileID: 648948510}
+  dmgSender: {fileID: 1704593474}
+  enemiesSO: {fileID: 11400000, guid: 6c500b789ba92a349b590cc7a4d5d25f, type: 2}
+  moving: 0
+  detectPlayer: 0
+  canAttack: 0
+  dead: 0
+  hit: 0
+  huntressAnim: {fileID: 908267097}
 --- !u!1 &1180133614
 GameObject:
   m_ObjectHideFlags: 0

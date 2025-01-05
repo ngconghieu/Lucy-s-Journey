@@ -1,21 +1,47 @@
+using UnityEngine;
+
 public class HuntressChaseState : EnemyChaseState
 {
     public HuntressChaseState(EnemyState owner) : base(owner)
     {
     }
 
-    public override void EnterState()
+    protected override bool ChangeToCombatState()
     {
-        throw new System.NotImplementedException();
+        return owner.distanceToPlayer < owner.distanceToAttack || owner.attackTimer1 > 7;
     }
-
-    public override void ExitState()
-    {
-        throw new System.NotImplementedException();
-    }
-
     protected override void OnMove()
     {
-        throw new System.NotImplementedException();
+        if (CanMove())
+        {
+            owner.EnemyCtrl.moving = true;
+            owner.EnemyCtrl.Rigidbody.linearVelocityX = owner.EnemyCtrl.transform.localScale.x
+                * owner.EnemyCtrl.EnemiesSO.moveSpeed;
+        }
+        else
+        {
+            StopMoving();
+            timer += Time.deltaTime;
+            if (timer > owner.delayChase)
+            {
+                if (!owner.EnemyCtrl.detectPlayer)
+                    Flip();
+                timer = 0;
+            }
+        }
+    }
+
+    private void Flip()
+    {
+        owner.EnemyCtrl.transform.localScale = new Vector2(
+            -owner.EnemyCtrl.transform.localScale.x,
+            owner.EnemyCtrl.transform.localScale.y);
+    }
+
+    private bool CanMove()
+    {
+        return owner.EnemyCtrl.CheckGround.IsGrounded()
+            && !owner.EnemyCtrl.CheckWall.IsWall()
+            && owner.distanceToPlayer > owner.distanceToAttack;
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class BanditChaseState : EnemyChaseState
 {
@@ -39,12 +37,5 @@ public class BanditChaseState : EnemyChaseState
         return owner.EnemyCtrl.CheckGround.IsGrounded()
             && !owner.EnemyCtrl.CheckWall.IsWall()
             && owner.distanceToPlayer > owner.distanceToAttack;
-    }
-
-    public override void EnterState() { }
-    public override void ExitState()
-    {
-        StopMoving();
-        timer = 0;
     }
 }

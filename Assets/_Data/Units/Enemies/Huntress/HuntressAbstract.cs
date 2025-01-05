@@ -1,16 +1,19 @@
 using UnityEngine;
 
-public class HuntressAbstract : MonoBehaviour
+public abstract class HuntressAbstract : GameMonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] HuntressCtrl huntressCtrl;
+    public HuntressCtrl HuntressCtrl => huntressCtrl;
+    protected override void LoadComponents()
     {
-        
+        base.LoadComponents();
+        LoadHuntressCtrl();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LoadHuntressCtrl()
     {
-        
+        if (huntressCtrl != null) return;
+        huntressCtrl = GetComponentInParent<HuntressCtrl>();
+        Debug.LogWarning("LoadHuntressCtrl", gameObject);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyChaseState : State<EnemyState>
@@ -12,20 +13,30 @@ public class EnemyChaseState : State<EnemyState>
         if (owner.EnemyCtrl.detectPlayer)
             Detected();
         else
+        {
             OnMove();
+        }
     }
 
     protected virtual void Detected()
     {
-        if (owner.distanceToPlayer < owner.distanceToAttack)
-            owner.StateMachine.ChangeState(owner.GetCombatState());
-
         dirToPlayer = Mathf.Sign(owner.posPlayer.transform.position.x - owner.transform.position.x);
         owner.transform.localScale = new Vector2(dirToPlayer, owner.transform.localScale.y);
         StopMoving();
         timer += Time.deltaTime;
         if (timer > owner.delayChase)
-            OnMove();
+        {
+            if (ChangeToCombatState())
+                owner.StateMachine.ChangeState(owner.GetCombatState());
+            else
+                OnMove();
+        }
+    }
+
+    protected virtual bool ChangeToCombatState()
+    {
+        return owner.distanceToPlayer < owner.distanceToAttack;
+
     }
 
     protected virtual void StopMoving()
@@ -41,11 +52,12 @@ public class EnemyChaseState : State<EnemyState>
 
     public override void EnterState()
     {
-        
+
     }
 
     public override void ExitState()
     {
-        
+        StopMoving();
+        timer = 0;
     }
 }

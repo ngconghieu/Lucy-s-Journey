@@ -1,26 +1,34 @@
+using System;
 using UnityEngine;
 
 public class HuntressState : EnemyState
 {
-    public override void AnimTriggerAttack()
+    HuntressCtrl HuntressCtrl => enemyCtrl as HuntressCtrl;
+
+    protected override void LoadComponents()
     {
-        throw new System.NotImplementedException();
+        base.LoadComponents();
+        LoadStats();
     }
 
-    public override void AnimTriggerDead()
+    private void LoadStats()
     {
-        throw new System.NotImplementedException();
+        distanceToAttack = 2.5f;
+        attackTimer1 = 7;
     }
 
-    public override void AnimTriggerHit()
+    protected override void DetectPlayerInRange()
     {
-        
+        enemyCtrl.detectPlayer = enemyCtrl.DetectPlayer.DetectPlayerForFlying(detectPlayerRange, posPlayer);
     }
 
-    public override void AnimTriggerSpecialAttack()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void AnimTriggerAttack() => HuntressCtrl.HuntressAnim.TriggerAttack();
+
+    public override void AnimTriggerDead() => HuntressCtrl.HuntressAnim.TriggerDead();
+
+    public override void AnimTriggerHit() => HuntressCtrl.HuntressAnim.TriggerHit();
+
+    public override void AnimTriggerSpecialAttack() => HuntressCtrl.HuntressAnim.TriggerSpecialAttack();
 
     public override State<EnemyState> GetChaseState()
     {
@@ -29,7 +37,7 @@ public class HuntressState : EnemyState
 
     public override State<EnemyState> GetCombatState()
     {
-        return new EnemyCombatState(this);
+        return new HuntressCombatState(this);
     }
 
     public override State<EnemyState> GetDeadState()

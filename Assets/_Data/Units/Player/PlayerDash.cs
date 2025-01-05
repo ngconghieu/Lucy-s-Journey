@@ -34,7 +34,7 @@ public class PlayerDash : PlayerAbstract
     {
         Transform smoke = transform.Find("Smoke");
         Quaternion smokeRot = transform.parent.rotation;
-        smoke = FXSpawner.Instance.Spawn(FXSpawner.DashSmoke, smoke.position, smokeRot);
+        smoke = PrefabSpawner.Instance.Spawn(PrefabSpawner.DashSmoke, smoke.position, smokeRot);
         smoke.localScale = transform.parent.localScale;
     }
 

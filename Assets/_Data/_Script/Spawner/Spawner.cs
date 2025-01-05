@@ -9,7 +9,7 @@ public class Spawner : GameMonoBehaviour
     [SerializeField] protected List<Transform> prefabs;
     [SerializeField] protected List<Transform> poolObjs;
 
-
+    #region Load components
     protected override void LoadComponents()
     {
         this.LoadPrefabs();
@@ -36,6 +36,7 @@ public class Spawner : GameMonoBehaviour
     {
         foreach (Transform prefab in prefabs) prefab.gameObject.SetActive(false);
     }
+    #endregion
 
     public virtual Transform Spawn(string prefabName, Vector3 spawnPos, Quaternion spawnRot)
     {
