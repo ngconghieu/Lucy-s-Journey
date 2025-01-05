@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public abstract class Despawn : GameMonoBehaviour
 {
     protected virtual void FixedUpdate()

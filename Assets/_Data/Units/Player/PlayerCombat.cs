@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCombat : PlayerAbstract
@@ -19,6 +16,7 @@ public class PlayerCombat : PlayerAbstract
         base.Start();
         dmg = playerCtrl.PlayerSO.dmg;
     }
+
     protected virtual void Update()
     {
         HandleComboAttack();
@@ -96,5 +94,4 @@ public class PlayerCombat : PlayerAbstract
             component.Deduct(dmg);
         }
     }
-
 }

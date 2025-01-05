@@ -6,7 +6,7 @@ public class DetectPlayer : GameMonoBehaviour
     {
         RaycastHit2D raycast = Physics2D.Raycast(transform.parent.position, (posPlayer.transform.position - transform.parent.position).normalized, detectPlayerRange);
         Debug.DrawRay(transform.parent.position, (posPlayer.transform.position - transform.parent.position).normalized * detectPlayerRange);
-        if (raycast.collider == null) 
+        if (raycast.collider == null)
             return false;
         //Debug.Log(raycast.collider.name, gameObject);
         return raycast.transform.CompareTag("Player");

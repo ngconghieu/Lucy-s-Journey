@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class BanditAnim : BanditAbstract
 {
     protected virtual void Update()

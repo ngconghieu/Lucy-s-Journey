@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -58,7 +57,6 @@ public class PlayerDash : PlayerAbstract
         canDash = false;
         playerCtrl.Dashing = true;
         playerCtrl.Rigidbody2D.gravityScale = 0;
-        //playerCtrl.PlayerAnim.TriggerDash();
         playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }
 }

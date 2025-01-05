@@ -1,12 +1,10 @@
-using System;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerAnim : PlayerAbstract
 {
     protected void Update()
     {
-        this.Anim();
+        Anim();
     }
 
     private void Anim()

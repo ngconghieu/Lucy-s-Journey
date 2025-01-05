@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BanditCtrl : EnemyCtrl
@@ -15,7 +14,7 @@ public class BanditCtrl : EnemyCtrl
 
     private void LoadBanditAnim()
     {
-        if(this.banditAnim != null) return;
+        if (this.banditAnim != null) return;
         banditAnim = transform.GetComponentInChildren<BanditAnim>();
         Debug.LogWarning("LoadBanditAnim", gameObject);
     }

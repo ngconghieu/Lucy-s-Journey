@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class DespawnFX : DespawnByTime
 {
     public override void DespawnObj()
