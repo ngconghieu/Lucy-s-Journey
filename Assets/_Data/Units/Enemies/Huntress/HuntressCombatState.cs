@@ -11,7 +11,6 @@ public class HuntressCombatState : EnemyCombatState
         {
             comboTime++;
             owner.AnimTriggerSpecialAttack();
-            Debug.Log("Hehe");
             Vector3 dis = (owner.posPlayer.transform.position - owner.transform.position).normalized;
             float rot_z = Mathf.Atan2(dis.y, dis.x) * Mathf.Rad2Deg;
             Quaternion rot = Quaternion.Euler(0, 0, rot_z);

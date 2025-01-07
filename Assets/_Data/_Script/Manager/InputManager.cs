@@ -14,5 +14,6 @@ public class InputManager : MonoBehaviour
     public float Move() => Input.GetAxisRaw("Horizontal");
     public bool Dash() => Input.GetButtonDown("Dash");
     public bool Jump() => Input.GetButtonDown("Jump");
+    public float JumpDown() => Input.GetAxisRaw("Vertical");
     public bool Attack() => Input.GetButtonDown("Fire1");
 }

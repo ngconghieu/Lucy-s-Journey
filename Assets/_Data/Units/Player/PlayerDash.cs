@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,22 +7,29 @@ public class PlayerDash : PlayerAbstract
     [SerializeField] protected float dashSpeed = 20;
     [SerializeField] protected float dashTime = 0.2f;
     [SerializeField] protected float dashCooldown = 0.3f;
+    [SerializeField] protected int dashCnt = 0;
 
     protected float gravity;
     protected bool canDash = true;
 
     protected virtual void Update()
     {
-        this.StartDash();
+        CheckDash();
+        OnDash();
     }
 
-    protected override void Awake() 
-        => this.gravity = playerCtrl.Rigidbody2D.gravityScale;
-
-    protected void StartDash()
+    private void CheckDash()
     {
-        if(InputManager.Instance.Dash() && canDash)
+        if (playerCtrl.CheckGround.IsGrounded()) dashCnt = 0;
+    }
+
+    protected override void Awake() => this.gravity = playerCtrl.Rigidbody2D.gravityScale;
+
+    protected void OnDash()
+    {
+        if(InputManager.Instance.Dash() && canDash && dashCnt<1)
         {
+            dashCnt++;
             //cast smoke
             CreateFXSmoke();
             //dash

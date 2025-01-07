@@ -23,9 +23,10 @@ public class PlayerJump : PlayerAbstract
 
     protected virtual void Update()
     {
+        if (InputManager.Instance.Jump() && InputManager.Instance.JumpDown() == -1) return;
         this.UpdateJumpVar();
         this.Jump();
-        this.ClimpOnWall();
+        //this.ClimpOnWall();
         Debug.DrawRay(transform.position, Vector2.down * 0.5f, Color.red);
         Debug.DrawRay(transform.position, new Vector2(1 * InputManager.Instance.Move(), 0) * 0.5f, Color.red);
         this.CheckGround();
