@@ -18,7 +18,8 @@ public abstract class EnemyState : GameMonoBehaviour
     public float delayHit = 1f;
     public int maxCombo = 1;
     public int dmg = 1;
-    public float attackTimer1 = 0;
+    public float specialAttackTimer1 = 0;
+    public bool canPerformSpecialAttack1; //Check on animation
     [Header("Received dmg state")]
     public float delayWhenReceivedDmg = 0.5f;
     [Header("Dead state")]
@@ -77,7 +78,7 @@ public abstract class EnemyState : GameMonoBehaviour
     protected virtual void Update()
     {
         distanceToPlayer = Vector2.Distance(posPlayer.transform.position, transform.position);
-        attackTimer1 += Time.deltaTime;
+        specialAttackTimer1 += Time.deltaTime;
         StateMachine.ExecuteState();
         if (!enemyCtrl.dead && !enemyCtrl.hit)
         {

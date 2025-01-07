@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Spike
-  - OneWayTerrain
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX

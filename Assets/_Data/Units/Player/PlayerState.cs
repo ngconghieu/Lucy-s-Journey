@@ -6,14 +6,23 @@ public class PlayerState : GameMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
-    [SerializeField] PlatformEffector2D EffectorToJumpDown;
+    [SerializeField] GameObject oneWayPlatform;
 
+    #region Load components
     protected override void LoadComponents()
     {
         base.LoadComponents();
         LoadPlayerCtrl();
     }
-    
+
+    private void LoadPlayerCtrl()
+    {
+        if (playerCtrl != null) return;
+        playerCtrl = GetComponent<PlayerCtrl>();
+        Debug.LogWarning("LoadPlayerCtrl", gameObject);
+    }
+    #endregion
+
     protected override void Start()
     {
         base.Start();
@@ -32,16 +41,9 @@ public class PlayerState : GameMonoBehaviour
         playerCtrl.DmgReceiver.OnDead -= HandleDead;
     }
 
-    private void LoadPlayerCtrl()
-    {
-        if (playerCtrl != null) return;
-        playerCtrl = GetComponent<PlayerCtrl>();
-        Debug.LogWarning("LoadPlayerCtrl", gameObject);
-    }
-
     private void HandleHurt(LayerMask layerMask)
     {
-        if (layerMask == LayerMask.NameToLayer("Enemy") || 
+        if (layerMask == LayerMask.NameToLayer("Enemy") ||
             layerMask == LayerMask.NameToLayer("Trap"))
         {
             playerCtrl.PlayerAnim.TriggerHit();
@@ -62,37 +64,6 @@ public class PlayerState : GameMonoBehaviour
     }
 
     #region Handle JumpDown
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    LoadEffectorForJumpDown(collision);
-    //    if (EffectorToJumpDown != null && collision.gameObject.CompareTag("OneWayTerrain") && CanJumpDown())
-    //    {
-    //        Debug.Log("On Jump Down");
-    //        StartCoroutine(OnJumpDown());
-    //    }
-    //    }
-    //    IEnumerator OnJumpDown()
-    //{
-    //    EffectorToJumpDown.rotationalOffset = 180;
-    //    yield return new WaitForSeconds(1);
-    //}
-    //private bool CanJumpDown() => Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1;
-
-    //private void LoadEffectorForJumpDown(Collision2D collision)
-    //{
-    //    if (EffectorToJumpDown == null)
-    //    {
-    //        if (collision.gameObject.TryGetComponent(out PlatformEffector2D platformEffector))
-    //            EffectorToJumpDown = platformEffector;
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (EffectorToJumpDown != null)
-    //        EffectorToJumpDown.rotationalOffset = 0;
-    //}
-    GameObject oneWayPlatform;
     private void Update()
     {
         if (Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1)
@@ -114,7 +85,7 @@ public class PlayerState : GameMonoBehaviour
     {
         Collider2D platformCollider = oneWayPlatform.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(playerCtrl.CapsuleCollider, platformCollider);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.4f);
         Physics2D.IgnoreCollision(playerCtrl.CapsuleCollider, platformCollider, false);
     }
     #endregion
