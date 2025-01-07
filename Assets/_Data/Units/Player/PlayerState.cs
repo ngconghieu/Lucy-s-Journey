@@ -6,7 +6,7 @@ public class PlayerState : GameMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
     public PlayerCtrl PlayerCtrl => playerCtrl;
-    PlatformEffector2D EffectorToJumpDown;
+    [SerializeField] PlatformEffector2D EffectorToJumpDown;
 
     protected override void LoadComponents()
     {
@@ -60,34 +60,62 @@ public class PlayerState : GameMonoBehaviour
         yield return new WaitForSeconds(2);
         gameObject.SetActive(false);
     }
-    #region Handle JumpDown
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        LoadEffectorForJumpDown(collision);
-        Debug.Log(EffectorToJumpDown != null && collision.gameObject.CompareTag("OneWayTerrain") && CanJumpDown());
-        if (EffectorToJumpDown != null && collision.gameObject.CompareTag("OneWayTerrain") && CanJumpDown())
-            StartCoroutine(OnJumpDown());
-    }
-    IEnumerator OnJumpDown()
-    {
-        EffectorToJumpDown.rotationalOffset = 180;
-        yield return new WaitForSeconds(1);
-    }
-    private bool CanJumpDown() => Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1;
 
-    private void LoadEffectorForJumpDown(Collision2D collision)
-    {
-        if (EffectorToJumpDown == null)
-        {
-            if (collision.gameObject.TryGetComponent(out PlatformEffector2D platformEffector))
-                EffectorToJumpDown = platformEffector;
-        }
-    }
+    #region Handle JumpDown
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    LoadEffectorForJumpDown(collision);
+    //    if (EffectorToJumpDown != null && collision.gameObject.CompareTag("OneWayTerrain") && CanJumpDown())
+    //    {
+    //        Debug.Log("On Jump Down");
+    //        StartCoroutine(OnJumpDown());
+    //    }
+    //    }
+    //    IEnumerator OnJumpDown()
+    //{
+    //    EffectorToJumpDown.rotationalOffset = 180;
+    //    yield return new WaitForSeconds(1);
+    //}
+    //private bool CanJumpDown() => Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1;
+
+    //private void LoadEffectorForJumpDown(Collision2D collision)
+    //{
+    //    if (EffectorToJumpDown == null)
+    //    {
+    //        if (collision.gameObject.TryGetComponent(out PlatformEffector2D platformEffector))
+    //            EffectorToJumpDown = platformEffector;
+    //    }
+    //}
 
     //private void OnCollisionExit2D(Collision2D collision)
     //{
     //    if (EffectorToJumpDown != null)
     //        EffectorToJumpDown.rotationalOffset = 0;
     //}
+    GameObject oneWayPlatform;
+    private void Update()
+    {
+        if (Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1)
+            if (oneWayPlatform != null)
+                StartCoroutine(OnJumpDown());
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+            oneWayPlatform = collision.gameObject;
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("OneWayPlatform"))
+            oneWayPlatform = null;
+    }
+
+    IEnumerator OnJumpDown()
+    {
+        Collider2D platformCollider = oneWayPlatform.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(playerCtrl.CapsuleCollider, platformCollider);
+        yield return new WaitForSeconds(0.25f);
+        Physics2D.IgnoreCollision(playerCtrl.CapsuleCollider, platformCollider, false);
+    }
     #endregion
 }

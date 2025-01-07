@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerCtrl : GameMonoBehaviour
 {
     [Header("Get Components")]
+    [SerializeField] protected CapsuleCollider2D capsuleCollider;
     [SerializeField] protected Rigidbody2D _rigidbody2D;
     [SerializeField] protected Animator animator;
     [SerializeField] protected CheckGround checkGround;
@@ -11,6 +12,7 @@ public class PlayerCtrl : GameMonoBehaviour
     [SerializeField] protected PlayerAnim playerAnim;
     [SerializeField] protected DmgReceiver dmgReceiver;
     [SerializeField] protected PlayerSO playerSO;
+    public CapsuleCollider2D CapsuleCollider => capsuleCollider;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
     public CheckGround CheckGround => checkGround;
@@ -35,6 +37,7 @@ public class PlayerCtrl : GameMonoBehaviour
     protected override void LoadComponents()
     {
         base.LoadComponents();
+        this.LoadCollider();
         this.LoadRigibody();
         this.LoadAnimator();
         this.LoadCheckGround();
@@ -42,6 +45,13 @@ public class PlayerCtrl : GameMonoBehaviour
         this.LoadPlayerAnim();
         this.LoadDmgReceiver();
         this.LoadPlayerSO();
+    }
+
+    private void LoadCollider()
+    {
+        if (this.capsuleCollider != null) return;
+        capsuleCollider = transform.GetComponent<CapsuleCollider2D>();
+        Debug.LogWarning(transform.name + ": LoadCollider", gameObject);
     }
 
     private void LoadDmgReceiver()
