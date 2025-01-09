@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d392eaf1e4c0cda46beef365756c6f5f, type: 3}
-  m_Name: Bandit
+  m_Name: Enemy
   m_EditorClassIdentifier: 
   objectName: Bandit
-  hpMax: 12
+  hpMax: 20
   dmg: 2
   moveSpeed: 7
   dropList:

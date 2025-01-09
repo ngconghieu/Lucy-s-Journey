@@ -8,6 +8,11 @@ public class HealthManager : MonoBehaviour
 
     public void SetMaxHealth(int health)
     {
+        if (slider == null)
+        {
+            Debug.LogError("Slider is not assigned in HealthManager.");
+            return;
+        }
         slider.maxValue = health;
         slider.value = health;
     }
@@ -15,5 +20,9 @@ public class HealthManager : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+    }
+    public void TakeDamage(int damage)
+    {
+        slider.value -= damage;
     }
 }
