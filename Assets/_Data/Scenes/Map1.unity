@@ -33443,7 +33443,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1092216038}
   - component: {fileID: 1092216040}
-  - component: {fileID: 1092216039}
   m_Layer: 5
   m_Name: Health Bar
   m_TagString: Untagged
@@ -33472,19 +33471,6 @@ RectTransform:
   m_AnchoredPosition: {x: -516.8103, y: 444.00012}
   m_SizeDelta: {x: 811.02, y: -68.6}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1092216039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092216037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc47d2822c98604c94f2c5d73285c65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 0}
 --- !u!114 &1092216040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33923,7 +33909,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1092216038}
-  m_Father: {fileID: 0}
+  - {fileID: 1229290322}
+  m_Father: {fileID: 1316518986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -35057,6 +35044,51 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1229290321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229290322}
+  - component: {fileID: 1229290323}
+  m_Layer: 0
+  m_Name: HealthManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1229290322
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229290321}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -931.54016, y: -561.6182, z: -0.35182437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1180989036}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1229290323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229290321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc47d2822c98604c94f2c5d73285c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1092216040}
 --- !u!1 &1235131177
 GameObject:
   m_ObjectHideFlags: 0
@@ -35472,6 +35504,7 @@ Transform:
   - {fileID: 532136538}
   - {fileID: 294660379}
   - {fileID: 1519122214}
+  - {fileID: 1180989036}
   m_Father: {fileID: 1576064806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1316518987
@@ -35493,6 +35526,7 @@ MonoBehaviour:
   playerAnim: {fileID: 1364900827}
   dmgReceiver: {fileID: 532136539}
   playerSO: {fileID: 11400000, guid: b2c71623b009a62459a8d569fee527c4, type: 2}
+  healthManager: {fileID: 0}
   Dashing: 0
   Moving: 0
   Jumping: 0
@@ -103582,5 +103616,4 @@ SceneRoots:
   - {fileID: 1037376260}
   - {fileID: 1959078265}
   - {fileID: 2085510935}
-  - {fileID: 1180989036}
   - {fileID: 273589400}

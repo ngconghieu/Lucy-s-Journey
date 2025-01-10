@@ -17,6 +17,7 @@ public class PlayerState : GameMonoBehaviour
         //load hp
         playerCtrl.DmgReceiver.SetMaxHp(playerCtrl.PlayerSO.hpMax);
         playerCtrl.DmgReceiver.Reborn();
+        playerCtrl.HealthManager.SetMaxHealth(playerCtrl.DmgReceiver.GetMaxHp());
         //register event
         playerCtrl.DmgReceiver.OnHurt += HandleHurt;
         playerCtrl.DmgReceiver.OnDead += HandleDead;
@@ -41,7 +42,13 @@ public class PlayerState : GameMonoBehaviour
         if (layerMask == LayerMask.NameToLayer("Enemy") ||
             layerMask == LayerMask.NameToLayer("Trap"))
         {
+            if (playerCtrl.HealthManager != null)
+            {
+                playerCtrl.HealthManager.SetHealth(playerCtrl.DmgReceiver.GetHp());
+
+            }
             playerCtrl.PlayerAnim.TriggerHit();
+
         }
     }
 
@@ -49,4 +56,6 @@ public class PlayerState : GameMonoBehaviour
     {
         playerCtrl.PlayerAnim.TriggerDead();
     }
+
+   
 }

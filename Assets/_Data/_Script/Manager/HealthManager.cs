@@ -3,26 +3,34 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public Slider slider;
+    [SerializeField] private Slider healthSlider;
 
-
-    public void SetMaxHealth(int health)
+    private void Awake()
     {
-        if (slider == null)
+        if (healthSlider == null)
         {
-            Debug.LogError("Slider is not assigned in HealthManager.");
-            return;
+            healthSlider = GetComponentInChildren<Slider>();
+            if (healthSlider == null)
+            {
+                Debug.LogError("HealthSlider is not assigned and no Slider component found on the GameObject.", gameObject);
+            }
         }
-        slider.maxValue = health;
-        slider.value = health;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = maxHealth;
+        }
+    }
+
     public void SetHealth(int health)
     {
-        slider.value = health;
-    }
-    public void TakeDamage(int damage)
-    {
-        slider.value -= damage;
+        if (healthSlider != null)
+        {
+            healthSlider.value = health;
+        }
     }
 }
