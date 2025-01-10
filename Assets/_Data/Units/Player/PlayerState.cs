@@ -42,13 +42,12 @@ public class PlayerState : GameMonoBehaviour
         if (layerMask == LayerMask.NameToLayer("Enemy") ||
             layerMask == LayerMask.NameToLayer("Trap"))
         {
+            playerCtrl.PlayerAnim.TriggerHit();
             if (playerCtrl.HealthManager != null)
             {
                 playerCtrl.HealthManager.SetHealth(playerCtrl.DmgReceiver.GetHp());
 
             }
-            playerCtrl.PlayerAnim.TriggerHit();
-
         }
     }
 
