@@ -12,6 +12,7 @@ public class PlayerCtrl : GameMonoBehaviour
     [SerializeField] protected PlayerAnim playerAnim;
     [SerializeField] protected DmgReceiver dmgReceiver;
     [SerializeField] protected PlayerSO playerSO;
+    [SerializeField] protected Heartbar heartbar;
     public CapsuleCollider2D CapsuleCollider => capsuleCollider;
     public Rigidbody2D Rigidbody2D => _rigidbody2D;
     public Animator Animator => animator;
@@ -20,6 +21,8 @@ public class PlayerCtrl : GameMonoBehaviour
     public PlayerAnim PlayerAnim => playerAnim;
     public DmgReceiver DmgReceiver => dmgReceiver;
     public PlayerSO PlayerSO => playerSO;
+
+    public Heartbar Heartbar => heartbar;
 
     [Header("State")]
     public bool Dashing;
@@ -45,6 +48,7 @@ public class PlayerCtrl : GameMonoBehaviour
         this.LoadPlayerAnim();
         this.LoadDmgReceiver();
         this.LoadPlayerSO();
+        this.LoadHeartBar();
     }
 
     private void LoadCollider()
@@ -59,6 +63,13 @@ public class PlayerCtrl : GameMonoBehaviour
         if (this.dmgReceiver != null) return;
         dmgReceiver = GetComponentInChildren<DmgReceiver>();
         Debug.LogWarning(transform.name + ": LoadDmgReceiver", gameObject);
+    }
+
+    private void LoadHeartBar()
+    {
+        if (this.heartbar != null) return;
+        heartbar = GetComponentInChildren<Heartbar>();
+        Debug.LogWarning(transform.name + ": LoadHeartBar", gameObject);
     }
 
     private void LoadCheckWall()

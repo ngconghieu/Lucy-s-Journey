@@ -29,6 +29,7 @@ public class PlayerState : GameMonoBehaviour
         //load hp
         playerCtrl.DmgReceiver.SetMaxHp(playerCtrl.PlayerSO.hpMax);
         playerCtrl.DmgReceiver.Reborn();
+        playerCtrl.Heartbar.SetMaxHealth(playerCtrl.DmgReceiver.GetMaxHp());
         //register event
         playerCtrl.DmgReceiver.OnHurt += HandleHurt;
         playerCtrl.DmgReceiver.OnDead += HandleDead;
@@ -47,6 +48,7 @@ public class PlayerState : GameMonoBehaviour
             layerMask == LayerMask.NameToLayer("Trap") ||
             layerMask == LayerMask.NameToLayer("Projectile"))
         {
+            playerCtrl.Heartbar.SetHealth(playerCtrl.DmgReceiver.GetHp());
             playerCtrl.PlayerAnim.TriggerHit();
         }
     }

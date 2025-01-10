@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   objectName: Player_0
-  hpMax: 12
-  dmg: 2
+  hpMax: 20
+  dmg: 3

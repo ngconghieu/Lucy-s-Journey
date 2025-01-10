@@ -10,6 +10,15 @@ public class DmgReceiver : GameMonoBehaviour
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
 
+    public int GetHp()
+    {
+       return hp;
+    }
+    public int GetMaxHp()
+    {
+        return maxHp;
+    }
+
     protected override void LoadComponents()
     {
         base.LoadComponents();
