@@ -44,7 +44,8 @@ public class PlayerState : GameMonoBehaviour
     private void HandleHurt(LayerMask layerMask)
     {
         if (layerMask == LayerMask.NameToLayer("Enemy") ||
-            layerMask == LayerMask.NameToLayer("Trap"))
+            layerMask == LayerMask.NameToLayer("Trap") ||
+            layerMask == LayerMask.NameToLayer("Projectile"))
         {
             playerCtrl.PlayerAnim.TriggerHit();
         }
