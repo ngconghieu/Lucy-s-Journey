@@ -18,12 +18,12 @@ TagManager:
   - Player
   - Projectile
   - Trap
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background 1
+  - Background 2
+  - Background 3
+  - Decoration
+  - Brush
+  - BgBrush
   - 
   - 
   - 
@@ -41,11 +41,35 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background 1
+    uniqueID: 2699673811
+    locked: 0
+  - name: Background 2
+    uniqueID: 1270314053
+    locked: 0
+  - name: Background 3
+    uniqueID: 2153987267
+    locked: 0
+  - name: Trap
+    uniqueID: 1803257533
+    locked: 0
   - name: Background
     uniqueID: 1383946405
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Decoration
+    uniqueID: 9089827
+    locked: 0
+  - name: Player
+    uniqueID: 3723215463
+    locked: 0
+  - name: Enemy
+    uniqueID: 1726133767
+    locked: 0
+  - name: Ground
+    uniqueID: 3220900535
     locked: 0
   m_RenderingLayers:
   - Default
