@@ -21,6 +21,12 @@ public class PlayerJump : PlayerAbstract
     [SerializeField] protected float delayWallJump = 0.1f;
     [SerializeField] protected float wallJumpForce = 9;
 
+    private AudioManager audioManager;
+
+    protected virtual void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     protected virtual void Update()
     {
         if (InputManager.Instance.Jump() && InputManager.Instance.JumpDown() == -1) return;
@@ -73,6 +79,7 @@ public class PlayerJump : PlayerAbstract
         if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !bufferJump)
         {
             this.Jumping(playerCtrl.Rigidbody2D);
+            audioManager.PlaySFX(audioManager.jump);
             bufferJump = true;
         }
 
@@ -82,6 +89,7 @@ public class PlayerJump : PlayerAbstract
             playerCtrl.DoubleJump = true;
             jumpForce = jumpForce * 4 / 5;
             this.Jumping(playerCtrl.Rigidbody2D);
+            audioManager.PlaySFX(audioManager.jump);
             jumpForce = jumpForce * 5 / 4;
         }
     }
