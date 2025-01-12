@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropForce: 5
+  value: 1
 --- !u!95 &-3945460234291073630
 Animator:
   serializedVersion: 7
