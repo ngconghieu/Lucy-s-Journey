@@ -17,7 +17,7 @@ public class EnemyDeadState : State<EnemyState>
     {
         if (dropItem < owner.dropItemCnt)
         {
-            DropManager.Instance.Drop(owner.EnemyCtrl.EnemiesSO.dropList);
+            DropManager.Instance.Drop(owner.EnemyCtrl.EnemiesSO.dropList,owner.transform.position);
             dropItem++;
         }
 

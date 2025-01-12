@@ -42,6 +42,12 @@ public class PlayerState : GameMonoBehaviour
         playerCtrl.DmgReceiver.OnDead -= HandleDead;
     }
 
+    private void HandleItemCollected(GameObject item)
+    {
+        Debug.Log($"Item collected {item.name}");
+    }
+
+
     private void HandleHurt(LayerMask layerMask)
     {
         if (layerMask == LayerMask.NameToLayer("Enemy") ||

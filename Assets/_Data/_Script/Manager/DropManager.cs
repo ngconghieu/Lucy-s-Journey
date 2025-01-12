@@ -9,12 +9,17 @@ public class DropManager : GameMonoBehaviour
     protected override void Awake()
     {
         base.Awake();
-        if (DropManager.instance != null) Debug.LogError("DropManager already exist");
+        if (DropManager.instance != null) Debug.LogError("DropManager already exists");
         DropManager.instance = this;
     }
 
-    public virtual void Drop(List<DropItem> dropList)
+    public virtual void Drop(List<DropItem> dropList, Vector3 enemyPosition)
     {
-        Debug.Log(dropList[0].itemSO.itemName);
+        foreach (var item in dropList)
+        {
+
+            Debug.Log(item.itemSO.itemName);
+            Debug.Log(Instantiate(item.itemSO.prefab, enemyPosition, Quaternion.identity));
+        } 
     }
 }

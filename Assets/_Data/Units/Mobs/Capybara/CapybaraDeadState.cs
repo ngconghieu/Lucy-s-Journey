@@ -18,7 +18,7 @@ public class CapybaraDeadState : State<CapybaraState>
     {
         if (dropItem < owner.dropItemCnt)
         {
-            DropManager.Instance.Drop(owner.CapybaraCtrl.EnemiesSO.dropList);
+            DropManager.Instance.Drop(owner.CapybaraCtrl.EnemiesSO.dropList,owner.transform.position);
             dropItem++;
         }
         timer += Time.deltaTime;
