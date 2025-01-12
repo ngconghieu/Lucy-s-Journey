@@ -19,7 +19,7 @@ public class DropManager : GameMonoBehaviour
         {
 
             Debug.Log(item.itemSO.itemName);
-            Debug.Log(Instantiate(item.itemSO.prefab, enemyPosition, Quaternion.identity));
+            Debug.Log(Instantiate(item.itemSO.prefab, enemyPosition + new Vector3(-2,0,0), Quaternion.identity));
         } 
     }
 }
