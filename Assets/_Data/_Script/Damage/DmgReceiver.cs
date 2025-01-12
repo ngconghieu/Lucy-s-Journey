@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class DmgReceiver : GameMonoBehaviour
@@ -9,6 +9,11 @@ public class DmgReceiver : GameMonoBehaviour
     [SerializeField] Collider2D _collider;
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
+    AudioManager audioManager;
+    protected virtual void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public int GetHp()
     {
@@ -58,9 +63,18 @@ public class DmgReceiver : GameMonoBehaviour
 
     public virtual void Deduct(int deduct)
     {
-        if (CheckDead()) return;
-        hp -= deduct;
-        if (hp < deduct) hp = 0;
+        if (CheckDead()) return; // Kiểm tra xem nhân vật có chết không
+
+        int previousHp = hp; // Lưu giá trị HP trước khi trừ
+        hp -= deduct; // Giảm HP
+        if (hp < 0) hp = 0; // Đảm bảo HP không nhỏ hơn 0
+
+        if (hp < previousHp) // Kiểm tra nếu HP đã giảm
+        {
+            audioManager.SFXVolume = 0.5f;
+            audioManager.PlaySFX(audioManager.hurt); // Gọi âm thanh khi nhận sát thương
+        }
+
         this.IsDead();
     }
 
@@ -83,5 +97,6 @@ public class DmgReceiver : GameMonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         OnHurt?.Invoke(collision.gameObject.layer);//detect collider
+        //audioManager.PlaySFX(audioManager.hurt);
     }
 }

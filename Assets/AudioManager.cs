@@ -18,13 +18,13 @@ public class AudioManager : MonoBehaviour
 
     [Header("----------Audio Clip----------")]
     public AudioClip background;
-    [Header("----------Audio Player----------")]
+    [Header("----------Audio Clip----------")]
     public AudioClip death;
     public AudioClip flip;
     public AudioClip jump;
     public AudioClip walk;
     public AudioClip attack;
-
+    public AudioClip hurt;
     private void Start()
     {
         PlayMusic(background);
