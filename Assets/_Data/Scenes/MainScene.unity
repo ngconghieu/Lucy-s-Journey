@@ -39714,7 +39714,7 @@ MonoBehaviour:
   SFXSource: {fileID: 506052712}
   backgroundVolume: 0.16
   SFXVolume: 1
-  background: {fileID: 8300000, guid: 14456627cb2642749bc9df697c68b216, type: 3}
+  background: {fileID: 8300000, guid: 6babfed8d753cd34c9f477767d5b9ef5, type: 3}
   death: {fileID: 8300000, guid: 43bd6c3575dd65743bd832e4ebe00f90, type: 3}
   flip: {fileID: 8300000, guid: 2574e5c34318c104b83baa62bdf18574, type: 3}
   jump: {fileID: 8300000, guid: 9f1eb393da1289c42844c9710204d1ed, type: 3}
