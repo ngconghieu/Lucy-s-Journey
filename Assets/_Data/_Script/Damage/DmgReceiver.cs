@@ -7,11 +7,13 @@ public class DmgReceiver : GameMonoBehaviour
 {
     public event Action<LayerMask> OnHurt; //event collider
     public event Action OnDead;
+    public PauseManager gameO;
     
     [SerializeField] Collider2D _collider;
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
     [SerializeField] protected bool isPlayer = false;
+
 
     private static int totalEnemies = 0;
     private static int deadEnemies = 0;
@@ -97,8 +99,8 @@ public class DmgReceiver : GameMonoBehaviour
         this.Dead();
         if (isPlayer)
         {
-            PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
-            SceneManager.LoadSceneAsync(3);
+            gameO.gameOver();
+            Time.timeScale = 0f;
         }
 
     }

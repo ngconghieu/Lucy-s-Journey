@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    public GameObject gameOverUI;
+    public void gameOver()
+    {
+        gameOverUI.SetActive(true);
+    }
     public void Pause()
     {
         pauseMenu.SetActive(true);
