@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class DmgReceiver : GameMonoBehaviour
@@ -36,6 +37,7 @@ public class DmgReceiver : GameMonoBehaviour
     {
         _collider.enabled = false;
         OnDead?.Invoke();
+
     }
 
     protected override void ResetValue()
@@ -68,6 +70,10 @@ public class DmgReceiver : GameMonoBehaviour
     {
         if (!this.CheckDead()) return;
         this.Dead();
+        if (hp <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     public virtual void SetMaxHp(int maxHp)
