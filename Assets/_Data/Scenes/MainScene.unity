@@ -43961,7 +43961,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1130161752}
   - component: {fileID: 1130161754}
-  - component: {fileID: 1130161753}
   m_Layer: 0
   m_Name: Game Win
   m_TagString: Untagged
@@ -43985,19 +43984,6 @@ Transform:
   - {fileID: 2065881632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1130161753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130161751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344d2eceedef23848a05db742f82afc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinText: {fileID: 2137500921}
 --- !u!114 &1130161754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44013,6 +43999,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   gameOverUI: {fileID: 0}
   gameWinUI: {fileID: 1130161751}
+  winCoinText: {fileID: 2137500921}
 --- !u!1 &1139737466
 GameObject:
   m_ObjectHideFlags: 0
@@ -111672,7 +111659,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1926811258}
   - component: {fileID: 1926811260}
-  - component: {fileID: 1926811259}
   m_Layer: 0
   m_Name: Game Over
   m_TagString: Untagged
@@ -111696,19 +111682,6 @@ Transform:
   - {fileID: 1590704471}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1926811259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926811257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 344d2eceedef23848a05db742f82afc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coinText: {fileID: 1610712749}
 --- !u!114 &1926811260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111724,6 +111697,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   gameOverUI: {fileID: 1926811257}
   gameWinUI: {fileID: 0}
+  winCoinText: {fileID: 1610712749}
 --- !u!1 &1930554151
 GameObject:
   m_ObjectHideFlags: 0
