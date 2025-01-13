@@ -13,17 +13,9 @@ public class DmgReceiver : GameMonoBehaviour
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
     [SerializeField] protected bool isPlayer = false;
+    [SerializeField] protected bool isBossFinal = false;
 
 
-    private static int totalEnemies = 0;
-    private static int deadEnemies = 0;
-    //private void Start()
-    //{
-    //    if (!isPlayer)
-    //    {
-    //        totalEnemies++;
-    //    }
-    //}
     public int GetHp()
     {
        return hp;
@@ -50,22 +42,8 @@ public class DmgReceiver : GameMonoBehaviour
     {
         _collider.enabled = false;
         OnDead?.Invoke();
-        //if (!isPlayer)
-        //{
-        //    deadEnemies++;
-        //    CheckWinCondition();
-        //}
 
     }
-    ////quai chet het va isplayer khong chet thì win(scen4)
-    //private void CheckWinCondition()
-    //{
-    //    if (deadEnemies >= totalEnemies && GameObject.FindObjectsOfType<DmgReceiver>().Any(x => x.isPlayer && !x.CheckDead()))
-    //    {
-    //        PlayerPrefs.SetString("LastLevel", SceneManager.GetActiveScene().name);
-    //        SceneManager.LoadSceneAsync(4); // Win scene
-    //    }
-    //}
 
     protected override void ResetValue()
     {
@@ -102,6 +80,11 @@ public class DmgReceiver : GameMonoBehaviour
             gameO.gameOver();
             Time.timeScale = 0f;
         }
+        if (isBossFinal)
+        {
+            gameO.gameWin();
+            Time.timeScale = 0f;
+        }
 
     }
 
@@ -120,18 +103,4 @@ public class DmgReceiver : GameMonoBehaviour
         OnHurt?.Invoke(collision.gameObject.layer);//detect collider
     }
     
-    //private void OnDestroy()
-    //{
-    //    if (!isPlayer)
-    //    {
-    //        totalEnemies--;
-    //    }
-    //}
-
-    //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-    //private static void ResetStatics()
-    //{
-    //    totalEnemies = 0;
-    //    deadEnemies = 0;
-    //}
 }
