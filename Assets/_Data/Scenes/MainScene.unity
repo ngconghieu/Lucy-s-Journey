@@ -611,8 +611,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -188, y: 73.58978}
+  m_SizeDelta: {x: 35.7281, y: 29.8204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65218599
 MonoBehaviour:
@@ -30755,7 +30755,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayerID
@@ -31574,8 +31574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -522, y: 434}
-  m_SizeDelta: {x: 474.4603, y: 68.5349}
+  m_AnchoredPosition: {x: 2.4102, y: 113}
+  m_SizeDelta: {x: 469.6399, y: 68.5349}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &355909434
 MonoBehaviour:
@@ -31810,7 +31810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayerID
@@ -38546,8 +38546,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -75.095, y: 86}
+  m_SizeDelta: {x: 150.1893, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &605410764
 MonoBehaviour:
@@ -39367,8 +39367,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -734, y: 307}
-  m_SizeDelta: {x: 394.3824, y: 100}
+  m_AnchoredPosition: {x: -183.04, y: 28}
+  m_SizeDelta: {x: 98.732, y: 40.3592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &757019965
 GameObject:
@@ -78504,7 +78504,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayerID
@@ -81070,8 +81070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -350, y: -2}
-  m_SizeDelta: {x: -368, y: 15.733}
+  m_AnchoredPosition: {x: -372, y: 31.968}
+  m_SizeDelta: {x: -427.4515, y: -32.4709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1632362021
 MonoBehaviour:
@@ -110747,7 +110747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayerID
@@ -111490,7 +111490,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3089243128087514158, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_SortingLayerID
@@ -111510,11 +111510,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562432839895554205, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 31.41
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 4562432839895554205, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.47
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4562432839895554205, guid: e0ba787998b84fb4b97bd20d2e0d79c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -111861,7 +111861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8051216678081356169, guid: b5d929b860707094290abda7c7fc5765, type: 3}
       propertyPath: m_SortingLayerID
@@ -111916,6 +111916,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5777587741038186029, guid: 873c0cc11fda4aa4d95a722f04217736, type: 3}
+      propertyPath: isPlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6134162556511770066, guid: 873c0cc11fda4aa4d95a722f04217736, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.26
@@ -111958,7 +111962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6563635176397863067, guid: 873c0cc11fda4aa4d95a722f04217736, type: 3}
       propertyPath: m_SortingLayer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6563635176397863067, guid: 873c0cc11fda4aa4d95a722f04217736, type: 3}
       propertyPath: m_SortingLayerID
@@ -111990,7 +111994,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 912394151508168950, guid: a75a1bf104496f3468c45f89ee39f5ce, type: 3}
       propertyPath: m_SortingLayer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 912394151508168950, guid: a75a1bf104496f3468c45f89ee39f5ce, type: 3}
       propertyPath: m_SortingLayerID

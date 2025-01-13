@@ -13,4 +13,5 @@ public class GameOverManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
 }
