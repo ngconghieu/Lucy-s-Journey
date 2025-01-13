@@ -11,6 +11,13 @@ public class PlayerDash : PlayerAbstract
 
     protected float gravity;
     protected bool canDash = true;
+    AudioManager audioManager;
+    protected override void Awake()
+    {
+        base.Awake();
+        this.gravity = playerCtrl.Rigidbody2D.gravityScale;
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     protected virtual void Update()
     {
@@ -23,11 +30,9 @@ public class PlayerDash : PlayerAbstract
         if (playerCtrl.CheckGround.IsGrounded()) dashCnt = 0;
     }
 
-    protected override void Awake() => this.gravity = playerCtrl.Rigidbody2D.gravityScale;
-
     protected void OnDash()
     {
-        if(InputManager.Instance.Dash() && canDash && dashCnt<1)
+        if (InputManager.Instance.Dash() && canDash && dashCnt < 1)
         {
             dashCnt++;
             //cast smoke
@@ -65,6 +70,7 @@ public class PlayerDash : PlayerAbstract
         canDash = false;
         playerCtrl.Dashing = true;
         playerCtrl.Rigidbody2D.gravityScale = 0;
+        audioManager.PlaySFX(audioManager.flip);
         playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }
 }

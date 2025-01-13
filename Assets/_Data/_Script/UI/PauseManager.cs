@@ -9,6 +9,13 @@ public class PauseManager : MonoBehaviour
     public GameObject gameWinUI;
     [SerializeField] private TextMeshProUGUI winCoinText;
 
+    private AudioManager audioManager;
+
+    protected virtual void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     //public void ShowWinCoins()
     //{
     //    if (CoinManager.instance != null && winCoinText != null)
@@ -53,6 +60,7 @@ public class PauseManager : MonoBehaviour
 
     public void Restart()
     {
+        audioManager.PlayMusic(audioManager.background);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

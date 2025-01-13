@@ -15,6 +15,11 @@ public class DmgReceiver : GameMonoBehaviour
     [SerializeField] protected bool isPlayer = false;
     [SerializeField] protected bool isBossFinal = false;
 
+    AudioManager audioManager;
+    protected virtual void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public int GetHp()
     {
@@ -66,8 +71,17 @@ public class DmgReceiver : GameMonoBehaviour
     public virtual void Deduct(int deduct)
     {
         if (CheckDead()) return;
+
+        int previousHp = hp;
         hp -= deduct;
-        if (hp < deduct) hp = 0;
+        if (hp < 0) hp = 0;
+
+        if (hp < previousHp)
+        {
+            audioManager.SFXVolume = 0.5f;
+            audioManager.PlaySFX(audioManager.hurt);
+        }
+
         this.IsDead();
     }
 
@@ -75,14 +89,17 @@ public class DmgReceiver : GameMonoBehaviour
     {
         if (!this.CheckDead()) return;
         this.Dead();
+        audioManager.StopBackgroundMusic();
         if (isPlayer)
         {
             gameO.gameOver();
+            audioManager.PlaySFX(audioManager.lose);
             Time.timeScale = 0f;
         }
         if (isBossFinal)
         {
             gameO.gameWin();
+            audioManager.PlaySFX(audioManager.win);
             Time.timeScale = 0f;
         }
 
