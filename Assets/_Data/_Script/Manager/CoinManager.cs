@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager instance;
