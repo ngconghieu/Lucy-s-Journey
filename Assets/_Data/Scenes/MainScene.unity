@@ -43999,7 +43999,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   gameOverUI: {fileID: 0}
   gameWinUI: {fileID: 1130161751}
-  winCoinText: {fileID: 2137500921}
+  winCoinText: {fileID: 0}
 --- !u!1 &1139737466
 GameObject:
   m_ObjectHideFlags: 0
@@ -45725,6 +45725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 605410764}
+  WinText: {fileID: 1610712749}
+  FailText: {fileID: 2137500921}
 --- !u!1 &1444726978
 GameObject:
   m_ObjectHideFlags: 0
@@ -111697,7 +111699,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   gameOverUI: {fileID: 1926811257}
   gameWinUI: {fileID: 0}
-  winCoinText: {fileID: 1610712749}
+  winCoinText: {fileID: 0}
 --- !u!1 &1930554151
 GameObject:
   m_ObjectHideFlags: 0

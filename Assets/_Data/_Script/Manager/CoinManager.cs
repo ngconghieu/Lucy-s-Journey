@@ -6,7 +6,9 @@ public class CoinManager : MonoBehaviour
     public static CoinManager instance;
     private int coins;
     [SerializeField] private TextMeshProUGUI coinText;
-    [SerializeField] private TextMeshProUGUI resultText;
+    [SerializeField] private TextMeshProUGUI WinText;
+    [SerializeField] private TextMeshProUGUI FailText;
+
 
 
     private void Awake()
@@ -21,7 +23,8 @@ public class CoinManager : MonoBehaviour
     private void OnGUI()
     {
         coinText.text = coins.ToString();
-        resultText.text = coins.ToString();
+        FailText.text = coins.ToString();
+        WinText.text = coins.ToString();
     }
     public void ChangeCoins(int amount)
     {
