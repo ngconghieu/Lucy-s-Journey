@@ -16,7 +16,7 @@ public class DmgReceiver : GameMonoBehaviour
     [SerializeField] protected bool isBossFinal = false;
 
     AudioManager audioManager;
-    protected virtual void Awake()
+    protected override void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
