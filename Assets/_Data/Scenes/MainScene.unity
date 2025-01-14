@@ -114451,6 +114451,10 @@ PrefabInstance:
       propertyPath: playerCollider
       value: 
       objectReference: {fileID: 762041792166688841}
+    - target: {fileID: 5917114896252594048, guid: b47a4e87add3396409a6cccbae418f5a, type: 3}
+      propertyPath: isBossFinal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6080749800961016424, guid: b47a4e87add3396409a6cccbae418f5a, type: 3}
       propertyPath: m_Name
       value: Death
