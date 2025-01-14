@@ -20,7 +20,6 @@ public class PauseManager : MonoBehaviour
 
     public void ShowWinCoins()
     {
-
         int currentCoins = CoinManager.GetCoins();
         winCoinText.text = currentCoins.ToString();
     }
