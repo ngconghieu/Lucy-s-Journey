@@ -6,7 +6,8 @@ public class DmgReceiver : GameMonoBehaviour
     public event Action<LayerMask> OnHurt; //event collider
     public event Action OnDead;
     
-    [SerializeField] Collider2D _collider;
+    [SerializeField] protected Collider2D _collider;
+    public Collider2D Collider => _collider;
     [SerializeField] protected int hp;
     [SerializeField] protected int maxHp = 1;
 
