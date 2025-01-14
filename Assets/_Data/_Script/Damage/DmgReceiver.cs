@@ -18,7 +18,7 @@ public class DmgReceiver : GameMonoBehaviour
     AudioManager audioManager;
     protected virtual void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     public int GetHp()
@@ -78,8 +78,8 @@ public class DmgReceiver : GameMonoBehaviour
 
         if (hp < previousHp)
         {
-            audioManager.SFXVolume = 0.5f;
-            audioManager.PlaySFX(audioManager.hurt);
+            //audioManager.SFXVolume = 0.5f;
+            //audioManager.PlaySFX(audioManager.hurt);
         }
 
         this.IsDead();
@@ -89,17 +89,17 @@ public class DmgReceiver : GameMonoBehaviour
     {
         if (!this.CheckDead()) return;
         this.Dead();
-        audioManager.StopBackgroundMusic();
+        //audioManager.StopBackgroundMusic();
         if (isPlayer)
         {
             gameO.gameOver();
-            audioManager.PlaySFX(audioManager.lose);
+            //audioManager.PlaySFX(audioManager.lose);
             Time.timeScale = 0f;
         }
         if (isBossFinal)
         {
             gameO.gameWin();
-            audioManager.PlaySFX(audioManager.win);
+            //audioManager.PlaySFX(audioManager.win);
             Time.timeScale = 0f;
         }
 

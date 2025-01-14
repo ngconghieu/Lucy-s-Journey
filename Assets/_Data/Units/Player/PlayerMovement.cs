@@ -9,10 +9,10 @@ public class PlayerMovement : PlayerAbstract
     AudioManager audioManager;
     private Coroutine walkSound;
 
-    protected virtual void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+    //protected virtual void Awake()
+    //{
+    //    audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    //}
 
     protected virtual void Update()
     {
@@ -25,22 +25,22 @@ public class PlayerMovement : PlayerAbstract
         float move = InputManager.Instance.Move();
         playerCtrl.Moving = move;
 
-        if (move != 0)
-        {
-            if (walkSound == null) // Nếu không có Coroutine nào đang chạy
-            {
-                walkSound = StartCoroutine(PlayWalkingSound()); // Bắt đầu phát âm thanh
-            }
-        }
-        else
-        {
-            if (walkSound != null) // Nếu có Coroutine đang phát âm thanh
-            {
-                StopCoroutine(walkSound); // Dừng Coroutine
-                walkSound = null; // Đặt lại trạng thái
-                audioManager.StopSFX(); // Dừng âm thanh
-            }
-        }
+        //if (move != 0)
+        //{
+        //    if (walkSound == null) // Nếu không có Coroutine nào đang chạy
+        //    {
+        //        walkSound = StartCoroutine(PlayWalkingSound()); // Bắt đầu phát âm thanh
+        //    }
+        //}
+        //else
+        //{
+        //    if (walkSound != null) // Nếu có Coroutine đang phát âm thanh
+        //    {
+        //        StopCoroutine(walkSound); // Dừng Coroutine
+        //        walkSound = null; // Đặt lại trạng thái
+        //        audioManager.StopSFX(); // Dừng âm thanh
+        //    }
+        //}
 
         //Moving
         playerCtrl.Rigidbody2D.linearVelocityX = movingSpeed * move;

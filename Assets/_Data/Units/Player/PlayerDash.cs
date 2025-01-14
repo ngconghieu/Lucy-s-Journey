@@ -16,7 +16,7 @@ public class PlayerDash : PlayerAbstract
     {
         base.Awake();
         this.gravity = playerCtrl.Rigidbody2D.gravityScale;
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     protected virtual void Update()
@@ -70,7 +70,7 @@ public class PlayerDash : PlayerAbstract
         canDash = false;
         playerCtrl.Dashing = true;
         playerCtrl.Rigidbody2D.gravityScale = 0;
-        audioManager.PlaySFX(audioManager.flip);
+        //audioManager.PlaySFX(audioManager.flip);
         playerCtrl.Rigidbody2D.linearVelocity = new Vector2(transform.parent.localScale.x * dashSpeed, 0);
     }
 }

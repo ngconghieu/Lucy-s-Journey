@@ -12,10 +12,10 @@ public class PlayerCombat : PlayerAbstract
     [SerializeField] protected int dmg;
     AudioManager audioManager;
 
-    protected virtual void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+    //protected virtual void Awake()
+    //{
+    //    audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    //}
 
     protected override void Start()
     {
@@ -60,17 +60,17 @@ public class PlayerCombat : PlayerAbstract
         {
             case 0:
                 playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
-                audioManager.PlaySFX(audioManager.attack);
+                //audioManager.PlaySFX(audioManager.attack);
                 break;
             case 1:
                 dmg += dmg;
                 playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
-                audioManager.PlaySFX(audioManager.attack);
+                //audioManager.PlaySFX(audioManager.attack);
                 break;
             case 2:
                 dmg += dmg;
                 playerCtrl.PlayerAnim.TriggerAttack(comboIndex);
-                audioManager.PlaySFX(audioManager.attack);
+                //audioManager.PlaySFX(audioManager.attack);
                 break;
         }
     }

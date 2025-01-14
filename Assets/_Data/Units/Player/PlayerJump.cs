@@ -25,7 +25,7 @@ public class PlayerJump : PlayerAbstract
 
     protected virtual void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        //audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     protected virtual void Update()
@@ -80,7 +80,7 @@ public class PlayerJump : PlayerAbstract
         if (jumpBufferCnt > 0 && coyoteTimeCnt > 0 && !bufferJump)
         {
             this.Jumping(playerCtrl.Rigidbody2D);
-            audioManager.PlaySFX(audioManager.jump);
+            //audioManager.PlaySFX(audioManager.jump);
             bufferJump = true;
         }
 
@@ -90,7 +90,7 @@ public class PlayerJump : PlayerAbstract
             playerCtrl.DoubleJump = true;
             jumpForce = jumpForce * 4 / 5;
             this.Jumping(playerCtrl.Rigidbody2D);
-            audioManager.PlaySFX(audioManager.jump);
+            //audioManager.PlaySFX(audioManager.jump);
             jumpForce = jumpForce * 5 / 4;
         }
     }
