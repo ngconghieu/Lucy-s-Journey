@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpearFly : MonoBehaviour
+public class PrefabFly : MonoBehaviour
 {
     public float moveSpeed = 0.1f;
 
