@@ -29,10 +29,9 @@ public class Chest : MonoBehaviour
             if (Input.GetKey(KeyCode.E) && !isOpened)
             {
                 OpenChest();
-                foreach (var item in dropList)
-                {
-                    DropManager.Instance.Drop(dropList, transform.position);
-                }
+                
+                DropManager.Instance.Drop(dropList, transform.position);
+                
             }
                 
         }
