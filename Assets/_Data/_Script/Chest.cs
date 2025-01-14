@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : MonoBehaviour
@@ -7,6 +8,7 @@ public class Chest : MonoBehaviour
     public Sprite openedChest;
     protected SpriteRenderer spriteRenderer;
     private bool isOpened = false;
+    public List<DropItem> dropList;
 
     private void Start()
     {
@@ -25,7 +27,14 @@ public class Chest : MonoBehaviour
         {
             Debug.Log(collision.transform.tag);
             if (Input.GetKey(KeyCode.E) && !isOpened)
+            {
                 OpenChest();
+                foreach (var item in dropList)
+                {
+                    DropManager.Instance.Drop(dropList, transform.position);
+                }
+            }
+                
         }
     }
 }
