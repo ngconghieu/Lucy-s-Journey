@@ -25,7 +25,7 @@ public class Chest : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log(collision.transform.tag);
+            //Debug.Log(collision.transform.tag);
             if (Input.GetKey(KeyCode.E) && !isOpened)
             {
                 OpenChest();

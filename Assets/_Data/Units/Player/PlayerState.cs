@@ -75,6 +75,10 @@ public class PlayerState : GameMonoBehaviour
     #region Handle JumpDown
     private void Update()
     {
+        if (playerCtrl.Dashing)
+            playerCtrl.DmgReceiver.Collider.enabled = false;
+        else
+            playerCtrl.DmgReceiver.Collider.enabled = true;
         if (Input.GetButton("Jump") && InputManager.Instance.JumpDown() == -1)
             if (oneWayPlatform != null)
                 StartCoroutine(OnJumpDown());

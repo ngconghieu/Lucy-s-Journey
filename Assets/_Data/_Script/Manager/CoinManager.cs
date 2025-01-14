@@ -29,7 +29,7 @@ public class CoinManager : MonoBehaviour
     public void ChangeCoins(int amount)
     {
         coins += amount;
-        Debug.Log("Coins: " + coins);
+        //Debug.Log("Coins: " + coins);
     }
 
 }
