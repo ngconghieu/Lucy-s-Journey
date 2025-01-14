@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyChaseState : State<EnemyState>
@@ -10,12 +9,11 @@ public class EnemyChaseState : State<EnemyState>
 
     public override void ExecuteState()
     {
-        if (owner.EnemyCtrl.detectPlayer && !owner.EnemyCtrl.dead)
-            Detected();
-        else
-        {
-            OnMove();
-        }
+        if (!owner.EnemyCtrl.dead)
+            if (owner.EnemyCtrl.detectPlayer)
+                Detected();
+            else
+                OnMove();
     }
 
     protected virtual void Detected()

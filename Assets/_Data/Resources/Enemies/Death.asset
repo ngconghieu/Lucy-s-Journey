@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   objectName: Death
-  hpMax: 30
+  hpMax: 60
   dmg: 2
   moveSpeed: 1
   dropList:

@@ -50,7 +50,12 @@ public class DeathCombatState : EnemyCombatState
 
     private void SpawnCellSpell()
     {
-        PrefabSpawner.Instance.Spawn(PrefabSpawner.DeathCellDarkSpell, owner.transform.position, Quaternion.Euler(0,0,0));
+        foreach(Transform point in SpawnPoints.Instance.Points)
+        {
+            float randX = UnityEngine.Random.Range(point.position.x - 2, point.position.x + 2);
+            Vector3 position = new Vector3(randX, point.position.y);
+            PrefabSpawner.Instance.Spawn(PrefabSpawner.DeathCellDarkSpell, position, Quaternion.Euler(0, 0, 0));
+        }
         owner.specialAttackTimer = 0;
         comboTime++;
     }

@@ -21,6 +21,14 @@ public class DeathState : EnemyState
         specialAttackTimer1 = specialAttackDelay1;
     }
 
+    protected override void HandleHurt(LayerMask layer)
+    {
+        if (layer == LayerMask.NameToLayer("Player"))
+        {
+            AnimTriggerHit();
+        }
+    }
+
     protected override void DetectPlayerInRange()
     {
         enemyCtrl.detectPlayer = enemyCtrl.DetectPlayer.DetectPlayerForFlying(detectPlayerRange, posPlayer);
