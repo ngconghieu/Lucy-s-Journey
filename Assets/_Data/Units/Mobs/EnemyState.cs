@@ -18,13 +18,8 @@ public abstract class EnemyState : GameMonoBehaviour
     public float delayHit = 1f;
     public int maxCombo = 1;
     public int dmg = 1;
-    public float specialAttackTimer = 0;
-    public float specialAttackDelay = 1;
-    public bool canPerformSpecialAttack; //Check on animation
     public float specialAttackTimer1 = 0;
-    public float specialAttackDelay1 = 1;
     public bool canPerformSpecialAttack1; //Check on animation
-
     [Header("Received dmg state")]
     public float delayWhenReceivedDmg = 0.5f;
     [Header("Dead state")]
@@ -85,19 +80,12 @@ public abstract class EnemyState : GameMonoBehaviour
     protected virtual void Update()
     {
         distanceToPlayer = Vector2.Distance(posPlayer.transform.position, transform.position);
-        UpdateTimer();
+        specialAttackTimer1 += Time.deltaTime;
         StateMachine.ExecuteState();
         if (!enemyCtrl.dead && !enemyCtrl.hit)
         {
             DetectPlayerInRange();
         }
-    }
-
-    private void UpdateTimer()
-    {
-        specialAttackTimer += Time.deltaTime;
-        specialAttackTimer1 += Time.deltaTime;
-
     }
 
     protected override void OnDisable()
@@ -138,26 +126,9 @@ public abstract class EnemyState : GameMonoBehaviour
     public abstract State<EnemyState> GetHitState();
     public abstract State<EnemyState> GetDeadState();
     public abstract State<EnemyState> GetCombatState();
-    public virtual State<EnemyState> GetIdleState()
-    {
-        return null;
-        //For override
-    }
     public abstract void AnimTriggerHit();
     public abstract void AnimTriggerDead();
     public abstract void AnimTriggerAttack();
-    public virtual void AnimTriggerSpecialAttack()
-    {
-        //For override
-    }
-    public virtual void AnimTriggerSpecialAttack1()
-    {
-        //For override
-    }
-    public virtual void AnimTriggerSpecialAttack2()
-    {
-        //For override
-    }
-
+    public abstract void AnimTriggerSpecialAttack();
 
 }

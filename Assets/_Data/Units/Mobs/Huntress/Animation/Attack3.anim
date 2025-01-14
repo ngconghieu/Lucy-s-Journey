@@ -51,7 +51,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: canPerformSpecialAttack
+    attribute: canPerformSpecialAttack1
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 84aecea10bb847c449942d099026a9fb, type: 3}
@@ -87,7 +87,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 2249630625
+      attribute: 579562090
       script: {fileID: 11500000, guid: 84aecea10bb847c449942d099026a9fb, type: 3}
       typeID: 114
       customType: 0
@@ -166,7 +166,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: canPerformSpecialAttack
+    attribute: canPerformSpecialAttack1
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 84aecea10bb847c449942d099026a9fb, type: 3}

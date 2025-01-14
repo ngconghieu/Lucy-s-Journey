@@ -8,7 +8,7 @@ public class HuntressChaseState : EnemyChaseState
 
     protected override bool ChangeToCombatState()
     {
-        return owner.distanceToPlayer < owner.distanceToAttack || owner.specialAttackTimer > 7;
+        return owner.distanceToPlayer < owner.distanceToAttack || owner.specialAttackTimer1 > 7;
     }
     protected override void OnMove()
     {
