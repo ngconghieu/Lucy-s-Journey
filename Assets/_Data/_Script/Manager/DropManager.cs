@@ -18,7 +18,7 @@ public class DropManager : GameMonoBehaviour
         foreach (var item in dropList)
         {
 
-            Debug.Log(item.itemSO.itemName);
+            //Debug.Log(item.itemSO.itemName);
             Debug.Log(Instantiate(item.itemSO.prefab, enemyPosition + new Vector3(-2,0,0), Quaternion.identity));
         } 
     }

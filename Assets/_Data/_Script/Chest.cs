@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : MonoBehaviour
@@ -7,6 +8,7 @@ public class Chest : MonoBehaviour
     public Sprite openedChest;
     protected SpriteRenderer spriteRenderer;
     private bool isOpened = false;
+    public List<DropItem> dropList;
 
     private void Start()
     {
@@ -23,9 +25,15 @@ public class Chest : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            Debug.Log(collision.transform.tag);
+            //Debug.Log(collision.transform.tag);
             if (Input.GetKey(KeyCode.E) && !isOpened)
+            {
                 OpenChest();
+                
+                DropManager.Instance.Drop(dropList, transform.position);
+                
+            }
+                
         }
     }
 }
