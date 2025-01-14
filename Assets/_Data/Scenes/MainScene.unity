@@ -964,17 +964,17 @@ MonoBehaviour:
   openedChest: {fileID: 347610653, guid: fb50c09fd9d7c334082c7650b9a4b46c, type: 3}
   dropList:
   - itemSO: {fileID: 11400000, guid: 0fb0a78c486b28444a6efccc592c51af, type: 2}
-    dropRate: 100000
-    minDrop: 1
-    maxDrop: 1
+    dropRate: 10000
+    minDrop: 0
+    maxDrop: 0
   - itemSO: {fileID: 11400000, guid: 0fb0a78c486b28444a6efccc592c51af, type: 2}
     dropRate: 100000
-    minDrop: 1
-    maxDrop: 1
+    minDrop: 0
+    maxDrop: 0
   - itemSO: {fileID: 11400000, guid: 0fb0a78c486b28444a6efccc592c51af, type: 2}
     dropRate: 100000
-    minDrop: 1
-    maxDrop: 1
+    minDrop: 0
+    maxDrop: 0
 --- !u!61 &223530290
 BoxCollider2D:
   m_ObjectHideFlags: 0
