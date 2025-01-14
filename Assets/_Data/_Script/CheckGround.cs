@@ -10,7 +10,7 @@ public class CheckGround : GameMonoBehaviour
     public bool IsGrounded()
     {
         Collider2D[] col = Physics2D.OverlapBoxAll(new Vector3(transform.parent.localScale.x * PosXAxis + transform.position.x,
-            transform.position.y), new Vector2(groundCheckX, groundCheckY), 0, LayerMask.GetMask("Ground"));
+            transform.position.y), new Vector2(groundCheckX, groundCheckY), 0, LayerMask.GetMask("Ground", "OneWayPlatform"));
         return col.Length > 0;
     }
 

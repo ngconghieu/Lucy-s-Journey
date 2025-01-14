@@ -10,7 +10,7 @@ public class EnemyChaseState : State<EnemyState>
 
     public override void ExecuteState()
     {
-        if (owner.EnemyCtrl.detectPlayer)
+        if (owner.EnemyCtrl.detectPlayer && !owner.EnemyCtrl.dead)
             Detected();
         else
         {
