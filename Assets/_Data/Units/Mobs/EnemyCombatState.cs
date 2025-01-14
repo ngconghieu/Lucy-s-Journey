@@ -13,7 +13,7 @@ public class EnemyCombatState : State<EnemyState>
     {
         timer += Time.deltaTime;
         //if (timer >= owner.delayHit)
-        if (comboTime >= owner.maxCombo && timer>= owner.delayHit)
+        if (comboTime >= owner.maxCombo && timer >= owner.delayHit)
         {
             owner.StateMachine.ChangeState(owner.GetChaseState());
         }

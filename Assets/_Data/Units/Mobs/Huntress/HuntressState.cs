@@ -14,7 +14,8 @@ public class HuntressState : EnemyState
     private void LoadStats()
     {
         distanceToAttack = 2.5f;
-        specialAttackTimer1 = 7;
+        specialAttackDelay = 7;
+        specialAttackTimer = specialAttackDelay;
     }
 
     protected override void DetectPlayerInRange()

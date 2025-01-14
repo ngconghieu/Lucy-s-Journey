@@ -20,12 +20,12 @@ TagManager:
   - Player
   - Projectile
   - Trap
-  - Background 1
-  - Background 2
-  - Background 3
-  - Decoration
-  - Brush
-  - BgBrush
+  - OneWayPlatform
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
