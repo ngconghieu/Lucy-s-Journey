@@ -8,36 +8,35 @@ public class PauseManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameWinUI;
     [SerializeField] private TextMeshProUGUI winCoinText;
+    public CoinManager CoinManager;
 
     private AudioManager audioManager;
 
     protected virtual void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
-    //public void ShowWinCoins()
-    //{
-    //    if (CoinManager.instance != null && winCoinText != null)
-    //    {
-    //        int currentCoins = CoinManager.instance.GetCoins();
-    //        winCoinText.text = "Coins: " + currentCoins.ToString();
-    //        Debug.Log("Win Coins displayed: " + currentCoins);
-    //    }
-    //}
+    public void ShowWinCoins()
+    {
+
+        int currentCoins = CoinManager.GetCoins();
+        winCoinText.text = currentCoins.ToString();
+    }
 
     public void gameWin()
     {
         gameWinUI.SetActive(true);
-        //ShowWinCoins(); // Tự động hiển thị coins khi thắng
-        Time.timeScale = 0; // Tạm dừng game khi thắng
+        this.ShowWinCoins(); 
+        Time.timeScale = 0; 
     }
 
     public void gameOver()
     {
         gameOverUI.SetActive(true);
-        //ShowWinCoins();
-        Time.timeScale = 0; // Tạm dừng game khi thua
+        ShowWinCoins();
+        Time.timeScale = 0; 
     }
 
     public void Pause()

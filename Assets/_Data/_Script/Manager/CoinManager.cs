@@ -31,5 +31,9 @@ public class CoinManager : MonoBehaviour
         coins += amount;
         Debug.Log("Coins: " + coins);
     }
+    public int GetCoins()
+    {
+        return coins;
+    }
 
 }
