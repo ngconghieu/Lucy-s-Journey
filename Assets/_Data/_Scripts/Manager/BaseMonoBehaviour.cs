@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Base : MonoBehaviour
+public class BaseMonoBehaviour : MonoBehaviour
 {
     protected virtual void LoadComponent()
     {
