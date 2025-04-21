@@ -11,14 +11,14 @@ public class PlayerRunState : BaseState<PlayerState, Player>
 
     public override void Enter()
     {
-        Owner.Anim.SetBool(Const.Run, true);
+        Owner.Anim.SetBool(Const.AnimRun, true);
         _speed = Owner.StateMachine.playerStats.speed;
     }
 
     public override void Exit()
     {
         Owner.Rigibody.linearVelocityX = 0;
-        Owner.Anim.SetBool(Const.Run, false);
+        Owner.Anim.SetBool(Const.AnimRun, false);
     }
 
     public override void FixedUpdate()
