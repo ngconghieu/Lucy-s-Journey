@@ -1,6 +1,6 @@
 public class PlayerDashState : BaseState<PlayerState, Player>
 {
-    public PlayerDashState(Player owner) : base(owner)
+    public PlayerDashState(Player owner, IInputProvider input) : base(owner)
     {
     }
 

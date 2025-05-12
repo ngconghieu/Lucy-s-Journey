@@ -1608,6 +1608,17 @@ MonoBehaviour:
   rb: {fileID: 1211732264}
   _colliderStatic: {fileID: 1211732267}
   _stateMachine: {fileID: 1211732266}
+  _gravityScale: 2
+  _colliderStaticSize: {x: 0.5, y: 2.07}
+  _colliderTriggerSize: {x: 0.5, y: 2.07}
+  PlayerStats:
+    speed: 5
+    jumpForce: 10
+    jumpTime: 0
+    jumpHeight: 0
+    fallSpeed: 0
+    maxFallSpeed: 0
+    maxJumpTime: 0
 --- !u!50 &1211732264
 Rigidbody2D:
   serializedVersion: 5
@@ -1684,14 +1695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c97c26ea64ec84c81c16559279caac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats:
-    speed: 5
-    jumpForce: 0
-    jumpTime: 0
-    jumpHeight: 0
-    fallSpeed: 0
-    maxFallSpeed: 0
-    maxJumpTime: 0
 --- !u!70 &1211732267
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4114,7 +4117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664235485}
   - component: {fileID: 1664235487}
-  - component: {fileID: 1664235486}
+  - component: {fileID: 1664235488}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -4137,20 +4140,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1664235486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664235482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a153d2086d57d64b90027c2621a8aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _runHorizontal: 0
-  _playerInput: {fileID: 0}
 --- !u!114 &1664235487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,13 +4198,27 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1664235488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664235482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a153d2086d57d64b90027c2621a8aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _runHorizontal: 0
+  _playerInput: {fileID: 1664235487}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 309825434}
+  - {fileID: 1664235485}
   - {fileID: 177387060}
   - {fileID: 1211732262}
   - {fileID: 1590721622}
-  - {fileID: 1664235485}
   - {fileID: 1111206360}

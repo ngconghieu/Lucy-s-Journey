@@ -1,15 +1,21 @@
+using UnityEngine;
+
 public class PlayerStateMachine : StateMachine<PlayerState, Player>
 {
-    private void OnEnable()
+    private IInputProvider _inputProvider;
+
+    protected override void Start()
     {
-        InputManager.Instance.OnDash += HandleDash;
-        InputManager.Instance.OnJump += HandleJump;
+        _inputProvider = ServiceLocator.Get<IInputProvider>();
+        _inputProvider.OnJump += HandleJump;
+        _inputProvider.OnDash += HandleDash;
+        base.Start();
     }
 
     private void OnDisable()
     {
-        InputManager.Instance.OnDash -= HandleDash;
-        InputManager.Instance.OnJump -= HandleJump;
+        _inputProvider.OnDash -= HandleDash;
+        _inputProvider.OnJump -= HandleJump;
     }
 
     private void HandleDash()
@@ -26,13 +32,12 @@ public class PlayerStateMachine : StateMachine<PlayerState, Player>
 
     protected override void LoadState()
     {
-        states.Add(PlayerState.Idle, new PlayerIdleState(unit));
-        states.Add(PlayerState.Run, new PlayerRunState(unit));
-        states.Add(PlayerState.Jump, new PlayerJumpState(unit));
-        states.Add(PlayerState.Dash, new PlayerDashState(unit));
-        currentState = states[PlayerState.Idle];
+        states.Add(PlayerState.Idle, new PlayerIdleState(unit, _inputProvider));
+        states.Add(PlayerState.Run, new PlayerRunState(unit, _inputProvider));
+        states.Add(PlayerState.Jump, new PlayerJumpState(unit, _inputProvider));
+        states.Add(PlayerState.Dash, new PlayerDashState(unit, _inputProvider));
+        ChangeState(PlayerState.Idle);
     }
-
 }
 
 public enum PlayerState

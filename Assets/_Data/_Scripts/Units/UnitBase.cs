@@ -12,8 +12,8 @@ public class UnitBase : BaseMonoBehaviour
 
     protected override void LoadComponent()
     {
-        LoadComponentInChildren(ref anim, this);
-        LoadComponent(ref colliderReceivesDmg, this);
-        LoadComponent(ref rb, this);
+        ComponentLoader.LoadComponentInChildren(ref anim, this);
+        ComponentLoader.LoadComponent(ref colliderReceivesDmg, this);
+        ComponentLoader.LoadComponent(ref rb, this);
     }
 }

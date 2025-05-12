@@ -1,20 +1,19 @@
-using System.Collections;
-using UnityEngine;
-
 public class PlayerIdleState : BaseState<PlayerState, Player>
 {
-    public PlayerIdleState(Player owner) : base(owner)
+    private readonly IInputProvider _input;
+    public PlayerIdleState(Player owner, IInputProvider input) : base(owner)
     {
+        _input = input;
     }
 
     public override void Enter()
     {
-        Debug.Log("PlayerIdleState Enter");
+        //Debug.Log("PlayerIdleState Enter");
     }
 
     public override void Exit()
     {
-        Debug.Log("PlayerIdleState Exit");
+        //Debug.Log("PlayerIdleState Exit");
     }
 
     public override void FixedUpdate()
@@ -23,7 +22,7 @@ public class PlayerIdleState : BaseState<PlayerState, Player>
 
     public override void Update()
     {
-        if (InputManager.Instance.RunHorizontal != 0)
+        if (_input.RunHorizontal != 0)
         {
             Owner.StateMachine.ChangeState(PlayerState.Run);
         }

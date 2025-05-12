@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class StateMachine<T, Base> : BaseMonoBehaviour where T : Enum where Base : UnitBase
 {
-    public PlayerStats playerStats;
     protected Dictionary<T, BaseState<T, Base>> states = new();
     protected BaseState<T, Base> currentState;
     protected Base unit;
@@ -12,8 +11,11 @@ public abstract class StateMachine<T, Base> : BaseMonoBehaviour where T : Enum w
     public void Initialize(Base unit)
     {
         this.unit = unit;
+    }
+
+    protected virtual void Start()
+    {
         LoadState();
-        currentState?.Enter();
     }
 
     protected void Update()
@@ -36,16 +38,4 @@ public abstract class StateMachine<T, Base> : BaseMonoBehaviour where T : Enum w
     }
 
     protected abstract void LoadState();
-}
-
-[Serializable]
-public struct PlayerStats
-{
-    public float speed;
-    public float jumpForce;
-    public float jumpTime;
-    public float jumpHeight;
-    public float fallSpeed;
-    public float maxFallSpeed;
-    public float maxJumpTime;
 }

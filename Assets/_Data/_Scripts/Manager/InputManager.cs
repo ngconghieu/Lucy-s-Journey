@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-public class InputManager : Singleton<InputManager>
+public class InputManager : BaseMonoBehaviour, IInputProvider
 {
     [SerializeField] private float _runHorizontal;
     [SerializeField] private PlayerInput _playerInput;
@@ -15,14 +15,21 @@ public class InputManager : Singleton<InputManager>
     public event Action OnDash;
     public event Action OnJump;
 
-    protected override void Awake()
+    protected override void LoadComponent()
     {
-        base.Awake();
+        base.LoadComponent();
         LoadPlayerInput();
         _inputActions = new();
 
         RegisterActionHandlers();
         BindInputActions();
+        ServiceLocator.Register<IInputProvider>(this);
+    }
+
+    private void OnDestroy()
+    {
+        UnbindInputActions();
+        ServiceLocator.Register<IInputProvider>(null);
     }
 
     private void LoadPlayerInput()
@@ -51,7 +58,20 @@ public class InputManager : Singleton<InputManager>
             }
             else
             {
-                //Debug.LogWarning($"No handler registered for action: {action.name}");
+                //Debug.LogWarning($"No handler registered for action: {action.name}", gameObject);
+            }
+        }
+    }
+
+    private void UnbindInputActions()
+    {
+        foreach (var action in _playerInput.actions)
+        {
+            if (_inputActions.ContainsKey(action.name))
+            {
+                action.started -= _inputActions[action.name];
+                action.performed -= _inputActions[action.name];
+                action.canceled -= _inputActions[action.name];
             }
         }
     }

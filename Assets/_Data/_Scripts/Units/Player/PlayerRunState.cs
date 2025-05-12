@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class PlayerRunState : BaseState<PlayerState, Player>
 {
+    private readonly IInputProvider _input;
     private float _runHorizontal;
     private float _speed;
-    public PlayerRunState(Player owner) : base(owner)
+    public PlayerRunState(Player owner, IInputProvider input) : base(owner)
     {
+        _input = input;
     }
 
     public override void Enter()
     {
         Owner.Anim.SetBool(Const.AnimRun, true);
-        _speed = Owner.StateMachine.playerStats.speed;
+        _speed = Owner.PlayerStats.speed;
     }
 
     public override void Exit()
@@ -29,7 +31,7 @@ public class PlayerRunState : BaseState<PlayerState, Player>
 
     public override void Update()
     {
-        _runHorizontal = InputManager.Instance.RunHorizontal;
+        _runHorizontal = _input.RunHorizontal;
         if (_runHorizontal != 0) return;
         Owner.StateMachine.ChangeState(PlayerState.Idle);
     }
