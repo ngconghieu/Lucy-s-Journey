@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class PlayerStateMachine : StateMachine<PlayerState, Player>
+public class PlayerStateMachine : StateMachine<PlayerState>
 {
     private IInputProvider _inputProvider;
+    private Player _player;
 
     protected override void Start()
     {
@@ -10,6 +11,11 @@ public class PlayerStateMachine : StateMachine<PlayerState, Player>
         _inputProvider.OnJump += HandleJump;
         _inputProvider.OnDash += HandleDash;
         base.Start();
+    }
+
+    public void Initialize(Player player)
+    {
+        _player = player;
     }
 
     private void OnDisable()
@@ -30,12 +36,12 @@ public class PlayerStateMachine : StateMachine<PlayerState, Player>
             ChangeState(PlayerState.Jump);
     }
 
-    protected override void LoadState()
+    protected override void LoadStates()
     {
-        states.Add(PlayerState.Idle, new PlayerIdleState(unit, _inputProvider));
-        states.Add(PlayerState.Run, new PlayerRunState(unit, _inputProvider));
-        states.Add(PlayerState.Jump, new PlayerJumpState(unit, _inputProvider));
-        states.Add(PlayerState.Dash, new PlayerDashState(unit, _inputProvider));
+        states.Add(PlayerState.Idle, new PlayerIdleState(PlayerState.Idle, _player, _inputProvider));
+        states.Add(PlayerState.Run, new PlayerRunState(PlayerState.Run, _player, _inputProvider));
+        states.Add(PlayerState.Jump, new PlayerJumpState(PlayerState.Jump, _player));
+        states.Add(PlayerState.Dash, new PlayerDashState(PlayerState.Dash, _player));
         ChangeState(PlayerState.Idle);
     }
 }

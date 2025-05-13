@@ -1608,12 +1608,12 @@ MonoBehaviour:
   rb: {fileID: 1211732264}
   _colliderStatic: {fileID: 1211732267}
   _stateMachine: {fileID: 1211732266}
-  _gravityScale: 2
+  _gravityScale: 4
   _colliderStaticSize: {x: 0.5, y: 2.07}
   _colliderTriggerSize: {x: 0.5, y: 2.07}
   PlayerStats:
-    speed: 5
-    jumpForce: 10
+    speed: 8
+    jumpForce: 18
     jumpTime: 0
     jumpHeight: 0
     fallSpeed: 0

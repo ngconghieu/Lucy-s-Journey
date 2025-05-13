@@ -1,26 +1,28 @@
 using System;
 using UnityEngine;
 
-public class PlayerRunState : BaseState<PlayerState, Player>
+public class PlayerRunState : BaseState<PlayerState>
 {
     private readonly IInputProvider _input;
+    private readonly Player _player;
     private float _runHorizontal;
     private float _speed;
-    public PlayerRunState(Player owner, IInputProvider input) : base(owner)
+    public PlayerRunState(PlayerState owner, Player player, IInputProvider input) : base(owner)
     {
         _input = input;
+        _player = player;
     }
 
     public override void Enter()
     {
-        Owner.Anim.SetBool(Const.AnimRun, true);
-        _speed = Owner.PlayerStats.speed;
+        _player.Anim.SetBool(Const.AnimRun, true);
+        _speed = _player.PlayerStats.speed;
     }
 
     public override void Exit()
     {
-        Owner.Rigibody.linearVelocityX = 0;
-        Owner.Anim.SetBool(Const.AnimRun, false);
+        _player.Rigibody.linearVelocityX = 0;
+        _player.Anim.SetBool(Const.AnimRun, false);
     }
 
     public override void FixedUpdate()
@@ -33,12 +35,12 @@ public class PlayerRunState : BaseState<PlayerState, Player>
     {
         _runHorizontal = _input.RunHorizontal;
         if (_runHorizontal != 0) return;
-        Owner.StateMachine.ChangeState(PlayerState.Idle);
+        _player.StateMachine.ChangeState(PlayerState.Idle);
     }
 
     private void Move() =>
-        Owner.Rigibody.linearVelocityX = _runHorizontal * _speed;
+        _player.Rigibody.linearVelocityX = _runHorizontal * _speed;
 
     private void Rotate() =>
-        Owner.transform.rotation = Quaternion.Euler(0, _runHorizontal > 0 ? 0 : 180, 0);
+        _player.transform.rotation = Quaternion.Euler(0, _runHorizontal > 0 ? 0 : 180, 0);
 }

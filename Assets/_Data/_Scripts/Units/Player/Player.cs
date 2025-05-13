@@ -9,7 +9,7 @@ public class Player : UnitBase
     [SerializeField] private PlayerStateMachine _stateMachine;
 
     [Header("Player techinical")]
-    [SerializeField] private float _gravityScale = 2f;
+    [SerializeField] private float _gravityScale = 4f;
     [SerializeField] private Vector2 _colliderStaticSize = new(0.5f, 2.07f);
     [SerializeField] private Vector2 _colliderTriggerSize = new(0.5f, 2.07f);
 

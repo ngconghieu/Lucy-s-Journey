@@ -1,14 +1,14 @@
 using System;
 
-public abstract class BaseState<T, Base> where T : Enum where Base : UnitBase
+public abstract class BaseState<T> where T : Enum
 {
-    public Base Owner { get; }
+    public T Owner { get; }
 
     public abstract void Enter();
     public abstract void Update();
     public abstract void FixedUpdate();
     public abstract void Exit();
-    public BaseState(Base owner)
+    public BaseState(T owner)
     {
         Owner = owner;
     }

@@ -1,9 +1,12 @@
-public class PlayerIdleState : BaseState<PlayerState, Player>
+public class PlayerIdleState : BaseState<PlayerState>
 {
     private readonly IInputProvider _input;
-    public PlayerIdleState(Player owner, IInputProvider input) : base(owner)
+    private readonly Player _player;
+
+    public PlayerIdleState(PlayerState owner, Player player, IInputProvider input) : base(owner)
     {
         _input = input;
+        _player = player;
     }
 
     public override void Enter()
@@ -24,7 +27,7 @@ public class PlayerIdleState : BaseState<PlayerState, Player>
     {
         if (_input.RunHorizontal != 0)
         {
-            Owner.StateMachine.ChangeState(PlayerState.Run);
+            _player.StateMachine.ChangeState(PlayerState.Run);
         }
     }
 
