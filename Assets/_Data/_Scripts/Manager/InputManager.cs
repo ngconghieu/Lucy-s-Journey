@@ -6,24 +6,25 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class InputManager : BaseMonoBehaviour, IInputProvider
 {
-    [SerializeField] private float _runHorizontal;
     [SerializeField] private PlayerInput _playerInput;
 
     private Dictionary<string, Action<InputAction.CallbackContext>> _inputActions;
 
-    public float RunHorizontal => _runHorizontal;
+    public float MoveInput { get; private set; }
+
     public event Action OnDash;
     public event Action OnJump;
 
-    protected override void LoadComponent()
+    protected override void Awake()
     {
-        base.LoadComponent();
-        LoadPlayerInput();
+        base.Awake();
+        ComponentLoader.LoadComponent(ref _playerInput, this);
         _inputActions = new();
 
         RegisterActionHandlers();
         BindInputActions();
         ServiceLocator.Register<IInputProvider>(this);
+
     }
 
     private void OnDestroy()
@@ -32,18 +33,11 @@ public class InputManager : BaseMonoBehaviour, IInputProvider
         ServiceLocator.Register<IInputProvider>(null);
     }
 
-    private void LoadPlayerInput()
-    {
-        if (_playerInput != null) return;
-        _playerInput = GetComponent<PlayerInput>();
-        Debug.Log("LoadPlayerInput", gameObject);
-    }
-
     private void RegisterActionHandlers()
     {
-        _inputActions.Add(Const.Run, HandleMove);
-        _inputActions.Add(Const.Dash, HandleDash);
-        _inputActions.Add(Const.Jump, HandleJump);
+        _inputActions[Const.Run] = HandleMove;
+        _inputActions[Const.Dash] = HandleDash;
+        _inputActions[Const.Jump] = HandleJump;
     }
 
     private void BindInputActions()
@@ -78,7 +72,7 @@ public class InputManager : BaseMonoBehaviour, IInputProvider
 
     private void HandleMove(InputAction.CallbackContext context)
     {
-        _runHorizontal = context.ReadValue<Vector2>().x;
+        MoveInput = context.ReadValue<Vector2>().x;
     }
 
     private void HandleDash(InputAction.CallbackContext context)

@@ -1564,7 +1564,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1211732262}
   - component: {fileID: 1211732265}
-  - component: {fileID: 1211732267}
   - component: {fileID: 1211732264}
   - component: {fileID: 1211732263}
   - component: {fileID: 1211732266}
@@ -1589,6 +1588,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1467828830}
+  - {fileID: 1222705557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1211732263
@@ -1603,22 +1603,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc82343ace7961148886fe05d3329efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 1467828831}
-  colliderReceivesDmg: {fileID: 1211732265}
-  rb: {fileID: 1211732264}
-  _colliderStatic: {fileID: 1211732267}
+  _rigidbody: {fileID: 1211732264}
+  _anim: {fileID: 1467828831}
+  _collider: {fileID: 1211732265}
   _stateMachine: {fileID: 1211732266}
+  _groundSensor: {fileID: 1222705556}
   _gravityScale: 4
-  _colliderStaticSize: {x: 0.5, y: 2.07}
-  _colliderTriggerSize: {x: 0.5, y: 2.07}
-  PlayerStats:
-    speed: 8
-    jumpForce: 18
-    jumpTime: 0
-    jumpHeight: 0
-    fallSpeed: 0
-    maxFallSpeed: 0
-    maxJumpTime: 0
+  _colliderSize: {x: 0.5, y: 2.07}
+  PlayerStats: {fileID: 11400000, guid: 8a3f945c03548aa42b5ae0d03102d846, type: 2}
 --- !u!50 &1211732264
 Rigidbody2D:
   serializedVersion: 5
@@ -1634,8 +1626,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 4
+  m_Material: {fileID: 6200000, guid: 2dd0d1eb1008e394fa087d9cb6fffafa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1647,55 +1639,6 @@ Rigidbody2D:
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &1211732265
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211732261}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 2dd0d1eb1008e394fa087d9cb6fffafa, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 2.07}
-  m_Direction: 0
---- !u!114 &1211732266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1211732261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c97c26ea64ec84c81c16559279caac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!70 &1211732267
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1732,6 +1675,68 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 2.07}
   m_Direction: 0
+--- !u!114 &1211732266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211732261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c97c26ea64ec84c81c16559279caac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1222705555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1222705557}
+  - component: {fileID: 1222705556}
+  m_Layer: 0
+  m_Name: GroundSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1222705556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222705555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e6a066b7ba43942886a17076c8bf40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radiusCheck: 0.1
+  positionY: 1.035
+  updateCheckPosition: {x: 0, y: 0, z: 0}
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!4 &1222705557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222705555}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1211732262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467828829
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1861,7 @@ GameObject:
   - component: {fileID: 1537396848}
   - component: {fileID: 1537396847}
   - component: {fileID: 1537396846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4210,7 +4215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a153d2086d57d64b90027c2621a8aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runHorizontal: 0
   _playerInput: {fileID: 1664235487}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -4219,6 +4223,6 @@ SceneRoots:
   - {fileID: 309825434}
   - {fileID: 1664235485}
   - {fileID: 177387060}
-  - {fileID: 1211732262}
   - {fileID: 1590721622}
   - {fileID: 1111206360}
+  - {fileID: 1211732262}

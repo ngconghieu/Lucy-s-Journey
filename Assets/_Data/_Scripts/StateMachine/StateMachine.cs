@@ -2,34 +2,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class StateMachine<T> : BaseMonoBehaviour where T : Enum
+public class StateMachine<T> : BaseMonoBehaviour where T : Enum
 {
-    protected Dictionary<T, BaseState<T>> states = new();
-    protected BaseState<T> currentState;
+    protected Dictionary<T, BaseState> states = new();
+    public BaseState currentState;
 
-    protected virtual void Start()
+    protected virtual void Update()
     {
-        LoadStates();
+        currentState?.Do();
     }
 
-    protected void Update()
+    protected virtual void FixedUpdate()
     {
-        currentState?.Update();
+        currentState?.FixedDo();
     }
 
-    protected void FixedUpdate()
-    {
-        currentState?.FixedUpdate();
-    }
-
-    public void ChangeState(T nextStateKey)
+    public void SelectState(T nextStateKey)
     {
         if (!states.ContainsKey(nextStateKey))
-            Debug.LogError($"State {nextStateKey} not found", gameObject);
+            Debug.LogError($"State {nextStateKey} not found");
         currentState?.Exit();
         currentState = states[nextStateKey];
         currentState.Enter();
     }
 
-    protected abstract void LoadStates();
+    public void AddState(T key, BaseState state)
+    {
+        if (states.ContainsKey(key))
+            Debug.LogError($"State {key} already exists");
+        states.Add(key, state);
+    }
 }

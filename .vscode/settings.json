@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Lucy's Journey.sln"
+    "dotnet.defaultSolution": "Lucy's Journey.sln",
+    "dotnet.preferCSharpExtension": true
 }

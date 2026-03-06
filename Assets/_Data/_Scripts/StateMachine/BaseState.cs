@@ -1,15 +1,13 @@
-using System;
-
-public abstract class BaseState<T> where T : Enum
+public abstract class BaseState
 {
-    public T Owner { get; }
+    public bool IsCompleted { get; protected set; }
 
     public abstract void Enter();
-    public abstract void Update();
-    public abstract void FixedUpdate();
+
+    public abstract void Do();
+
+    public abstract void FixedDo();
+
     public abstract void Exit();
-    public BaseState(T owner)
-    {
-        Owner = owner;
-    }
+
 }

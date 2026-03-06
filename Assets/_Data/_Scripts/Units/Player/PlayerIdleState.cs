@@ -1,16 +1,9 @@
-public class PlayerIdleState : BaseState<PlayerState>
+public class PlayerIdleState : BaseState
 {
-    private readonly IInputProvider _input;
-    private readonly Player _player;
-
-    public PlayerIdleState(PlayerState owner, Player player, IInputProvider input) : base(owner)
-    {
-        _input = input;
-        _player = player;
-    }
 
     public override void Enter()
     {
+        IsCompleted = true; // Set to true to allow transition to other states immediately
         //Debug.Log("PlayerIdleState Enter");
     }
 
@@ -19,16 +12,12 @@ public class PlayerIdleState : BaseState<PlayerState>
         //Debug.Log("PlayerIdleState Exit");
     }
 
-    public override void FixedUpdate()
+    public override void FixedDo()
     {
     }
 
-    public override void Update()
+    public override void Do()
     {
-        if (_input.RunHorizontal != 0)
-        {
-            _player.StateMachine.ChangeState(PlayerState.Run);
-        }
     }
 
 }

@@ -1,6 +1,6 @@
-public class PlayerDashState : BaseState<PlayerState>
+public class PlayerDashState : BaseState
 {
-    public PlayerDashState(PlayerState owner, Player player) : base(owner)
+    public PlayerDashState(IUnitBase context)
     {
     }
 
@@ -14,12 +14,12 @@ public class PlayerDashState : BaseState<PlayerState>
         
     }
 
-    public override void FixedUpdate()
+    public override void FixedDo()
     {
         
     }
 
-    public override void Update()
+    public override void Do()
     {
         
     }

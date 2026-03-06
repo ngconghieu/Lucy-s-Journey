@@ -1,48 +1,90 @@
+using System;
 using UnityEngine;
 
 public class PlayerStateMachine : StateMachine<PlayerState>
 {
-    private IInputProvider _inputProvider;
-    private Player _player;
+    public IInputProvider InputProvider { get; private set; }
+    public Player Player { get; private set; }
+    private bool _isGrounded;
+    
 
-    protected override void Start()
+    protected void Start()
     {
-        _inputProvider = ServiceLocator.Get<IInputProvider>();
-        _inputProvider.OnJump += HandleJump;
-        _inputProvider.OnDash += HandleDash;
-        base.Start();
+        InputProvider = ServiceLocator.Get<IInputProvider>();
+        InputProvider.OnJump += HandleJump;
+        //_inputProvider.OnDash += HandleDash;
+        LoadStates();
     }
 
-    public void Initialize(Player player)
+    protected override void Update()
     {
-        _player = player;
+        base.Update();
+
+        Debug.Log(currentState);
+
+        // update grounded state
+        if (_isGrounded)
+        {
+            if (InputProvider.MoveInput == 0)
+            {
+                if (currentState != states[PlayerState.Idle] && currentState.IsCompleted)
+                    SelectState(PlayerState.Idle);
+            }
+            else
+            {
+                if (currentState != states[PlayerState.Run] && currentState.IsCompleted)
+                    SelectState(PlayerState.Run);
+            }
+        }
+        else
+        {
+            if (currentState != states[PlayerState.Jump] && currentState.IsCompleted)
+                SelectState(PlayerState.Jump);
+        }
+    }
+
+    public void Setup(Player player)
+    {
+        Player = player;
     }
 
     private void OnDisable()
     {
-        _inputProvider.OnDash -= HandleDash;
-        _inputProvider.OnJump -= HandleJump;
+        InputProvider.OnDash -= HandleDash;
+        InputProvider.OnJump -= HandleJump;
+    }
+
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        _isGrounded = Player.GroundSensor.IsGrounded;
     }
 
     private void HandleDash()
     {
-        if(currentState is not PlayerDashState)
-            ChangeState(PlayerState.Dash);
+        
     }
 
     private void HandleJump()
     {
-        if (currentState is not PlayerJumpState)
-            ChangeState(PlayerState.Jump);
+        if (currentState != states[PlayerState.Jump])
+        {
+            Player.Rigibody.AddForce(Vector2.up * Player.PlayerStats.JumpForce, ForceMode2D.Impulse);
+            if (_isGrounded && currentState.IsCompleted)
+            {
+                SelectState(PlayerState.Jump);
+            }
+        }
     }
 
-    protected override void LoadStates()
+    protected void LoadStates()
     {
-        states.Add(PlayerState.Idle, new PlayerIdleState(PlayerState.Idle, _player, _inputProvider));
-        states.Add(PlayerState.Run, new PlayerRunState(PlayerState.Run, _player, _inputProvider));
-        states.Add(PlayerState.Jump, new PlayerJumpState(PlayerState.Jump, _player));
-        states.Add(PlayerState.Dash, new PlayerDashState(PlayerState.Dash, _player));
-        ChangeState(PlayerState.Idle);
+        AddState(PlayerState.Idle, new PlayerIdleState());
+        AddState(PlayerState.Run, new PlayerRunState(Player, Player.PlayerStats.Speed, InputProvider));
+        AddState(PlayerState.Jump, new PlayerJumpState(Player, Player.PlayerStats.Speed, InputProvider));
+        //AddState(PlayerState.Fall, new PlayerFallState(Player));
+        //states.Add(PlayerState.Dash, new PlayerDashState(PlayerState.Dash, _player));
+        SelectState(PlayerState.Idle);
     }
 }
 
@@ -51,8 +93,11 @@ public enum PlayerState
     Idle,
     Run,
     Jump,
+    Fall,
     Dash,
     Attack,
     Hurt,
-    Dead
+    Dead,
+    Ground,
+    Air
 }

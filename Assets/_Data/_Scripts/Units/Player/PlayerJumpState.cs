@@ -1,41 +1,31 @@
+using System;
 using UnityEngine;
 
-public class PlayerJumpState : BaseState<PlayerState>
+public class PlayerJumpState : PlayerMovementState
 {
-    private readonly Player _player;
-    private Rigidbody2D _rb;
-
-    public PlayerJumpState(PlayerState owner, Player player) : base(owner)
+    public PlayerJumpState(IUnitBase unit, float speed, IInputProvider input) : base(unit, speed, input)
     {
-        _player = player;
     }
 
     public override void Enter()
     {
         //Debug.Log("PlayerJumpState Enter");
-        _rb = _player.Rigibody;
-        _rb.AddForce(Vector2.up * _player.PlayerStats.jumpForce, ForceMode2D.Impulse);
-        _player.Anim.SetBool(Const.AnimGround, false);
-        _player.Anim.SetTrigger(Const.AnimJump);
+        _unit.Anim.SetBool(Const.AnimGround, false);
+        _unit.Anim.SetTrigger(Const.AnimJump);
+        IsCompleted = true;
+
     }
 
     public override void Exit()
     {
         //Debug.Log("PlayerJumpState Exit");
-        _player.Anim.SetBool(Const.AnimGround, true);
+        base.Exit();
+        _unit.Anim.SetBool(Const.AnimGround, true);
     }
 
-    public override void FixedUpdate()
+    public override void FixedDo()
     {
-        _player.Anim.SetFloat(Const.AnimVelocityY, _rb.linearVelocityY);
-
-        if (_rb.linearVelocityY == 0) 
-            _player.StateMachine.ChangeState(PlayerState.Idle);
-        
-
-    }
-
-    public override void Update()
-    {
+        base.FixedDo();
+        _unit.Anim.SetFloat(Const.AnimVelocityY, _unit.Rigibody.linearVelocityY);
     }
 }

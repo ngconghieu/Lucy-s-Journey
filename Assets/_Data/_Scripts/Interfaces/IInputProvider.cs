@@ -1,8 +1,9 @@
 using System;
+using UnityEngine;
 
 public interface IInputProvider
 {
-    float RunHorizontal { get; }
+    float MoveInput { get; }
     event Action OnDash;
     event Action OnJump;
 }

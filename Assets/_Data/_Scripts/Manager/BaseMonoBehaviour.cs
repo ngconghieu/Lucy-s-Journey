@@ -2,24 +2,19 @@ using UnityEngine;
 
 public class BaseMonoBehaviour : MonoBehaviour
 {
-    protected virtual void LoadComponent()
-    {
-        // For override
-    }
-    protected virtual void ResetValue()
-    {
-        // For override
-    }
-
     protected virtual void Awake()
     {
-        LoadComponent();
+        // For override
+    }
+    protected virtual void SetValue()
+    {
+        // For override
     }
 
     protected virtual void Reset()
     {
-        ResetValue();
-        LoadComponent();
+        SetValue();
+        Awake();
     }
 
 }
